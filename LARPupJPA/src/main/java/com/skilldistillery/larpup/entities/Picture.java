@@ -13,6 +13,7 @@ public class Picture {
 	
 	private String url;
 	private String alt;
+	
 	public int getId() {
 		return id;
 	}
@@ -31,6 +32,7 @@ public class Picture {
 	public void setAlt(String alt) {
 		this.alt = alt;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -63,6 +65,7 @@ public class Picture {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "Picture [id=" + id + ", url=" + url + ", alt=" + alt + "]";

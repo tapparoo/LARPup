@@ -53,11 +53,13 @@ public class Address {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", city=" + city + ", state=" + state + ", zipcode="
 				+ zipcode + ", phone=" + phone + "]";
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
