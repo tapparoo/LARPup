@@ -46,7 +46,26 @@ class EventCommentTest {
 
 	@Test
 	void test_eventcomment_mappings() {
-		assertEquals(expected, eventComment.getComment());
+		assertEquals("Dude that guy was such a tool.", eventComment.getComment());
+		assertEquals("2019-03-06T23:57:41", eventComment.getPostTime().toString());
+	}
+	@Test
+	void test_eventcomment_manyToOne_event_userid_mapping() {
+		assertEquals("NerdAvenger",eventComment.getUser().getNickname());
+		assertEquals("Greg", eventComment.getUser().getFirstName());
+		assertEquals("Kraehenbuehl", eventComment.getUser().getLastName());
+		assertEquals("greg", eventComment.getUser().getPassword());
+		assertEquals("KingNerd@gmail.com", eventComment.getUser().getEmail());
+		assertEquals("admin", eventComment.getUser().getRole());
+		assertEquals("1981-03-06", eventComment.getUser().getBirthDate().toString());
+		
+	}
+	@Test
+	void test_eventcomment_ManyToOne_event_eventid_mapping() {
+		assertEquals("Train Heist", eventComment.getEvent().getName());
+		assertEquals("The team are on a mission to take some much needed medical suplies from a train.", eventComment.getEvent().getDescription());
+		assertEquals("2018-06-15T23:57:41", eventComment.getEvent().getDate().toString());
+		
 	}
 	
 	@Disabled
@@ -56,16 +75,3 @@ class EventCommentTest {
 	}
 
 }
-//	private String comment;
-//	
-//	@Column(name="post_time")
-//	@CreationTimestamp
-//	private LocalDateTime postTime;
-//	
-//	@ManyToOne
-//	@JoinColumn(name="user_id")
-//	private User user;
-//	
-//	@ManyToOne
-//	@JoinColumn(name="event_id")
-//	private Event event;
