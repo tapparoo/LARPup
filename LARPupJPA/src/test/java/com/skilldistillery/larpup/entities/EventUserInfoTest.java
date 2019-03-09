@@ -13,12 +13,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Address test")
-class AddressTest {
+@DisplayName("event user info test")
+class EventUserInfoTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Address address;
+	private EventUserInfo eventUserInfo;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,13 +33,13 @@ class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		address = em.find(Address.class, 1);
+		eventUserInfo = em.find(EventUserInfo.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		address = null;
+		eventUserInfo = null;
 	}
 
 	@Test
