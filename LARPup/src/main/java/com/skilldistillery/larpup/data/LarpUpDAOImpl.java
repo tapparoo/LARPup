@@ -10,7 +10,7 @@ import com.skilldistillery.larpup.entities.User;
 
 @Transactional
 @Service
-public class LarpUpDAOImple implements LarpUpDAO {
+public class LarpUpDAOImpl implements LarpUpDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
