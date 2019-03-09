@@ -1,5 +1,6 @@
 package com.skilldistillery.larpup.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -42,9 +44,20 @@ class AddressTest {
 		address = null;
 	}
 
+	//'1','631 N Institute Street','Colorado Springs','Colorado','80903','8143307304'
+	@Test
+	void test_address_entity_mappings() {
+		assertEquals("631 N Institute Street", address.getStreet());
+		assertEquals("Colorado Springs", address.getCity());
+		assertEquals("Colorado", address.getState());
+		assertEquals("80903", address.getZipcode());
+		assertEquals("8143307304", address.getPhone());
+	}
+	
+	@Disabled
 	@Test
 	void test() {
 		fail("Not yet implemented");
 	}
-
 }
+
