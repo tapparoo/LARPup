@@ -5,10 +5,10 @@
 <jsp:include page="../components/bootstrapHead.jsp"></jsp:include>
 <head>
 <meta charset="UTF-8">
-<title>Main Page</title>
+<title>User Form</title>
 </head>
 <body>
-I MADE IT!!! WELCOME TO THE INDEX JSP!!!
+I MADE IT!!! WELCOME TO THE USERRFORM JSP!!!
 </body>
 <jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
 </html>
