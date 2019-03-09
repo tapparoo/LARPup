@@ -1,5 +1,6 @@
 package com.skilldistillery.larpup.entities;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +43,13 @@ class PictureTest {
 		em.close();
 		picture = null;
 	}
+	@Test
+	void test_picture_url_link_mapping() {
+		assertEquals("https://m.media-amazon.com/images/M/MV5BMjEzMjk1NTA1Ml5BMl5BanBnXkFtZTcwNjQyNjAwOQ@@._V1_UX214_CR0,0,214,317_AL_.jpg", picture.getUrl());
+		assertEquals("profile image",picture.getAlt());
+	}
 
+	@Disabled
 	@Test
 	void test() {
 		fail("Not yet implemented");

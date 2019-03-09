@@ -1,6 +1,6 @@
 package com.skilldistillery.larpup.entities;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,8 +20,9 @@ public class EventUser {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
-	private String description;
+	@ManyToOne
+	@JoinColumn(name="event_user_info_id")
+	private EventUserInfo eventUserInfo;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -37,7 +38,7 @@ public class EventUser {
 	
 	@Column(name="signup_date")
 	@CreationTimestamp
-	private LocalDateTime signupDate;
+	private Date signupDate;
 
 	public int getId() {
 		return id;
@@ -47,20 +48,12 @@ public class EventUser {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public EventUserInfo getEventUserInfo() {
+		return eventUserInfo;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setEventUserInfo(EventUserInfo eventUserInfo) {
+		this.eventUserInfo = eventUserInfo;
 	}
 
 	public User getUser() {
@@ -87,11 +80,11 @@ public class EventUser {
 		this.picture = picture;
 	}
 
-	public LocalDateTime getSignupDate() {
+	public Date getSignupDate() {
 		return signupDate;
 	}
 
-	public void setSignupDate(LocalDateTime signupDate) {
+	public void setSignupDate(Date signupDate) {
 		this.signupDate = signupDate;
 	}
 
@@ -99,12 +92,10 @@ public class EventUser {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((event == null) ? 0 : event.hashCode());
+		result = prime * result + ((eventUserInfo == null) ? 0 : eventUserInfo.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((picture == null) ? 0 : picture.hashCode());
-		result = prime * result + ((signupDate == null) ? 0 : signupDate.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -118,32 +109,22 @@ public class EventUser {
 		if (getClass() != obj.getClass())
 			return false;
 		EventUser other = (EventUser) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (event == null) {
 			if (other.event != null)
 				return false;
 		} else if (!event.equals(other.event))
 			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (eventUserInfo == null) {
+			if (other.eventUserInfo != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!eventUserInfo.equals(other.eventUserInfo))
+			return false;
+		if (id != other.id)
 			return false;
 		if (picture == null) {
 			if (other.picture != null)
 				return false;
 		} else if (!picture.equals(other.picture))
-			return false;
-		if (signupDate == null) {
-			if (other.signupDate != null)
-				return false;
-		} else if (!signupDate.equals(other.signupDate))
 			return false;
 		if (user == null) {
 			if (other.user != null)
@@ -155,7 +136,7 @@ public class EventUser {
 
 	@Override
 	public String toString() {
-		return "EventUser [id=" + id + ", name=" + name + ", description=" + description + ", user=" + user + ", event="
-				+ event + ", picture=" + picture + ", signupDate=" + signupDate + "]";
+		return "EventUser [id=" + id + ", eventUserInfo=" + eventUserInfo + ", user=" + user + ", event=" + event
+				+ ", picture=" + picture + "]";
 	}
 }
