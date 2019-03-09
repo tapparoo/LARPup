@@ -1,6 +1,6 @@
 package com.skilldistillery.larpup.entities;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +24,7 @@ public class StoryComment {
 	
 	@Column(name="post_time")
 	@CreationTimestamp
-	private LocalDateTime postTime;
+	private Date postTime;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -50,11 +50,11 @@ public class StoryComment {
 		this.comment = comment;
 	}
 
-	public LocalDateTime getPostTime() {
+	public Date getPostTime() {
 		return postTime;
 	}
 
-	public void setPostTime(LocalDateTime postTime) {
+	public void setPostTime(Date postTime) {
 		this.postTime = postTime;
 	}
 
