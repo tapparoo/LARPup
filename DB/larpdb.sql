@@ -163,22 +163,42 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `event_user_info`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `event_user_info` ;
+
+CREATE TABLE IF NOT EXISTS `event_user_info` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NULL,
+  `description` TEXT NULL,
+  `story_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_event_user_info_story1_idx` (`story_id` ASC),
+  CONSTRAINT `fk_event_user_info_story1`
+    FOREIGN KEY (`story_id`)
+    REFERENCES `story` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `event_user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `event_user` ;
 
 CREATE TABLE IF NOT EXISTS `event_user` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(200) NOT NULL,
-  `description` TEXT NULL,
+  `signup_date` DATETIME NULL,
   `user_id` INT UNSIGNED NULL,
   `event_id` INT UNSIGNED NOT NULL,
   `picture_id` INT UNSIGNED NOT NULL,
-  `signup_date` DATETIME NULL,
+  `event_user_info_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_cast_event1_idx` (`event_id` ASC),
   INDEX `fk_event_user_user1_idx` (`user_id` ASC),
   INDEX `fk_event_user_picture1_idx` (`picture_id` ASC),
+  INDEX `fk_event_user_event_user_info1_idx` (`event_user_info_id` ASC),
   CONSTRAINT `fk_cast_event1`
     FOREIGN KEY (`event_id`)
     REFERENCES `event` (`id`)
@@ -192,6 +212,11 @@ CREATE TABLE IF NOT EXISTS `event_user` (
   CONSTRAINT `fk_event_user_picture1`
     FOREIGN KEY (`picture_id`)
     REFERENCES `picture` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_user_event_user_info1`
+    FOREIGN KEY (`event_user_info_id`)
+    REFERENCES `event_user_info` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -383,8 +408,23 @@ USE `larpdb`;
 INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (1, 'Train Heist', 'The team are on a mission to take some much needed medical suplies from a train.', '2018-06-15 23:57:41', 3, 4, '2018-06-17 23:57:41');
 INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (2, 'First Banquette', 'Two kingdoms call peace and a risky banquette is had.', '2018-04-15 23:57:41', 2, 4, '2018-07-15 23:57:41');
 INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (3, 'Battle for Hodor', 'An epic battle between the three nations!', '2018-08-15 23:57:41', 1, 5, '2018-08-12 23:57:41');
-INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (4, 'Hands of Blue', 'The team are captured and get to meet those with hands of blue.', '2018-011-15 23:57:41', 3, 4, '2018-11-23 23:57:41');
+INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (4, 'Hands of Blue', 'The team are captured and get to meet those with hands of blue.', '2018-11-15 23:57:41', 3, 4, '2018-11-23 23:57:41');
 INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (5, 'Marriage of Two Races', 'Thrall and Aggra finally get together to have a marriage to bring two kingdoms together.', '2018-07-15 23:57:41', 2, 5, '2018-09-03 23:57:41');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_user_info`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `larpdb`;
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (1, 'Thrall', 'An orc, that wants a human wife, for whatever reason.', 2);
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (2, 'Jaina', 'Someone in world of warcraft about to marry and orc', 2);
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (3, 'Malcom', 'Captain of the Firefly', 3);
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (4, 'Wash', 'I am a leaf on the wind.', 3);
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (5, 'Daenerys Targaryen', 'I like dragons!', 1);
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (6, 'Joffrey', 'I ... am in game of thrones.', 1);
 
 COMMIT;
 
@@ -394,17 +434,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `larpdb`;
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (1, 'Malcom Reynolds', 'Captain of the Firefly', NULL, 1, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (2, 'Hoban Washburne', 'Pilot of the Firefly', NULL, 1, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (3, 'Daenerys Targaryen', 'I know I love dragons.', NULL, 3, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (4, 'Joffrey Baratheon', 'LOL GAME OF THRONES', NULL, 3, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (5, 'Thrall', 'Orc Leader', NULL, 2, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (6, 'Jaina Proudmoore', 'A leader of the Human Empire', NULL, 2, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (7, 'Blaine Bloodhoof', 'Tauren Cheif of Tauren', NULL, 2, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (8, 'Thrall', 'Orc Leader', NULL, 5, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (9, 'Jaina Proudmoore', 'A leader of the Human Empire', NULL, 5, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (10, 'Malcom Reynolds', 'Captain of the Firefly', NULL, 4, 6, NULL);
-INSERT INTO `event_user` (`id`, `name`, `description`, `user_id`, `event_id`, `picture_id`, `signup_date`) VALUES (11, 'Hoban Washburne', 'Pilot of the Firefly', NULL, 4, 6, NULL);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (1, '2018-11-28 23:57:41', NULL, 4, 6, 3);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (2, '2018-11-25 23:57:41', NULL, 4, 6, 4);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (3, '2018-06-19 23:57:41', NULL, 1, 6, 3);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (4, '2018-07-18 23:57:41', NULL, 2, 6, 1);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (5, '2018-09-07 23:57:41', NULL, 5, 6, 2);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (6, '2018-07-16 23:57:41', NULL, 2, 6, 2);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (7, '2018-09-10 23:57:41', NULL, 5, 6, 1);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (8, '2018-08-17 23:57:41', NULL, 3, 6, 5);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (9, '2018-08-15 23:57:41', NULL, 3, 6, 6);
 
 COMMIT;
 
