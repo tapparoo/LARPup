@@ -45,23 +45,24 @@ class EventTest {
 	}
 	@Test
 	void test_name_for_event_test_mapping() {
-		assertEquals("Train Heist", event.getName());
-		
-	}
-	
-	@Test
-	void test_event_test_id6_is_null() {
 		assertEquals("Marriage of Two Races", event.getName());
 		assertEquals("Thrall and Aggra finally get together to have a marriage to bring two kingdoms together.",event.getDescription());
 		assertEquals("2018-07-15T23:57:41", event.getDate().toString());
 		assertEquals(2,event.getStory().getId());
 		assertEquals(5, event.getAddress().getId());
+		
 	}
-//	'4','18300 W Alameda Pkwy','Lakewood','Colorado','80465','7208652492'
+	
+//	'5', '1701 Bryant St', 'Denver', 'Colorado', '80204', '7202583000'
 
 	@Test
 	void test_manytoone_association_between_event_and_address() {
-		assertEquals("18300 W Alameda Pkwy", event.getAddress().getStreet());
+		assertEquals("1701 Bryant St", event.getAddress().getStreet());
+		assertEquals("Denver", event.getAddress().getCity());
+		assertEquals("Colorado", event.getAddress().getState());
+		assertEquals("80204", event.getAddress().getZipcode());
+		assertEquals("7202583000", event.getAddress().getPhone());
+		
 		
 	}
 
