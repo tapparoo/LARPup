@@ -1,6 +1,5 @@
 package com.skilldistillery.larpup.entities;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -27,6 +28,7 @@ public class User {
 	private String lastName;
 	
 	@Column(name="birth_date")
+	@Temporal(TemporalType.DATE)
 	private Date birthDate;
 	
 	@OneToOne
@@ -39,7 +41,7 @@ public class User {
 	
 	@Column(name="create_date")
 	@CreationTimestamp
-	private LocalDateTime createDate;
+	private Date createDate;
 	
 	private String nickname;
 	private String password;
@@ -82,10 +84,10 @@ public class User {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	public LocalDateTime getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 	public String getNickname() {

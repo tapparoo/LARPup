@@ -1,6 +1,6 @@
 package com.skilldistillery.larpup.entities;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +35,7 @@ public class Story {
 	
 	@Column(name="create_date")
 	@CreationTimestamp
-	private LocalDateTime createDate;
+	private Date createDate;
 
 	public int getId() {
 		return id;
@@ -85,11 +85,11 @@ public class Story {
 		this.genre = genre;
 	}
 
-	public LocalDateTime getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 
