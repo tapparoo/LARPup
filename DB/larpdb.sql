@@ -446,3 +446,29 @@ INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_i
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `event_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `larpdb`;
+INSERT INTO `event_comment` (`id`, `comment`, `post_time`, `user_id`, `event_id`) VALUES (1, 'Dude that guy was such a tool.', '2019-03-06 23:57:41', 1, 1);
+INSERT INTO `event_comment` (`id`, `comment`, `post_time`, `user_id`, `event_id`) VALUES (2, 'Working with the bar wench was amazing.', '2019-03-06 23:57:41', 2, 2);
+INSERT INTO `event_comment` (`id`, `comment`, `post_time`, `user_id`, `event_id`) VALUES (3, 'Woot! I leveled up!', '2019-03-06 23:57:41', 3, 3);
+INSERT INTO `event_comment` (`id`, `comment`, `post_time`, `user_id`, `event_id`) VALUES (4, 'Can\'t wait for the next event.', '2019-03-06 23:57:41', 2, 4);
+INSERT INTO `event_comment` (`id`, `comment`, `post_time`, `user_id`, `event_id`) VALUES (5, 'I made so many friends!', '2019-03-06 23:57:41', 1, 5);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `larpdb`;
+INSERT INTO `story_comment` (`id`, `comment`, `post_time`, `user_id`, `story_id`) VALUES (1, 'This story is amazing.', '2019-03-06 23:57:41', 1, 3);
+INSERT INTO `story_comment` (`id`, `comment`, `post_time`, `user_id`, `story_id`) VALUES (2, 'The DM is such a dumb ass.', '2019-03-06 23:57:41', 2, 1);
+INSERT INTO `story_comment` (`id`, `comment`, `post_time`, `user_id`, `story_id`) VALUES (3, 'This should be the only story you come to.', '2019-03-06 23:57:41', 3, 2);
+
+COMMIT;
+
