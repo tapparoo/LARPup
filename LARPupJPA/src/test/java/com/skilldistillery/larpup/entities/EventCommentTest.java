@@ -64,7 +64,7 @@ class EventCommentTest {
 	void test_eventcomment_ManyToOne_event_eventid_mapping() {
 		assertEquals("Train Heist", eventComment.getEvent().getName());
 		assertEquals("The team are on a mission to take some much needed medical suplies from a train.", eventComment.getEvent().getDescription());
-		assertEquals("2018-06-15T23:57:41", eventComment.getEvent().getDate().toString());
+		assertEquals("2018-06-15 23:57:41.0", eventComment.getEvent().getDate().toString());
 		
 	}
 	

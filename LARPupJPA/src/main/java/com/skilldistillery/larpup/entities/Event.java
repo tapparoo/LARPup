@@ -1,6 +1,6 @@
 package com.skilldistillery.larpup.entities;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,11 +20,11 @@ public class Event {
 	
 	private String name;
 	private String description;
-	private LocalDateTime date;
+	private Date date;
 	
 	@Column(name="create_date")
 	@CreationTimestamp
-	private LocalDateTime createDate;
+	private Date createDate;
 
 	@ManyToOne
 	@JoinColumn(name = "story_id")
@@ -58,19 +58,19 @@ public class Event {
 		this.description = description;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public LocalDateTime getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 

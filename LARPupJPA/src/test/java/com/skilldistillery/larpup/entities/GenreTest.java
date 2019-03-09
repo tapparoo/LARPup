@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterAll;
