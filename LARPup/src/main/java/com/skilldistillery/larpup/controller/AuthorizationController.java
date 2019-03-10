@@ -20,5 +20,12 @@ public class AuthorizationController {
 		ModelAndView mv = new ModelAndView("authorization");
 		return mv;
 	}
+	
+	@RequestMapping(path = {"authorize.do"}, method = RequestMethod.GET)
+	public ModelAndView checkUser() {
+		ModelAndView mv = new ModelAndView("authorization");
+		return mv;
+	}
+	
 
 }
