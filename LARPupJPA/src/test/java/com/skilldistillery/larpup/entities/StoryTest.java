@@ -91,6 +91,17 @@ class StoryTest {
 		assertEquals("Medievil", story.getGenre().getName());
 	}
 	
+	@Test
+	void test_story_event_list_association() {
+		int size = story.getEvents().size();
+		Event evt = new Event();
+		evt.setId(5);
+		story.addEvent(evt);
+		assertEquals(size + 1, story.getEvents().size());
+		story.removeEvent(evt);
+		assertEquals(size, story.getEvents().size());
+	}
+	
 	@Disabled
 	@Test
 	void test() {

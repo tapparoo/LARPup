@@ -1,6 +1,8 @@
 package com.skilldistillery.larpup.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -33,9 +36,36 @@ public class Story {
 	@JoinColumn(name="genre_id")
 	private Genre genre;
 	
+	@OneToMany(mappedBy="story")
+	private List<Event> events;
+	
 	@Column(name="create_date")
 	@CreationTimestamp
 	private Date createDate;
+	
+	public void addEvent(Event event) {
+		if(events == null)
+			events = new ArrayList<>();
+		if(!events.contains(event)) {
+			events.add(event);
+			event.setStory(this);
+		}
+	}
+	
+	public void removeEvent(Event event) {
+		event.setStory(null);
+		if (events != null) {
+			events.remove(event);
+		}
+	}
+	
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
 
 	public int getId() {
 		return id;
