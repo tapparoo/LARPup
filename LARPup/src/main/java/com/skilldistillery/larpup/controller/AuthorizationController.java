@@ -28,8 +28,16 @@ public class AuthorizationController {
 	public ModelAndView checkUser(String email, String password, HttpSession session) {
 		User myUser = new User();
 		myUser.setEmail("Flubber@gmail.com");
+		myUser.setPassword("blubber");
 		
-		ModelAndView mv = new ModelAndView("authorization");
+		if (email.contentEquals(myUser.getEmail()) && password.equals(myUser.getPassword())) {
+			System.out.println("THEY MATCH");
+			session.setAttribute("myUser", myUser);
+		} else {
+			System.out.println("THEY DO NOT MATCH");
+		}
+		
+		ModelAndView mv = new ModelAndView("index");
 		return mv;
 	}
 	

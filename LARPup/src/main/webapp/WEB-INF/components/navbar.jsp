@@ -27,10 +27,10 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <form:form class="form-inline my-2 my-lg-0" action="authorize.do" method="GET">
       <input class="form-control mr-sm-2" name="email" type="search" placeholder="email" aria-label="email">
       <input class="form-control mr-sm-2" name="password" type="search" placeholder="password" aria-label="password">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-    </form>
+    </form:form>
   </div>
 </nav>
