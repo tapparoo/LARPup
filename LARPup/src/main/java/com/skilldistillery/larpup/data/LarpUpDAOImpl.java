@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.larpup.entities.Event;
+import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.User;
 
 @Transactional
@@ -61,4 +63,87 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 		}
 		return true;
 	}
+	
+	@Override
+	public Story findStoryById(int id) {
+		return em.find(Story.class, id);
+	}
+	
+	@Override
+	public Story addStory(Story story) {
+		em.persist(story);
+		em.flush();
+		return story;
+	}
+	
+	@Override
+	public boolean updateStory(Story story) {
+		Story managed = em.find(Story.class, story.getId());
+		
+		if (managed == null)
+			return false;
+		
+		try {
+			managed.setAddress(story.getAddress());
+			managed.setCreateDate(story.getCreateDate());
+			managed.setDescription(story.getDescription());
+			managed.setEventRoles(story.getEventRoles());
+			managed.setEvents(story.getEvents());
+			managed.setGenre(story.getGenre());
+			managed.setName(story.getName());
+			managed.setUser(story.getUser());
+			
+			em.persist(managed);
+			em.flush();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public Event findEventById(int id) {
+		return em.find(Event.class, id);
+	}
+	
+	@Override
+	public Event addEvent(Event event) {
+		em.persist(event);
+		em.flush();
+		return event;
+	}
+	
+	@Override
+	public boolean updateEvent(Event event) {
+		Event managed = em.find(Event.class, event.getId());
+		
+		if (managed == null)
+			return false;
+		
+		try {
+			managed.setAddress(event.getAddress());
+			managed.setCreateDate(event.getCreateDate());
+			managed.setDate(event.getDate());
+			managed.setDescription(event.getDescription());
+			managed.setEventUsers(event.getEventUsers());
+			managed.setName(event.getName());
+			managed.setStory(event.getStory());
+			
+			em.persist(managed);
+			em.flush();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
 }
+
+
+
+
+
+
