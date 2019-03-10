@@ -1,5 +1,6 @@
 package com.skilldistillery.larpup.entities;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -52,6 +53,7 @@ class UserTest {
 		assertEquals("young", user.getPassword());
 		assertEquals("ClassicRed@hotmail.com", user.getEmail());
 		assertEquals("1999-04-01", user.getBirthDate().toString());
+		assertTrue(user.isActive());
 		
 	}
 	@Test
