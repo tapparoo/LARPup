@@ -9,7 +9,7 @@
 </head>
 <body>
 THIS IS A TEST PAGE ONLY! THIS SHOULD NEVER BE LINKED TO IN PUBLIC!!!
-<a href="/home.do">BACK TO HOME</a>
+<a href="/home/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
 </html>

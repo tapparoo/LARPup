@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController {
 
 	@Autowired
@@ -17,6 +17,7 @@ public class UserController {
 
 	@RequestMapping(path = {"displayUser.do"}, method = RequestMethod.GET)
 	public ModelAndView userDisplay() {
+		
 		ModelAndView mv = new ModelAndView("userDisplay");
 		return mv;
 	}

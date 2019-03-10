@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 
 @RestController
-@RequestMapping({"/", "/home.do"})
+@RequestMapping({"/", "home"})
 public class MainController {
 
 	@Autowired
