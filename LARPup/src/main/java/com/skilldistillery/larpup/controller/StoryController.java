@@ -9,15 +9,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/story")
+public class StoryController {
 
 	@Autowired
 	private LarpUpDAO dao;
 
-	@RequestMapping(path = {"displayUser.do"}, method = RequestMethod.GET)
+	@RequestMapping(path = {"displayStory.do"}, method = RequestMethod.GET)
 	public ModelAndView userDisplay() {
-		ModelAndView mv = new ModelAndView("userDisplay");
+		ModelAndView mv = new ModelAndView("storyDisplay");
 		return mv;
 	}
 

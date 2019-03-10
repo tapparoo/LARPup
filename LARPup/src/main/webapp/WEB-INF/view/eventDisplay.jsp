@@ -8,7 +8,8 @@
 <title>Display Event</title>
 </head>
 <body>
-I MADE IT!!! WELCOME TO THE EVENTDISPLAY JSP!!!
+I MADE IT!!! WELCOME TO THE EVENTDISPLAY JSP!!!<br>
+<a href="/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
 </html>

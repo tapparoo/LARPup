@@ -8,7 +8,8 @@
 <title>Display User</title>
 </head>
 <body>
-I MADE IT!!! WELCOME TO THE USERDISPLAY JSP!!!
+I MADE IT!!! WELCOME TO THE USERDISPLAY JSP!!!<br>
+<a href="/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
 </html>
