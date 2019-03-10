@@ -8,6 +8,7 @@
 <title>Main Page</title>
 </head>
 <body>
+<jsp:include page="../components/navbar.jsp"></jsp:include>
 I MADE IT!!! WELCOME TO THE INDEX JSP!!!<br>
 <!-- <a href="test/test.do">TEST CONTROLLER LINKS</a><br> -->
 <a href="/user/displayUser.do">GO TO USER PAGE (USER CONTROLLER STUFF)</a><br>
