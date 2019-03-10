@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-<jsp:include page="../components/bootstrapHead.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/components/bootstrapHead.jsp"></jsp:include>
 <head>
 <meta charset="UTF-8">
 <title>Display User</title>
@@ -23,5 +23,5 @@
 
 	<a href="/home/home.do">BACK TO HOME</a>
 </body>
-<jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>
 </html>
