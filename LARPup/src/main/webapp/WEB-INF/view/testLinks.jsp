@@ -5,11 +5,11 @@
 <jsp:include page="../components/bootstrapHead.jsp"></jsp:include>
 <head>
 <meta charset="UTF-8">
-<title>Main Page</title>
+<title>TEST PAGE ONLY</title>
 </head>
 <body>
-I MADE IT!!! WELCOME TO THE INDEX JSP!!!
-<a href="/test">TEST CONTROLLER LINKS</a>
+THIS IS A TEST PAGE ONLY! THIS SHOULD NEVER BE LINKED TO IN PUBLIC!!!
+<a href="/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
 </html>

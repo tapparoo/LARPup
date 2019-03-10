@@ -9,15 +9,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 
 @RestController
-@RequestMapping({"/", "/home.do"})
-public class MainController {
+@RequestMapping(value = {"/test"})
+public class UserController {
 
 	@Autowired
 	private LarpUpDAO dao;
 
-	@RequestMapping(path = {"/" , "home.do"}, method = RequestMethod.GET)
-	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView("index");
+	@RequestMapping(path = {"/" , "test.do"}, method = RequestMethod.GET)
+	public ModelAndView userDisplay() {
+		ModelAndView mv = new ModelAndView("testLinks");
 		return mv;
 	}
 
