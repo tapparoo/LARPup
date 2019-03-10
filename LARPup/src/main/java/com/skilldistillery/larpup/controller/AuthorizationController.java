@@ -26,9 +26,10 @@ public class AuthorizationController {
 	
 	@RequestMapping(path = {"authorize.do"}, params= {"email", "password"}, method = RequestMethod.GET)
 	public ModelAndView checkUser(String email, String password, HttpSession session) {
-		User myUser = new User();
-		myUser.setEmail("Flubber@gmail.com");
-		myUser.setPassword("blubber");
+		ModelAndView mv = new ModelAndView("index");
+		User myUser = dao.findUserByEmail(email);
+//		myUser.setEmail("Flubber@gmail.com");
+//		myUser.setPassword("blubber");
 		
 		if (email.contentEquals(myUser.getEmail()) && password.equals(myUser.getPassword())) {
 			System.out.println("THEY MATCH");
@@ -37,9 +38,15 @@ public class AuthorizationController {
 			System.out.println("THEY DO NOT MATCH");
 		}
 		
-		ModelAndView mv = new ModelAndView("index");
 		return mv;
 	}
 	
+	@RequestMapping(path = {"logout.do"}, method = RequestMethod.GET)
+	public ModelAndView userDisplay(HttpSession session) {
+		ModelAndView mv = new ModelAndView("index");
+		User myUser = null;
+		session.setAttribute("myUser", myUser);
+		return mv;
+	}
 
 }

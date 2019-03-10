@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/home/home.do">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,10 +30,23 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
     </ul>
-    <form:form class="form-inline my-2 my-lg-0" action="authorize.do" method="GET">
-      <input class="form-control mr-sm-2" name="email" type="search" placeholder="email" aria-label="email">
-      <input class="form-control mr-sm-2" name="password" type="search" placeholder="password" aria-label="password">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-    </form:form>
+    <c:choose> 
+      <c:when test="${ not empty sessionScope.myUser }"> 
+        <form class="form-inline my-2 my-lg-0" action="/user/displayUser.do" method="GET">
+          <input type="hidden" name="userId" value="${sessionScope.myUser.id}"/>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Profile</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0" action="/auth/logout.do" method="GET">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+      </c:when>
+	  <c:otherwise>
+	    <form class="form-inline my-2 my-lg-0" action="/auth/authorize.do" method="GET">
+	      <input class="form-control mr-sm-2" name="email" type="search" placeholder="email" aria-label="email">
+	      <input class="form-control mr-sm-2" name="password" type="search" placeholder="password" aria-label="password">
+	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+	    </form>
+	  </c:otherwise>
+    </c:choose>
   </div>
 </nav>
