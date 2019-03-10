@@ -101,6 +101,17 @@ class StoryTest {
 		story.removeEvent(evt);
 		assertEquals(size, story.getEvents().size());
 	}
+
+	@Test
+	void test_story_eventuserinfo_list_association() {
+		int size = story.getEventRoles().size();
+		EventUserInfo evtUsrNfo = new EventUserInfo();
+		evtUsrNfo.setId(5);
+		story.addEventUserInfo(evtUsrNfo);
+		assertEquals(size + 1, story.getEventRoles().size());
+		story.removeEventUserInfo(evtUsrNfo);
+		assertEquals(size, story.getEventRoles().size());
+	}
 	
 	@Disabled
 	@Test

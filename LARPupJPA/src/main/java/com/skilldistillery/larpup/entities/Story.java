@@ -39,9 +39,28 @@ public class Story {
 	@OneToMany(mappedBy="story")
 	private List<Event> events;
 	
+	@OneToMany(mappedBy="story")
+	private List<EventUserInfo> eventRoles;
+	
 	@Column(name="create_date")
 	@CreationTimestamp
 	private Date createDate;
+	
+	public void addEventUserInfo(EventUserInfo evtUsrNfo) {
+		if(eventRoles == null)
+			eventRoles = new ArrayList<>();
+		if(!eventRoles.contains(evtUsrNfo)) {
+			eventRoles.add(evtUsrNfo);
+			evtUsrNfo.setStory(this);
+		}
+	}
+	
+	public void removeEventUserInfo(EventUserInfo evtUsrNfo) {
+		evtUsrNfo.setStory(null);
+		if (eventRoles != null) {
+			eventRoles.remove(evtUsrNfo);
+		}
+	}
 	
 	public void addEvent(Event event) {
 		if(events == null)
@@ -59,6 +78,14 @@ public class Story {
 		}
 	}
 	
+	public List<EventUserInfo> getEventRoles() {
+		return eventRoles;
+	}
+
+	public void setEventRoles(List<EventUserInfo> eventUserInfo) {
+		this.eventRoles = eventUserInfo;
+	}
+
 	public List<Event> getEvents() {
 		return events;
 	}

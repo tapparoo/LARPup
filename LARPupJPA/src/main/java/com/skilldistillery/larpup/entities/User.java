@@ -1,6 +1,8 @@
 package com.skilldistillery.larpup.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,6 +42,9 @@ public class User {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
+	@OneToMany(mappedBy="user")
+	private List<EventUser> eventRoles;
+	
 	@Column(name="create_date")
 	@CreationTimestamp
 	private Date createDate;
@@ -48,6 +54,28 @@ public class User {
 	private String email;
 	private String role;
 	
+	public void addEventUser(EventUser evtUsr) {
+		if(eventRoles == null)
+			eventRoles = new ArrayList<>();
+		if(!eventRoles.contains(evtUsr)) {
+			eventRoles.add(evtUsr);
+			evtUsr.setUser(this);
+		}
+	}
+	
+	public void removeEventUser(EventUser evtUsr) {
+		evtUsr.setEvent(null);
+		if (eventRoles != null) {
+			eventRoles.remove(evtUsr);
+		}
+	}
+	
+	public List<EventUser> getEventRoles() {
+		return eventRoles;
+	}
+	public void setEventRoles(List<EventUser> eventRoles) {
+		this.eventRoles = eventRoles;
+	}
 	public int getId() {
 		return id;
 	}
@@ -123,6 +151,7 @@ public class User {
 		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
 		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((eventRoles == null) ? 0 : eventRoles.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
@@ -160,6 +189,11 @@ public class User {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
+			return false;
+		if (eventRoles == null) {
+			if (other.eventRoles != null)
+				return false;
+		} else if (!eventRoles.equals(other.eventRoles))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
@@ -199,7 +233,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate
-				+ ", picture=" + picture + ", address=" + address + ", createDate=" + createDate + ", nickname="
-				+ nickname + ", password=" + password + ", email=" + email + ", role=" + role + "]";
+				+ ", picture=" + picture + ", address=" + address + ", eventRoles=" + eventRoles + ", createDate="
+				+ createDate + ", nickname=" + nickname + ", password=" + password + ", email=" + email + ", role="
+				+ role + "]";
 	}
 }
