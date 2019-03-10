@@ -20,7 +20,7 @@
 	Birthday: ${user.birthDate }<br>
 	Created: ${user.createDate }<br>
 
-	<a href="/home.do">BACK TO HOME</a>
+	<a href="/home/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
 </html>

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 
 @RestController
-@RequestMapping("/story")
+@RequestMapping("story")
 public class StoryController {
 
 	@Autowired
