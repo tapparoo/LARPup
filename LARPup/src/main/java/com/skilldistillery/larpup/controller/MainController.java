@@ -16,7 +16,7 @@ public class MainController {
 
 	@RequestMapping(path = {"/" , "home.do"}, method = RequestMethod.GET)
 	public String index() {
-		return "/WEB-INF/view/index.jsp";
+		return "index";
 	}
 
 }
