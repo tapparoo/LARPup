@@ -53,6 +53,7 @@ public class User {
 	private String password;
 	private String email;
 	private String role;
+	private boolean active;
 	
 	public void addEventUser(EventUser evtUsr) {
 		if(eventRoles == null)
@@ -76,6 +77,15 @@ public class User {
 	public void setEventRoles(List<EventUser> eventRoles) {
 		this.eventRoles = eventRoles;
 	}
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -147,6 +157,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (active ? 1231 : 1237);
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
 		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
@@ -170,6 +181,8 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (active != other.active)
+			return false;
 		if (address == null) {
 			if (other.address != null)
 				return false;
@@ -235,6 +248,6 @@ public class User {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate
 				+ ", picture=" + picture + ", address=" + address + ", eventRoles=" + eventRoles + ", createDate="
 				+ createDate + ", nickname=" + nickname + ", password=" + password + ", email=" + email + ", role="
-				+ role + "]";
+				+ role + ", active=" + active + "]";
 	}
 }

@@ -17,9 +17,9 @@ public class UserController {
 	private LarpUpDAO dao;
 
 	@RequestMapping(path = {"displayUser.do"}, method = RequestMethod.GET)
-	public ModelAndView userDisplay() {
-		
+	public ModelAndView userDisplay(int id) {
 		ModelAndView mv = new ModelAndView("userDisplay");
+		mv.addObject("user", dao.findUserById(id));
 		return mv;
 	}
 	
@@ -33,5 +33,4 @@ public class UserController {
 		
 		return mv;
 	}
-
 }
