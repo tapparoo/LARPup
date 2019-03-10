@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `picture_id` INT UNSIGNED NOT NULL,
   `address_id` INT UNSIGNED NOT NULL,
   `create_date` DATETIME NULL,
+  `active` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_user_picture1_idx` (`picture_id` ASC),
   INDEX `fk_user_address1_idx` (`address_id` ASC),
@@ -370,9 +371,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `larpdb`;
-INSERT INTO `user` (`id`, `nickname`, `first_name`, `last_name`, `password`, `email`, `role`, `birth_date`, `picture_id`, `address_id`, `create_date`) VALUES (1, 'NerdAvenger', 'Greg', 'Kraehenbuehl', 'greg', 'KingNerd@gmail.com', 'admin', '1981-03-06', 1, 1, '2018-02-15 23:57:41');
-INSERT INTO `user` (`id`, `nickname`, `first_name`, `last_name`, `password`, `email`, `role`, `birth_date`, `picture_id`, `address_id`, `create_date`) VALUES (2, 'Exorcist', 'Adam', 'Whatever', 'adam', 'Excecutioner@aol.com', 'user', '1955-06-22', 2, 2, '2018-02-15 23:57:41');
-INSERT INTO `user` (`id`, `nickname`, `first_name`, `last_name`, `password`, `email`, `role`, `birth_date`, `picture_id`, `address_id`, `create_date`) VALUES (3, 'Pikachu', 'Young', 'Awesome', 'young', 'ClassicRed@hotmail.com', 'user', '1999-04-01', 3, 3, '2018-02-15 23:57:41');
+INSERT INTO `user` (`id`, `nickname`, `first_name`, `last_name`, `password`, `email`, `role`, `birth_date`, `picture_id`, `address_id`, `create_date`, `active`) VALUES (1, 'NerdAvenger', 'Greg', 'Kraehenbuehl', 'greg', 'KingNerd@gmail.com', 'admin', '1981-03-06', 1, 1, '2018-02-15 23:57:41', 1);
+INSERT INTO `user` (`id`, `nickname`, `first_name`, `last_name`, `password`, `email`, `role`, `birth_date`, `picture_id`, `address_id`, `create_date`, `active`) VALUES (2, 'Exorcist', 'Adam', 'Whatever', 'adam', 'Excecutioner@aol.com', 'user', '1955-06-22', 2, 2, '2018-02-15 23:57:41', 1);
+INSERT INTO `user` (`id`, `nickname`, `first_name`, `last_name`, `password`, `email`, `role`, `birth_date`, `picture_id`, `address_id`, `create_date`, `active`) VALUES (3, 'Pikachu', 'Young', 'Awesome', 'young', 'ClassicRed@hotmail.com', 'user', '1999-04-01', 3, 3, '2018-02-15 23:57:41', 1);
 
 COMMIT;
 
