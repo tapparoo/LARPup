@@ -1,6 +1,8 @@
 package com.skilldistillery.larpup.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -33,6 +36,33 @@ public class Event {
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	@OneToMany(mappedBy="event")
+	private List<EventUser> eventUsers;
+	
+	public void addEventUser(EventUser usr) {
+		if(eventUsers == null)
+			eventUsers = new ArrayList<>();
+		if(!eventUsers.contains(usr)) {
+			eventUsers.add(usr);
+			usr.setEvent(this);
+		}
+	}
+	
+	public void removeEventUser(EventUser usr) {
+		usr.setEvent(null);
+		if (eventUsers != null) {
+			eventUsers.remove(usr);
+		}
+	}
+	
+	public List<EventUser> getEventUsers() {
+		return eventUsers;
+	}
+
+	public void setEventUsers(List<EventUser> eventUsers) {
+		this.eventUsers = eventUsers;
+	}
 
 	public int getId() {
 		return id;
@@ -98,6 +128,7 @@ public class Event {
 		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((eventUsers == null) ? 0 : eventUsers.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((story == null) ? 0 : story.hashCode());
@@ -133,6 +164,11 @@ public class Event {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
+		if (eventUsers == null) {
+			if (other.eventUsers != null)
+				return false;
+		} else if (!eventUsers.equals(other.eventUsers))
+			return false;
 		if (id != other.id)
 			return false;
 		if (name == null) {
@@ -151,6 +187,7 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date
-				+ ", createDate=" + createDate + ", story=" + story + ", address=" + address + "]";
+				+ ", createDate=" + createDate + ", story=" + story + ", address=" + address + ", eventUsers="
+				+ eventUsers + "]";
 	}
 }
