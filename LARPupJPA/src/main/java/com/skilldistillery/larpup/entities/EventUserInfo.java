@@ -22,7 +22,7 @@ public class EventUserInfo {
 	@ManyToOne
 	@JoinColumn(name="story_id")
 	private Story story;
-
+	
 	public int getId() {
 		return id;
 	}

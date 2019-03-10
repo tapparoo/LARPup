@@ -62,8 +62,17 @@ class EventTest {
 		assertEquals("Colorado", event.getAddress().getState());
 		assertEquals("80204", event.getAddress().getZipcode());
 		assertEquals("7202583000", event.getAddress().getPhone());
-		
-		
+	}
+	
+	@Test
+	void test_event_eventuser_onetomany_list_association() {
+		int size = event.getEventUsers().size();
+		EventUser evtUsr = new EventUser();
+		evtUsr.setId(5);
+		event.addEventUser(evtUsr);
+		assertEquals(size + 1, event.getEventUsers().size());
+		event.removeEventUser(evtUsr);
+		assertEquals(size, event.getEventUsers().size());
 	}
 
 	@Disabled
