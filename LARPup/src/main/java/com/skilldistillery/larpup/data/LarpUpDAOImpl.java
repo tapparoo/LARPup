@@ -21,8 +21,7 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 
 	@Override
 	public User findUserByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT u FROM User u WHERE u.email = :email";
+		return em.createQuery(query, User.class).setParameter("email", email).getSingleResult();
 	}
-
 }
