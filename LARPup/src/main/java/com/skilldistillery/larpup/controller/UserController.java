@@ -19,7 +19,6 @@ public class UserController {
 	public ModelAndView userDisplay() {
 		
 		ModelAndView mv = new ModelAndView("userDisplay");
-		mv.addObject("user", dao.findUserById(1));
 		return mv;
 	}
 
