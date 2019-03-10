@@ -8,7 +8,8 @@
 <title>Story Form</title>
 </head>
 <body>
-I MADE IT!!! WELCOME TO THE STORYFORM JSP!!!
+I MADE IT!!! WELCOME TO THE STORYFORM JSP!!!<br>
+<a href="/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
 </html>

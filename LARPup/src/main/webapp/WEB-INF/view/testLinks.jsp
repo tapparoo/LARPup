@@ -5,10 +5,10 @@
 <jsp:include page="../components/bootstrapHead.jsp"></jsp:include>
 <head>
 <meta charset="UTF-8">
-<title>User Form</title>
+<title>TEST PAGE ONLY</title>
 </head>
 <body>
-I MADE IT!!! WELCOME TO THE USERRFORM JSP!!!<br>
+THIS IS A TEST PAGE ONLY! THIS SHOULD NEVER BE LINKED TO IN PUBLIC!!!
 <a href="/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
