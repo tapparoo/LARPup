@@ -19,6 +19,7 @@
 	Password: ${user.password }<br>
 	Birthday: ${user.birthDate }<br>
 	Created: ${user.createDate }<br>
+	EventRoles: ${user.eventRoles }<br>
 
 	<a href="/home/home.do">BACK TO HOME</a>
 </body>

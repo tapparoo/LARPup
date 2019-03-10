@@ -71,6 +71,7 @@ class UserTest {
 	
 	@Test
 	void test_user_eventuser_onetomany_list_association() {
+		assertEquals(0, user.getEventRoles().size());
 		int size = user.getEventRoles().size();
 		EventUser evtUsr = new EventUser();
 		evtUsr.setId(5);
