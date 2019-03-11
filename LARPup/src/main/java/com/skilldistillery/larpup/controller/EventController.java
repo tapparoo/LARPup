@@ -19,14 +19,14 @@ public class EventController {
 	@Autowired
 	private LarpUpDAO dao;
 
-	@RequestMapping(path = {"displayEvent.do"}, method = RequestMethod.GET)
+	@RequestMapping(path = "displayEvent.do", method = RequestMethod.GET)
 	public ModelAndView eventDisplay(int eventId) {
 		ModelAndView mv = new ModelAndView("eventDisplay");
 		mv.addObject("event", dao.findEventById(eventId));
 		return mv;
 	}
 	
-	@RequestMapping(path = {"eventForm.do"}, method = RequestMethod.GET)
+	@RequestMapping(path = "eventForm.do", method = RequestMethod.GET)
 	public ModelAndView eventForm(int eventId) {
 		ModelAndView mv = new ModelAndView("eventForm");
 		EventDTO dto = new EventDTO();
@@ -36,7 +36,7 @@ public class EventController {
 		return mv;
 	}
 	
-	@RequestMapping(path = {"updateEvent.do"}, method = RequestMethod.POST)
+	@RequestMapping(path = "updateEvent.do", method = RequestMethod.POST)
 	public String updateEvent(EventDTO eventDTO, RedirectAttributes redir) {
 		Event event = dao.findEventById(eventDTO.getId());
 		
@@ -54,7 +54,7 @@ public class EventController {
 		if (dao.updateEvent(event)) {
 			redir.addFlashAttribute("event", dao.findEventById(event.getId()));
 		}
-		return "redirect:displayEvent";
+		return "redirect:displayEvent.do";
 	}
 	
 }
