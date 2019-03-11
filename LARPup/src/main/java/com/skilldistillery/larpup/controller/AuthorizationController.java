@@ -28,15 +28,10 @@ public class AuthorizationController {
 	public ModelAndView checkUser(String email, String password, HttpSession session) {
 		ModelAndView mv = new ModelAndView("index");
 		User myUser = dao.findUserByEmail(email);
-//		myUser.setEmail("Flubber@gmail.com");
-//		myUser.setPassword("blubber");
 		
 		if (email.contentEquals(myUser.getEmail()) && password.equals(myUser.getPassword())) {
-			System.out.println("THEY MATCH");
 			session.setAttribute("myUser", myUser);
-		} else {
-			System.out.println("THEY DO NOT MATCH");
-		}
+		} 
 		
 		return mv;
 	}
