@@ -7,7 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.larpup.entities.Event;
+import com.skilldistillery.larpup.entities.EventComment;
 import com.skilldistillery.larpup.entities.Story;
+import com.skilldistillery.larpup.entities.StoryComment;
 import com.skilldistillery.larpup.entities.User;
 
 @Transactional
@@ -139,6 +141,30 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 		}
 		
 		return true;
+	}
+	
+	@Override
+	public StoryComment findStoryCommentById(int id) {
+		return em.find(StoryComment.class, id);
+	}
+	
+	@Override
+	public EventComment findEventCommentById(int id) {
+		return em.find(EventComment.class, id);
+	}
+	
+	@Override
+	public StoryComment addStoryComment(StoryComment storyComment) {
+		em.persist(storyComment);
+		em.flush();
+		return storyComment;
+	}
+	
+	@Override
+	public EventComment addEventComment(EventComment eventComment) {
+		em.persist(eventComment);
+		em.flush();
+		return eventComment;
 	}
 }
 
