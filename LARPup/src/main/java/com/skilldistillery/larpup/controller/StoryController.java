@@ -51,16 +51,23 @@ public class StoryController {
 		
 		int storyIdToUpdate = managedStory.getId();
 		
-		Address updateAddress = managedStory.getAddress();
+//		Address updateAddress = managedStory.getAddress();
 		Genre updateGenre = managedStory.getGenre();
 		
 		managedStory.setName(inputDTO.getStoryName());
 		managedStory.setDescription(inputDTO.getStoryDescription());
 		managedStory.setId(inputDTO.getStoryId());
 		
-		updateAddress.setCity(inputDTO.getAddressCity());
-		updateAddress.setState(inputDTO.getAddressState());
-		updateAddress.setZipcode(inputDTO.getAddressZipcode());
+//		updateAddress.setCity(inputDTO.getAddressCity());
+//		updateAddress.setState(inputDTO.getAddressState());
+//		updateAddress.setZipcode(inputDTO.getAddressZipcode());
+		
+		Address address = new Address();
+		address.setCity(inputDTO.getAddressCity());
+		address.setState(inputDTO.getAddressState());
+		address.setZipcode(inputDTO.getAddressZipcode());
+		address = dao.addAddress(address);
+		managedStory.setAddress(address);
 		
 		updateGenre.setName(inputDTO.getGenreName());
 		
