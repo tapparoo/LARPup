@@ -22,6 +22,13 @@ public class UserController {
 		mv.addObject("user", dao.findUserById(userId));
 		return mv;
 	}
+	@RequestMapping(path = {"createUserForm.do"}, method = RequestMethod.GET)
+	public ModelAndView creatForm() {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("userForm");
+		return mv;
+	}
 	
 	@RequestMapping(path = {"createUser.do"}, method = RequestMethod.POST)
 	public ModelAndView addUser(User user) {
@@ -29,7 +36,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		dao.addUser(user);
 		mv.addObject("user", user);
-		mv.setViewName("WEB-INF/view/userDisplay.jsp");
+		mv.setViewName("userDisplay");
 		
 		return mv;
 	}
