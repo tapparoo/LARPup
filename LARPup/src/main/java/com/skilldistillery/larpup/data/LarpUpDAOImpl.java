@@ -11,6 +11,7 @@ import com.skilldistillery.larpup.entities.Event;
 import com.skilldistillery.larpup.entities.EventComment;
 import com.skilldistillery.larpup.entities.EventUser;
 import com.skilldistillery.larpup.entities.EventUserInfo;
+import com.skilldistillery.larpup.entities.Genre;
 import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.StoryComment;
@@ -298,6 +299,39 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 			managed.setState(address.getState());
 			managed.setStreet(address.getStreet());
 			managed.setZipcode(address.getZipcode());
+			
+			em.persist(managed);
+			em.flush();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public Genre findGenreById(int id) {
+		return em.find(Genre.class, id);
+	}
+	
+	@Override
+	public Genre addGenre(Genre genre) {
+		em.persist(genre);
+		em.flush();
+		return genre;
+	}
+	
+	@Override
+	public boolean updateGenre(Genre genre) {
+		Genre managed = em.find(Genre.class, genre.getId());
+		
+		if (managed == null)
+			return false;
+		
+		try {
+			managed.setName(genre.getName());
+			managed.setPicture(genre.getPicture());
 			
 			em.persist(managed);
 			em.flush();

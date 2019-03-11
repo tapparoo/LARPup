@@ -2,10 +2,11 @@ package com.skilldistillery.larpup.data;
 
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Event;
-import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.EventComment;
 import com.skilldistillery.larpup.entities.EventUser;
 import com.skilldistillery.larpup.entities.EventUserInfo;
+import com.skilldistillery.larpup.entities.Genre;
+import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.StoryComment;
 import com.skilldistillery.larpup.entities.User;
@@ -46,4 +47,8 @@ public interface LarpUpDAO {
 	Address findAddressById(int id);
 	Address addAddress(Address address);
 	boolean updateAddress(Address address);
+	
+	Genre findGenreById(int id);
+	Genre addGenre(Genre genre);
+	boolean updateGenre(Genre genre);
 }
