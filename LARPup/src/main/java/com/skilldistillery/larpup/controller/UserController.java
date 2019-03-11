@@ -25,7 +25,6 @@ public class UserController {
 	@RequestMapping(path = {"createUserForm.do"}, method = RequestMethod.GET)
 	public ModelAndView creatForm() {
 		ModelAndView mv = new ModelAndView();
-		
 		mv.setViewName("userForm");
 		return mv;
 	}
@@ -34,8 +33,9 @@ public class UserController {
 	public ModelAndView addUser(User user) {
 		
 		ModelAndView mv = new ModelAndView();
-		dao.addUser(user);
-		mv.addObject("user", user);
+		System.out.println(user);
+		
+		mv.addObject("user", dao.addUser(user));
 		mv.setViewName("userDisplay");
 		
 		return mv;
