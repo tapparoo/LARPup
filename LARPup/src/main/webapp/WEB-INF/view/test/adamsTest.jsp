@@ -10,7 +10,7 @@
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
 <p>
-	<form action="event/displayEvent.do" method="GET">
+	<form action="/event/displayEvent.do" method="GET">
 		<label>Event ID:</label>
 		<input type="text" name="eventId">
 		<button type="submit">Submit</button>

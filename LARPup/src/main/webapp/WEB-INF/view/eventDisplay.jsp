@@ -9,47 +9,31 @@
 <title>Display Event</title>
 </head>
 <body>
-	<p>
-		Event Title: ${event.name }<br> event Description:
-		${event.description }<br> event Location:
-		${event.address.street}, ${event.address.city}, ${event.address.state}<br>
-		event Date: ${event.date }<br> event Created On:
-		${event.createDate }<br>
-	</p>
+	<div class="container">
+		<p>
+			Event Title: ${event.name }<br> event Description:
+			${event.description }<br> event Location:
+			${event.address.street}, ${event.address.city},
+			${event.address.state}<br> event Date: ${event.date }<br>
+			event Created On: ${event.createDate }<br>
+		</p>
 
-	<p>
-		Characters in the event:<br>
-	</p>
+		<p>
+			Characters in the event:<br>
+		</p>
 		<c:forEach var="user" items="${event.eventUsers }">
 			<ul>
 				<li>Char name: ${user.eventUserInfo.name }</li>
 				<li>Char description: ${user.eventUserInfo.description }</li>
 				<li>User: ${user.user }</li>
 			</ul>
-				<hr>
+			<hr>
 		</c:forEach>
-
-	<%--   <p>
-    Events in event:
-  </p>
-  
-  <ol>
-    <c:forEach var="event" items="${event.events }">
-      <li>
-        <a href="" >${event.name }</a>
-          <ul>
-            <li>${event.date }</li>
-            <li>${event.description }</li>
-          </ul>
-      </li>
-    </c:forEach>
-  </ol> --%>
-
-	<%--   <p>event Owner: ${(event.user).firstName } ${(event.user).lastName}<br>
-     event Created On: ${event.createDate }<br>
-  </p> --%>
-	<br>
-	<a href="/home/home.do?eventId=1">BACK TO HOME</a>
+		<br> 
+		<a class="btn btn-sm btn-secondary" href="/event/eventForm.do?eventId=${event.id}">Edit Event</a> 
+		<br>
+		<a href="/home/home.do?eventId=1">BACK TO HOME</a>
+	</div>
 </body>
 <jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>
 </html>
