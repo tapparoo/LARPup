@@ -34,7 +34,7 @@
   <ol>
     <c:forEach var="event" items="${story.events }">
       <li>
-        <a href="" >${event.name }</a>
+        <a href="/event/displayEvent.do?eventId=${event.id }" >${event.name }</a>
           <ul>
             <li>${event.date }</li>
             <li>${event.description }</li>
