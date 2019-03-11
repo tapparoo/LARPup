@@ -13,6 +13,7 @@ import com.skilldistillery.larpup.data.StoryDTO;
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Genre;
 import com.skilldistillery.larpup.entities.Story;
+import com.skilldistillery.larpup.entities.User;
 
 @RestController
 @RequestMapping("story")
@@ -30,7 +31,7 @@ public class StoryController {
 	}
 
 	@RequestMapping(path = { "modifyStory.do" }, method = RequestMethod.GET)
-	public ModelAndView modifyStory(int storyId) {
+	public ModelAndView modifyStoryGET(int storyId) {
 		Story myStory = dao.findStoryById(storyId);
 		
 		StoryDTO dto = new StoryDTO();
@@ -43,7 +44,7 @@ public class StoryController {
 	}
 
 	@RequestMapping(path = {"modifyStory.do"}, method = RequestMethod.POST)
-	public ModelAndView modifyStory(StoryDTO inputDTO) {
+	public ModelAndView modifyStoryPOST(StoryDTO inputDTO) {
 		ModelAndView mv = new ModelAndView();
 		
 		Story managedStory = dao.findStoryById(inputDTO.getStoryId());
@@ -76,4 +77,47 @@ public class StoryController {
 		return mv;
 	}
 
+	@RequestMapping(path = { "addStory.do" }, method = RequestMethod.GET)
+	public ModelAndView addStoryGET() {
+				
+		StoryDTO dto = new StoryDTO();
+		
+		ModelAndView mv = new ModelAndView("storyForm");
+		mv.addObject("inputDTO", dto);
+		mv.addObject("action", "/story/addStory.do");
+		return mv;
+	}
+	
+	@RequestMapping(path = { "addStory.do" }, method = RequestMethod.POST)
+	public ModelAndView addStoryPOST(StoryDTO inputDTO, HttpSession session) {
+		
+		Story newStory = new Story();
+		Address newAddress = new Address();
+		Genre newGenre = dao.findGenreByName(inputDTO.getGenreName());
+		System.out.println("===================================BEFORE IF");
+		if (newGenre == null) {
+			newGenre = new Genre();
+			newGenre.setName(inputDTO.getGenreName());
+			newGenre.setPicture(dao.findPictureById(4));
+			newGenre = dao.addGenre(newGenre);
+		}
+		System.out.println("===================================AFTER IF");
+		newAddress.setCity(inputDTO.getAddressCity());
+		newAddress.setState(inputDTO.getAddressState());
+		newAddress.setZipcode(inputDTO.getAddressZipcode());
+		newAddress = dao.addAddress(newAddress);
+		
+		newStory.setGenre(newGenre);
+		newStory.setAddress(newAddress);
+		newStory.setName(inputDTO.getStoryName());
+		newStory.setDescription(inputDTO.getStoryDescription());
+		newStory.setUser((User)session.getAttribute("myUser"));
+		
+		Story managedStory = dao.addStory(newStory);
+		
+		ModelAndView mv = new ModelAndView("storyDisplay");
+		mv.addObject("story", managedStory);
+		return mv;
+	}
+	
 }
