@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.larpup.entities.Event;
 import com.skilldistillery.larpup.entities.EventComment;
+import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.StoryComment;
 import com.skilldistillery.larpup.entities.User;
@@ -143,7 +144,6 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 		return true;
 	}
 	
-	@Override
 	public StoryComment findStoryCommentById(int id) {
 		return em.find(StoryComment.class, id);
 	}
@@ -165,6 +165,39 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 		em.persist(eventComment);
 		em.flush();
 		return eventComment;
+	}
+	
+	@Override
+	public Picture findPictureById(int id) {
+		return em.find(Picture.class, id);
+	}
+	
+	@Override
+	public Picture addPicture(Picture picture) {
+		em.persist(picture);
+		em.flush();
+		return picture;
+	}
+	
+	@Override
+	public boolean updatePicture(Picture picture) {
+		Picture managed = em.find(Picture.class, picture.getId());
+		
+		if (managed == null)
+			return false;
+		
+		try {
+			managed.setAlt(picture.getAlt());
+			managed.setUrl(picture.getUrl());
+			
+			em.persist(managed);
+			em.flush();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 }
 

@@ -1,6 +1,7 @@
 package com.skilldistillery.larpup.data;
 
 import com.skilldistillery.larpup.entities.Event;
+import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.EventComment;
 import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.StoryComment;
@@ -26,4 +27,7 @@ public interface LarpUpDAO {
 	StoryComment addStoryComment(StoryComment storyComment);
 	EventComment addEventComment(EventComment eventComment);
 
+	Picture findPictureById(int id);
+	Picture addPicture(Picture picture);
+	boolean updatePicture(Picture picture);
 }
