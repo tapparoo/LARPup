@@ -31,7 +31,12 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	@Override
 	public User findUserByEmail(String email) {
 		String query = "SELECT u FROM User u WHERE u.email = :email";
-		return em.createQuery(query, User.class).setParameter("email", email).getSingleResult();
+		User user = null;
+		try {
+			user = em.createQuery(query, User.class).setParameter("email", email).getSingleResult();
+		}catch(Exception e) {
+		}
+		return user;
 	}
 	
 	@Override
@@ -313,6 +318,17 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	@Override
 	public Genre findGenreById(int id) {
 		return em.find(Genre.class, id);
+	}
+	
+	@Override
+	public Genre findGenreByName(String name) {
+		String query = "SELECT g FROM Genre g WHERE g.name = :name";
+		Genre genre = null;
+		try {
+			genre = em.createQuery(query, Genre.class).setParameter("name", name).getSingleResult();
+		}catch(Exception e) {
+		}
+		return genre;
 	}
 	
 	@Override
