@@ -6,8 +6,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Event;
 import com.skilldistillery.larpup.entities.EventComment;
+import com.skilldistillery.larpup.entities.EventUser;
+import com.skilldistillery.larpup.entities.EventUserInfo;
 import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.StoryComment;
@@ -199,8 +202,113 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 		
 		return true;
 	}
-}
 
+	@Override
+	public EventUser findEventUserById(int id) {
+		return em.find(EventUser.class, id);
+	}
+	
+	@Override
+	public EventUser addEventUser(EventUser eventUser) {
+		em.persist(eventUser);
+		em.flush();
+		return eventUser;
+	}
+	
+	@Override
+	public boolean updateEventUser(EventUser eventUser) {
+		EventUser managed = em.find(EventUser.class, eventUser.getId());
+		
+		if (managed == null)
+			return false;
+		
+		try {
+			managed.setEvent(eventUser.getEvent());
+			managed.setEventUserInfo(eventUser.getEventUserInfo());
+			managed.setPicture(eventUser.getPicture());
+			managed.setSignupDate(eventUser.getSignupDate());
+			managed.setUser(eventUser.getUser());
+			
+			em.persist(managed);
+			em.flush();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public EventUserInfo findEventUserInfoById(int id) {
+		return em.find(EventUserInfo.class, id);
+	}
+	
+	@Override
+	public EventUserInfo addEventUserInfo(EventUserInfo eventUserInfo) {
+		em.persist(eventUserInfo);
+		em.flush();
+		return eventUserInfo;
+	}
+	
+	@Override
+	public boolean updateEventUserInfo(EventUserInfo eventUserInfo) {
+		EventUserInfo managed = em.find(EventUserInfo.class, eventUserInfo.getId());
+		
+		if (managed == null)
+			return false;
+		
+		try {
+			managed.setDescription(eventUserInfo.getDescription());
+			managed.setName(eventUserInfo.getName());
+			managed.setStory(eventUserInfo.getStory());
+			
+			em.persist(managed);
+			em.flush();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public Address findAddressById(int id) {
+		return em.find(Address.class, id);
+	}
+	
+	@Override
+	public Address addAddress(Address address) {
+		em.persist(address);
+		em.flush();
+		return address;
+	}
+	
+	@Override
+	public boolean updateAddress(Address address) {
+		Address managed = em.find(Address.class, address.getId());
+		
+		if (managed == null)
+			return false;
+		
+		try {
+			managed.setCity(address.getCity());
+			managed.setPhone(address.getPhone());
+			managed.setState(address.getState());
+			managed.setStreet(address.getStreet());
+			managed.setZipcode(address.getZipcode());
+			
+			em.persist(managed);
+			em.flush();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+}
 
 
 
