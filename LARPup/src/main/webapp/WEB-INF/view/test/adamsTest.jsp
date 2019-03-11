@@ -9,7 +9,18 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
-I MADE IT!!! WELCOME TO THE ADAMS TEST JSP!!!<br>
+<p>
+	<form action="/event/displayEvent.do" method="GET">
+		<label>Event ID:</label>
+		<input type="text" name="eventId">
+		<button type="submit">Submit</button>
+	</form>
+
+</p>
+
+
+
+
 <a href="/home/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>
