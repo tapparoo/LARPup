@@ -37,24 +37,53 @@ public class EventController {
 	}
 	
 	@RequestMapping(path = "updateEvent.do", method = RequestMethod.POST)
-	public String updateEvent(EventDTO eventDTO, RedirectAttributes redir) {
+	public ModelAndView updateEvent(EventDTO eventDTO) {
+		ModelAndView mv = new ModelAndView("eventDisplay");
 		Event event = dao.findEventById(eventDTO.getId());
 		
-		Address address = event.getAddress();
+		Address address = new Address();
 		address.setState(eventDTO.getState());
 		address.setCity(eventDTO.getCity());
 		address.setZipcode(eventDTO.getZipcode());
 		address.setStreet(eventDTO.getStreet());
-		
-//		event.setDate(eventDTO.getDate());
+		event.setAddress(dao.addAddress(address));
 		event.setDescription(eventDTO.getDescription());
 		event.setName(eventDTO.getName());
 		event.setStory(dao.findStoryById(eventDTO.getStoryId()));
+//		DATE IS BROKEN		
+//		event.setDate(eventDTO.getDate());
 		
 		if (dao.updateEvent(event)) {
-			redir.addFlashAttribute("event", dao.findEventById(event.getId()));
+			mv.addObject("event", dao.findEventById(event.getId()));
 		}
-		return "redirect:displayEvent.do";
+		return mv;
+	}
+
+	@RequestMapping(path = "updateEvent.do", method = RequestMethod.POST)
+	public ModelAndView addEvent(EventDTO eventDTO) {
+		ModelAndView mv = new ModelAndView("eventDisplay");
+		Event event = dao.findEventById(eventDTO.getId());
+		
+		if( event == null) {
+			event = new Event();
+		}
+		
+		Address address = new Address();
+		address.setState(eventDTO.getState());
+		address.setCity(eventDTO.getCity());
+		address.setZipcode(eventDTO.getZipcode());
+		address.setStreet(eventDTO.getStreet());
+		event.setAddress(dao.addAddress(address));
+		event.setDescription(eventDTO.getDescription());
+		event.setName(eventDTO.getName());
+		event.setStory(dao.findStoryById(eventDTO.getStoryId()));
+//		DATE IS BROKEN		
+//		event.setDate(eventDTO.getDate());
+		
+		if (dao.updateEvent(event)) {
+			mv.addObject("event", dao.findEventById(event.getId()));
+		}
+		return mv;
 	}
 	
 }
