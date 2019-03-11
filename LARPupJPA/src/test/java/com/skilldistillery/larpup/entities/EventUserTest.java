@@ -1,7 +1,7 @@
 package com.skilldistillery.larpup.entities;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -59,7 +59,7 @@ class EventUserTest {
 //	private User user;
 	@Test
 	void test_eventuser_user_association() {
-		assertNull(eventUser.getUser());
+		assertNotNull(eventUser.getUser());
 	}
 	
 //	@ManyToOne
