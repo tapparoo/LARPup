@@ -10,7 +10,7 @@
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
 I MADE IT!!! WELCOME TO THE GREGS TEST JSP!!!<br>
-<a href="/story/displayStory.do">LINK TO STORY</a>
+<a href="/story/displayStory.do?storyId=1">LINK TO STORY</a>
 <a href="/home/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>

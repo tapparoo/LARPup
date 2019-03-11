@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -9,6 +8,7 @@
 <title>Display Story</title>
 </head>
 <body>
+<jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
   <p>Story Title: ${story.name }<br>
     Story Description: ${story.description }<br>
     Story Genre: ${(story.genre).name }<br> 
@@ -47,7 +47,9 @@
      Story Created On: ${story.createDate }<br>
   </p>
   <br>
-  <a href="/home/home.do?storyId=1">BACK TO HOME</a>
+    <a href="/story/modifyStory.do?storyId=${story.id }">EDIT STORY</a>
+  <br>
+  <a href="/home/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>
 </html>
