@@ -94,14 +94,12 @@ public class StoryController {
 		Story newStory = new Story();
 		Address newAddress = new Address();
 		Genre newGenre = dao.findGenreByName(inputDTO.getGenreName());
-		System.out.println("===================================BEFORE IF");
 		if (newGenre == null) {
 			newGenre = new Genre();
 			newGenre.setName(inputDTO.getGenreName());
 			newGenre.setPicture(dao.findPictureById(4));
 			newGenre = dao.addGenre(newGenre);
 		}
-		System.out.println("===================================AFTER IF");
 		newAddress.setCity(inputDTO.getAddressCity());
 		newAddress.setState(inputDTO.getAddressState());
 		newAddress.setZipcode(inputDTO.getAddressZipcode());
