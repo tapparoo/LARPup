@@ -21,25 +21,27 @@ public class StoryController {
 	@Autowired
 	private LarpUpDAO dao;
 
-	@RequestMapping(path = {"displayStory.do"}, method = RequestMethod.GET)
+	@RequestMapping(path = { "displayStory.do" }, method = RequestMethod.GET)
 	public ModelAndView displayStory(int storyId, HttpSession session) {
 		Story myStory = dao.findStoryById(storyId);
 		ModelAndView mv = new ModelAndView("storyDisplay");
 		mv.addObject("story", myStory);
 		return mv;
 	}
-	
-	@RequestMapping(path = {"modifyStory.do"}, method = RequestMethod.GET)
+
+	@RequestMapping(path = { "modifyStory.do" }, method = RequestMethod.GET)
 	public ModelAndView modifyStory(int storyId) {
 		Story myStory = dao.findStoryById(storyId);
+		
 		StoryDTO dto = new StoryDTO();
+				
 		ModelAndView mv = new ModelAndView("storyForm");
 		mv.addObject("story", myStory);
 		mv.addObject("inputDTO", dto);
 		mv.addObject("action", "/story/modifyStory.do");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = {"modifyStory.do"}, method = RequestMethod.POST)
 	public ModelAndView modifyStory(StoryDTO inputDTO) {
 		ModelAndView mv = new ModelAndView();
@@ -62,14 +64,14 @@ public class StoryController {
 		updateGenre.setName(inputDTO.getGenreName());
 		
 		if (dao.updateStory(managedStory)) {
-			Story updatedStory = dao.findStoryById(managedStory.getId());
+			Story updatedStory = dao.findStoryById(storyIdToUpdate);
 			
 			mv.setViewName("storyDisplay");
 			mv.addObject("story", updatedStory);
 		} else {
 			mv.setViewName("storyForm");
 			mv.addObject("action", "/story/modifyStory.do");
-			mv.addObject("story", dao.findStoryById(managedStory.getId()));
+			mv.addObject("story", dao.findStoryById(storyIdToUpdate));
 		}
 		return mv;
 	}
