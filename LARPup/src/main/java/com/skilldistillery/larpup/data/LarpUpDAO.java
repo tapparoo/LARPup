@@ -49,7 +49,7 @@ public interface LarpUpDAO {
 	boolean updateAddress(Address address);
 	
 	Genre findGenreById(int id);
-	Genre findGenereByName(String name);
+	Genre findGenreByName(String name);
 	Genre addGenre(Genre genre);
 	boolean updateGenre(Genre genre);
 }
