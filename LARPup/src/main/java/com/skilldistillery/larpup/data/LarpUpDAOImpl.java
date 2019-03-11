@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.larpup.entities.Event;
+import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.User;
 
@@ -130,6 +131,39 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 			managed.setEventUsers(event.getEventUsers());
 			managed.setName(event.getName());
 			managed.setStory(event.getStory());
+			
+			em.persist(managed);
+			em.flush();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public Picture findPictureById(int id) {
+		return em.find(Picture.class, id);
+	}
+	
+	@Override
+	public Picture addPicture(Picture picture) {
+		em.persist(picture);
+		em.flush();
+		return picture;
+	}
+	
+	@Override
+	public boolean updatePicture(Picture picture) {
+		Picture managed = em.find(Picture.class, picture.getId());
+		
+		if (managed == null)
+			return false;
+		
+		try {
+			managed.setAlt(picture.getAlt());
+			managed.setUrl(picture.getUrl());
 			
 			em.persist(managed);
 			em.flush();
