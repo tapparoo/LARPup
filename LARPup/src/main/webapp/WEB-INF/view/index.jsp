@@ -12,7 +12,34 @@
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
 
-
+<div class="container">
+  <div class="row"><div class="col"></div></div>
+  <div class="row">
+    <div class="cols">
+      <img src="/resources/images/eventpics/frontPage2.jpg" />
+      <h3>LARP UP!</h3>
+    </div>
+  </div>
+  <div class="row">
+    <c:forEach var="story" items="${recentStoryList }">
+    
+    <div class="col">
+      <div class="card" style="width: 18rem">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${story.name }</h5>
+          <p class="card-text">${story.description }</p>
+          <p class="card-text">${story.address.city }, ${story.address.state }</p>
+          <a href="/story/displayStory.do?storyId=${story.id}" >GO TO STORY</a>
+        </div>
+      </div>
+    </div>
+    
+    </c:forEach>
+  </div>
+  <div class="row">
+  </div>
+</div>
 
 <a href="/user/displayUser.do">GO TO USER PAGE (USER CONTROLLER STUFF)</a><br>
 <a href="/auth/authorize.do">AUTH CONTROLLER (AUTHORIZATION CONTROLLER STUFF)</a><br>
