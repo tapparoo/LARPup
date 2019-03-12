@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.larpup.data.EventDTO;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Event;
+import com.skilldistillery.larpup.entities.Story;
 
 @RestController
 @RequestMapping("event")
@@ -27,7 +27,7 @@ public class EventController {
 	}
 	
 	@RequestMapping(path = "eventForm.do", method = RequestMethod.GET)
-	public ModelAndView eventForm(int eventId) {
+	public ModelAndView updateEventForm(int eventId) {
 		ModelAndView mv = new ModelAndView("eventForm");
 		EventDTO dto = new EventDTO();
 		mv.addObject("event", dao.findEventById(eventId));
@@ -58,8 +58,19 @@ public class EventController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(path = "newEventForm.do")
+	public ModelAndView addEventForm(int storyId) {
+		ModelAndView mv = new ModelAndView("eventForm");
+		EventDTO dto = new EventDTO();
+		dto.setStoryId(storyId);
+		mv.addObject("event", new Event());
+		mv.addObject("eventDTO", dto);
+		mv.addObject("action", "/event/addEvent.do");
+		return mv;
+	}
 
-	@RequestMapping(path = "updateEvent.do", method = RequestMethod.POST)
+	@RequestMapping(path = "addEvent.do", method = RequestMethod.POST)
 	public ModelAndView addEvent(EventDTO eventDTO) {
 		ModelAndView mv = new ModelAndView("eventDisplay");
 		Event event = dao.findEventById(eventDTO.getId());
@@ -77,12 +88,10 @@ public class EventController {
 		event.setDescription(eventDTO.getDescription());
 		event.setName(eventDTO.getName());
 		event.setStory(dao.findStoryById(eventDTO.getStoryId()));
-//		DATE IS BROKEN		
-//		event.setDate(eventDTO.getDate());
+		event.setDate(eventDTO.getDate());
+		System.out.println(event);
 		
-		if (dao.updateEvent(event)) {
-			mv.addObject("event", dao.findEventById(event.getId()));
-		}
+		mv.addObject("event", dao.addEvent(event));
 		return mv;
 	}
 	

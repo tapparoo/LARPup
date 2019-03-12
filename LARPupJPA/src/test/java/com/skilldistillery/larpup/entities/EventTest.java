@@ -47,7 +47,7 @@ class EventTest {
 	void test_name_for_event_test_mapping() {
 		assertEquals("Marriage of Two Races", event.getName());
 		assertEquals("Thrall and Aggra finally get together to have a marriage to bring two kingdoms together.",event.getDescription());
-		assertEquals("2018-07-15 23:57:41.0", event.getDate().toString());
+		assertEquals("2018-07-15T23:57:41", event.getDate().toString());
 		assertEquals(2,event.getStory().getId());
 		assertEquals(5, event.getAddress().getId());
 		
