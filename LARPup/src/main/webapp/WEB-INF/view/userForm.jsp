@@ -1,75 +1,121 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
-<jsp:include page="../components/bootstrapHead.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/components/bootstrapHead.jsp"></jsp:include>
 <head>
 <meta charset="UTF-8">
 <title>User Form</title>
 </head>
 <body>
-	I MADE IT!!! WELCOME TO THE USERRFORM JSP!!!
-	<br>
+	<div class="container">
+		<h1>Create Your Account</h1>
+		<br>
 
-	<form action="createUser.do">
-		<div class="form-group">
-			<label for="userFirstName">First name</label> <input type="firstName"
-				class="form-control" id="userFirstName" placeholder="First Name">
-		</div>
+		<form:form action="${action}" method="POST" modelAttribute="inputDTO">
 
-		<div class="form-group">
-			<label for="userLastName">Last name</label> <input type="lastName"
-				class="form-control" id="userLastName" placeholder="Last Name">
-		</div>
+				<div class="form-row">
+					<div class="col-md-2 col-3">
+					
+						<form:label path="firstName">First name</form:label> 
+						<form:input type="text" path="firstName" class="form-control" value="${user.firstName}" 
+						placeholder="Rod" required="required"/>
+							
+						<div class="valid-feedback">Looks good!</div>
+					</div>
 
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="inputEmail4">Email</label> <input type="email"
-					class="form-control" id="inputEmail4"
-					placeholder="name@example.com">
-			</div>
+					<div class="col-md-2 mb-3">
+						<form:label path="lastName">Last name</form:label> 
+						<form:input type="text"
+							path="lastName" class="form-control" value="${user.lastName}"
+							placeholder="Anchor" required="required"/>
+						<div class="valid-feedback">Looks good!</div>
+					</div>
 
-			<div class="form-group col-md-6">
-				<label for="inputPassword4">Password</label> <input type="password"
-					class="form-control" id="inputPassword4" placeholder="Password">
-			</div>
 
-		</div>
-		<div class="form-group">
-			<label for="inputAddress">Address</label> <input type="text"
-				class="form-control" id="inputAddress" placeholder="1234 Main St">
-		</div>
+					<div class="col-md-2 mb-3">
+						<form:label path="nickname">Nickname</form:label>
+						<div class="input-group">
+							<div class="input-group-prepend"></div>
+							<form:input type="text" path="nickname" class="form-control"
+								value="${user.nickname}" placeholder="Sorman"
+								aria-describedby="inputGroupPrepend" required="required"/>
+							<div class="invalid-feedback">Invalid! Please choose a
+								username.</div>
+						</div>
+					</div>
+				</div>
 
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="inputCity">City</label> <input type="text"
-					class="form-control" id="inputCity">
-			</div>
-			<div class="form-group col-md-4">
-				<label for="inputState">State</label> <select id="inputState"
-					class="form-control">
-					<option selected>Colorado</option>
-					<option></option>
-				</select>
-			</div>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<form:label path="email">Email</form:label> 
+						<form:input type="email" path="email" class="form-control" value="${user.email}"
+							placeholder="name@example.com" required="required"/>
+					</div>
 
-			<div class="form-group col-md-2">
-				<label for="inputZip">Zip</label> <input type="text"
-					class="form-control" id="inputZip">
-			</div>
-		</div>
-		<div class="form-group">
+					<div class="form-group col-md-4">
+						<form:label path="password">Password</form:label> 
+						<form:input type="password"
+							path="password" class="form-control" value="${user.password }"
+							placeholder="Password" required="required"/>
+					</div>
 
-			<label for="exampleFormControlTextarea1">Biography</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1"
-				rows="3"></textarea>
-			<br>
-			<button type="submit" class="btn btn-primary">Sign in</button>
-		</div>
+				</div>
 
-</form>
+ 				<div class="form-group col-md-4">
+					<form:label path="birthDate">Birthday</form:label> 
+					<form:input type="date" path="birthDate" class="form-control" value="${user.birthDate}"/>
+				</div>  
 
+				<div class="form-group-a col-md-6">
+					<form:label path="street">Street</form:label> 
+					<form:input type="text" path="street" class="form-control"
+						value="${user.address.street}" placeholder="374 Hordor Lane" required="required"/>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group-a col-md-3">
+						<form:label path="city">City</form:label> 
+						<form:input type="text" name="city" path="city" class="form-control"
+							value="${user.address.city }" placeholder="Denver" required="required"/>
+					</div>
+
+					<div class="form-group-a col-md-3">
+						<form:label path="state">State</form:label> 
+						<form:select id="inputState" path="state" class="form-control" value="${user.address.state }" required="required">
+							<!-- <option>SELECT</option> -->
+							<option value="CO">CO</option>
+							<option value="CA">CA</option>
+							<option value="AL">AL</option>
+							<option value="DE">DE</option>
+							<option value="FL">FL</option>
+							<option value="NC">NC</option>
+						</form:select>
+					</div>
+
+					<div class="form-group-a col-md-2">
+						<form:label path="zipcode">Zip</form:label> 
+						<form:input type="text" path="zipcode" class="form-control"
+							value="${user.address.zipcode }" placeholder="82952" required="required"/>
+					</div>
+				</div>
+
+				<%-- <<div class="form-group col-md-8">
+
+					<form:label for="inputBiography">Biography</form:label>
+					<textarea class="form-control" id="inputBiography" rows="3"></textarea>
+					<br> --%>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		
+		</form:form>
+
+	</div>
+
+	<div>
 		<a href="/home.do">BACK TO HOME</a>
+	</div>
 </body>
-<jsp:include page="../components/bootstrapFoot.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>
 </html>

@@ -1,5 +1,6 @@
 package com.skilldistillery.larpup.entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Event {
 	
 	private String name;
 	private String description;
-	private Date date;
+	private LocalDateTime date;
 	
 	@Column(name="create_date")
 	@CreationTimestamp
@@ -88,12 +89,12 @@ public class Event {
 		this.description = description;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(LocalDateTime localDateTime) {
+		this.date = localDateTime;
 	}
 
 	public Date getCreateDate() {

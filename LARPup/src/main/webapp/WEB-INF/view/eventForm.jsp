@@ -23,10 +23,9 @@
   <form:label path="description">DESCRIPTION: </form:label>
   <form:input type="text" path="description" value="${event.description}"/>
   <form:errors type="text" path="description" />
-  <br>
-<%--   <form:label path="date">DATE: </form:label>
-  <form:input type="text" path="date" value="${event.date }"/>
-  <form:errors type="text" path="date" /> --%>
+  <form:label path="date">DATE: </form:label>
+  <form:input type="datetime-local" path="date" value="${event.date }"/>
+  <form:errors type="text" path="date" />
   <br>
   <form:label path="street">STREET: </form:label>
   <form:input type="text" path="street" value="${event.address.street }" />
