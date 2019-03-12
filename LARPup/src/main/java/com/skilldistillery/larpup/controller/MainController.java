@@ -1,5 +1,8 @@
 package com.skilldistillery.larpup.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.larpup.data.LarpUpDAO;
+import com.skilldistillery.larpup.entities.Story;
 
 @RestController
 @RequestMapping({"/", "home"})
@@ -18,6 +22,16 @@ public class MainController {
 	@RequestMapping(path = {"/" , "home.do"}, method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("index");
+		
+		//TEMP Until DAO method implemented.
+		List<Story> recentStories = new ArrayList<>();
+		recentStories.add(dao.findStoryById(1));
+		recentStories.add(dao.findStoryById(2));
+		recentStories.add(dao.findStoryById(3));
+		//TEMP End of temporary placeholder stuff.
+		
+		mv.addObject("recentStoryList", recentStories);
+		
 		return mv;
 	}
 	
