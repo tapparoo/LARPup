@@ -188,7 +188,6 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date
-				+ ", createDate=" + createDate + ", story=" + story + ", address=" + address + ", eventUsers="
-				+ eventUsers + "]";
+				+ ", createDate=" + createDate + ", story=" + story + ", address=" + address + "]";
 	}
 }
