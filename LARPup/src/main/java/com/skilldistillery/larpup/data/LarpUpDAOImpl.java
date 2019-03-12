@@ -1,5 +1,7 @@
 package com.skilldistillery.larpup.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -79,6 +81,15 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	@Override
 	public Story findStoryById(int id) {
 		return em.find(Story.class, id);
+	}
+	
+	@Override
+	public List<Story> getRecentStories(int count) {
+		List<Story> list = null;
+		String query = "SELECT story FROM Story story ORDER BY story.createDate DESC";
+		list = em.createQuery(query, Story.class).getResultList();
+		
+		return list.size() <= count ? list : list.subList(0, count);
 	}
 	
 	@Override
