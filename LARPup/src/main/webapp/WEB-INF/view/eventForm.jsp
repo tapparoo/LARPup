@@ -10,6 +10,7 @@
 <title>Event Form</title>
 </head>
 <body>
+<jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
 
 <div class="container">
 

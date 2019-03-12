@@ -1,5 +1,7 @@
 package com.skilldistillery.larpup.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +12,8 @@ import com.skilldistillery.larpup.data.EventDTO;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Event;
+import com.skilldistillery.larpup.entities.EventUser;
+import com.skilldistillery.larpup.entities.User;
 
 @RestController
 @RequestMapping("event")
@@ -19,24 +23,35 @@ public class EventController {
 	private LarpUpDAO dao;
 
 	@RequestMapping(path = "displayEvent.do", method = RequestMethod.GET)
-	public ModelAndView eventDisplay(int eventId) {
+	public ModelAndView eventDisplay(int eventId, HttpSession session) {
 		ModelAndView mv = new ModelAndView("eventDisplay");
 		mv.addObject("event", dao.findEventById(eventId));
+		
 		return mv;
 	}
 	
 	@RequestMapping(path = "eventForm.do", method = RequestMethod.GET)
-	public ModelAndView updateEventForm(int eventId) {
+	public ModelAndView updateEventForm(int eventId, HttpSession session) {
 		ModelAndView mv = new ModelAndView("eventForm");
 		EventDTO dto = new EventDTO();
+
 		mv.addObject("event", dao.findEventById(eventId));
 		mv.addObject("eventDTO", dto);
 		mv.addObject("action", "/event/updateEvent.do");
 		return mv;
 	}
+
+	@RequestMapping(path = "assignUserToCharacter.do", method = RequestMethod.GET)
+	public ModelAndView assignUserToCharacter(int eventUserId, HttpSession session) {
+		ModelAndView mv = new ModelAndView("eventDisplay");
+		EventUser evtUsr = dao.findEventUserById(eventUserId);
+		evtUsr.setUser((User)session.getAttribute("myUser"));
+		mv.addObject("event", evtUsr.getEvent());
+		return mv;
+	}
 	
 	@RequestMapping(path = "updateEvent.do", method = RequestMethod.POST)
-	public ModelAndView updateEvent(EventDTO eventDTO) {
+	public ModelAndView updateEvent(EventDTO eventDTO, HttpSession session) {
 		ModelAndView mv = new ModelAndView("eventDisplay");
 		Event event = dao.findEventById(eventDTO.getId());
 		

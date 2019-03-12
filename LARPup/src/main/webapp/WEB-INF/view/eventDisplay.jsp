@@ -9,6 +9,7 @@
 <title>Display Event</title>
 </head>
 <body>
+<jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
 	<div class="container">
 		<p>
 			Event Title: ${event.name }<br> 
@@ -26,7 +27,18 @@
 			<ul>
 				<li>Char name: ${user.eventUserInfo.name }</li>
 				<li>Char description: ${user.eventUserInfo.description }</li>
-				<li>User: ${user.user }</li>
+				<li>Availability: 
+				<c:choose>
+					<c:when test="${not empty sessionScope.myUser} ">
+						Role reserved by ${user.user.nickname }
+					</c:when>
+					<c:otherwise>
+					${sessionScope.myUser.id}
+							<a href="/event/assignUserToCharacter.do?eventUserId=${sessionScope.myUser.id}">Reserve
+								this role!</a>
+					</c:otherwise>
+				</c:choose>
+				</li>
 			</ul>
 			<hr>
 		</c:forEach>
