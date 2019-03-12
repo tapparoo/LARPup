@@ -60,9 +60,6 @@ public class UserController {
 		pic = dao.findPictureById(1);
 		tempUser.setPicture(pic);
 		
-		
-		
-		System.out.println(tempAddr);
 		tempUser.setAddress(dao.addAddress(tempAddr));		
 		mv.addObject("user", dao.addUser(tempUser));
 		mv.setViewName("userDisplay");
