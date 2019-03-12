@@ -1,5 +1,7 @@
 package com.skilldistillery.larpup.data;
 
+import java.util.List;
+
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Event;
 import com.skilldistillery.larpup.entities.EventComment;
@@ -19,6 +21,7 @@ public interface LarpUpDAO {
 	boolean updateUser(User user);
 	
 	Story findStoryById(int id);
+	List<Story> getRecentStories(int count);
 	Story addStory(Story story);
 	boolean updateStory(Story story);
 	
