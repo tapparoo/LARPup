@@ -10,6 +10,9 @@
 <title>Display User</title>
 </head>
 <body>
+
+<c:choose>
+<c:when test="${user.active}">
 	I MADE IT!!! WELCOME TO THE USERDISPLAY JSP!!!
 	<br>
 	Nickname: ${user.nickname }<br>
@@ -19,6 +22,13 @@
 	Password: ${user.password }<br>
 	Birthday: ${user.birthDate }<br>
 	Created: ${user.createDate }<br>
+	
+<form action="/user/deactivateUser.do?userId=${user.id}" method="POST">
+	<button type="Submit" class="btn btn-danger">Deactivate</button>
+</form>
+</c:when>
+<c:otherwise>This account is not active</c:otherwise>
+</c:choose>
 
 	<a href="/home/home.do">BACK TO HOME</a>
 </body>
