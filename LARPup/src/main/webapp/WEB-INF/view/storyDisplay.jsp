@@ -20,10 +20,11 @@
   </p>
   <ul>
     <c:forEach var="role" items="${story.eventRoles }">
-      <li><a href="/story/modifyRole.do?roleId=${role.id }" >${role.name }</a></li>
+      <li>${role.name }</li>
       <ul>
         <li>${role.description }</li>
       </ul>
+      <c:if test="${sessionScope.myUser.id == story.user.id }"> <a href="/story/modifyRole.do?roleId=${role.id }" >MODIFY</a></c:if>
     </c:forEach>    
   </ul>
   
@@ -49,7 +50,7 @@
      Story Created On: ${story.createDate }<br>
   </p>
   <br>
-    <a href="/story/modifyStory.do?storyId=${story.id }">EDIT STORY</a>
+    <c:if test="${sessionScope.myUser.id == story.user.id }"><a href="/story/modifyStory.do?storyId=${story.id }">EDIT STORY</a></c:if>
   <br>
   <a href="/home/home.do">BACK TO HOME</a>
 </body>
