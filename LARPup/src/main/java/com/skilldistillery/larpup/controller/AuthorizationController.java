@@ -29,7 +29,7 @@ public class AuthorizationController {
 		ModelAndView mv = new ModelAndView("index");
 		User myUser = dao.findUserByEmail(email);
 		
-		if (email.contentEquals(myUser.getEmail()) && password.equals(myUser.getPassword())) {
+		if (email.contentEquals(myUser.getEmail()) && password.equals(myUser.getPassword()) && myUser.isActive()) {
 			session.setAttribute("myUser", myUser);
 		} 
 		
