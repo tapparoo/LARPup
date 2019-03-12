@@ -9,14 +9,19 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
-<p>
+
 	<form action="/event/displayEvent.do" method="GET">
 		<label>Event ID:</label>
 		<input type="text" name="eventId">
 		<button type="submit">Submit</button>
 	</form>
+		<br>
+	<form action="/event/newEventForm.do">
+		<label>Story ID:</label>
+		<input type="text" name="storyId">
+		<button type="submit">NEW EVENT</button>
+	</form>
 
-</p>
 
 
 

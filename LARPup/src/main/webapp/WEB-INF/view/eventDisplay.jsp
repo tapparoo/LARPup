@@ -11,11 +11,12 @@
 <body>
 	<div class="container">
 		<p>
-			Event Title: ${event.name }<br> event Description:
-			${event.description }<br> event Location:
-			${event.address.street}, ${event.address.city},
-			${event.address.state}<br> event Date: ${event.date }<br>
-			event Created On: ${event.createDate }<br>
+			Event Title: ${event.name }<br> 
+			Description: ${event.description }<br>
+		    Location: ${event.address.street}, ${event.address.city},
+			${event.address.state}<br>
+		    Date: ${event.date }<br>
+			Created On: ${event.createDate }<br>
 		</p>
 
 		<p>
