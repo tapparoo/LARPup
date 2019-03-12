@@ -18,6 +18,7 @@
     <div class="cols">
       <img src="/resources/images/eventpics/frontPage2.jpg" />
       <h3>LARP UP!</h3>
+      <p>Inspirational reasons to go beat people with foam swords</p>
     </div>
   </div>
   <div class="row">
@@ -41,11 +42,6 @@
   </div>
 </div>
 
-<a href="/user/displayUser.do">GO TO USER PAGE (USER CONTROLLER STUFF)</a><br>
-<a href="/auth/authorize.do">AUTH CONTROLLER (AUTHORIZATION CONTROLLER STUFF)</a><br>
-<a href="/story/displayStory.do">GO TO STORY (STORY CONTROLLER STUFF)</a><br>
-<a href="/search/search.do">GO TO SEARCH (SEARCH CONTROLLER STUFF)</a><br>
-<br>
 <p>TEST PAGES</p>
 <a href="/home/greg.do">GO TO GREG'S TEST PAGE</a><br>
 <a href="/home/adam.do">GO TO ADAM'S TEST PAGE</a><br>
