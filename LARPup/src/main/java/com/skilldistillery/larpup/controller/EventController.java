@@ -89,7 +89,6 @@ public class EventController {
 		event.setName(eventDTO.getName());
 		event.setStory(dao.findStoryById(eventDTO.getStoryId()));
 		event.setDate(eventDTO.getDate());
-		System.out.println(event);
 		
 		mv.addObject("event", dao.addEvent(event));
 		return mv;

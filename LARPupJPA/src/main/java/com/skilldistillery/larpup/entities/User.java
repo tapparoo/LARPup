@@ -1,5 +1,6 @@
 package com.skilldistillery.larpup.entities;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -31,8 +30,7 @@ public class User {
 	private String lastName;
 	
 	@Column(name="birth_date")
-	@Temporal(TemporalType.DATE)
-	private Date birthDate;
+	private LocalDate birthDate;
 	
 	@OneToOne
 	@JoinColumn(name="picture_id")
@@ -104,10 +102,10 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 	public Picture getPicture() {

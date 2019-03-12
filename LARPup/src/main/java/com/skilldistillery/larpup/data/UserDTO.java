@@ -1,6 +1,6 @@
 package com.skilldistillery.larpup.data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class UserDTO {
 
@@ -11,7 +11,7 @@ public class UserDTO {
 	private String email;
 	private String password;
 	private Boolean active;
-	private String birthDate;
+	private LocalDate birthDate;
 	
 	private String street;
 	private String city;
@@ -76,12 +76,12 @@ public class UserDTO {
 		this.active = active;
 	}
 
-	public String getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
 	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
+        this.birthDate = LocalDate.parse(birthDate);
 	}
 
 	public String getStreet() {

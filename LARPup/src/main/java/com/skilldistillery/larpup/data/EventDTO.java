@@ -54,7 +54,7 @@ public class EventDTO {
 		return date;
 	}
 	public void setDate(String date) throws ParseException {
-		this.date = LocalDateTime.parse(date.toString());
+		this.date = LocalDateTime.parse(date);
 	}
 	public String getStreet() {
 		return street;
