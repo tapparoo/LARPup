@@ -42,8 +42,8 @@
       </c:when>
 	  <c:otherwise>
 	    <form class="form-inline my-2 my-lg-0" action="/auth/authorize.do" method="GET">
-	      <input class="form-control mr-sm-2" name="email" type="search" placeholder="email" aria-label="email">
-	      <input class="form-control mr-sm-2" name="password" type="search" placeholder="password" aria-label="password">
+	      <input class="form-control mr-sm-2" name="email" type="email" placeholder="email" aria-label="email">
+	      <input class="form-control mr-sm-2" name="password" type="password" placeholder="password" aria-label="password">
 	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
 	    </form>
 	      <form class="form-inline my-2 my-lg-0" action="/user/createUserForm.do" method="GET">
