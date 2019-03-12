@@ -13,14 +13,14 @@
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
 
 <form:form action="${action}" method="POST" modelAttribute="inputDTO">
-  <form:input type="hidden" path="id" value="${inputDTO.id}"/>
+  <form:input type="hidden" path="id" value="${role.id}"/>
   <form:input type="hidden" path="storyId" value="${story.id}"/>
   <form:label path="name" >NAME: </form:label>
-  <form:input type="text" path="name" value="${inputDTO.name }"/>
+  <form:input type="text" path="name" value="${role.name }"/>
   <form:errors type="text" path="name" />
   <br>
   <form:label path="name" >DESCRIPTION: </form:label>
-  <form:input type="text" path="description" value="${inputDTO.description }"/>
+  <form:input type="text" path="description" value="${role.description }"/>
   <form:errors type="text" path="description" />
   <br>
   <input type="submit" value="COMMIT" />

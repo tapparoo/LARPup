@@ -154,4 +154,38 @@ public class StoryController {
 		return mv;
 	}
 	
+	@RequestMapping(path = { "modifyRole.do" }, method = RequestMethod.GET)
+	public ModelAndView modifyRoleForm(int roleId) {
+		
+		EventUserInfo myRole = dao.findEventUserInfoById(roleId);
+		
+		ModelAndView mv = new ModelAndView("roleForm");
+		mv.addObject("inputDTO", new EventUserInfoDTO());
+		mv.addObject("role", myRole);
+		mv.addObject("story", myRole.getStory());
+		mv.addObject("action", "/story/modifyRole.do");
+		return mv;
+	}
+	
+	@RequestMapping(path = { "modifyRole.do" }, method = RequestMethod.POST)
+	public ModelAndView modifyRole(EventUserInfoDTO inputDTO) {
+		ModelAndView mv = new ModelAndView();
+		
+		EventUserInfo managedRole = dao.findEventUserInfoById(inputDTO.getId());
+		managedRole.setName(inputDTO.getName());
+		managedRole.setDescription(inputDTO.getDescription());
+		managedRole.setStory(dao.findStoryById(inputDTO.getStoryId()));
+		
+		if (dao.updateEventUserInfo(managedRole)) {
+			mv.setViewName("storyDisplay");
+			mv.addObject("story", managedRole.getStory());
+		} else {
+			mv.setViewName("roleForm");
+			mv.addObject("role", managedRole);
+			mv.addObject("story", managedRole.getStory());
+			mv.addObject("action", "/story/modifyRole.do");
+		}
+		return mv;
+	}
+	
 }

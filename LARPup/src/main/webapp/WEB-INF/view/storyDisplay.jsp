@@ -20,7 +20,7 @@
   </p>
   <ul>
     <c:forEach var="role" items="${story.eventRoles }">
-      <li>${role.name }</li>
+      <li><a href="/story/modifyRole.do?roleId=${role.id }" >${role.name }</a></li>
       <ul>
         <li>${role.description }</li>
       </ul>
