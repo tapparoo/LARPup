@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.larpup.data.EventUserInfoDTO;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 import com.skilldistillery.larpup.data.StoryDTO;
 import com.skilldistillery.larpup.entities.Address;
+import com.skilldistillery.larpup.entities.EventUserInfo;
 import com.skilldistillery.larpup.entities.Genre;
 import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.User;
@@ -31,7 +33,7 @@ public class StoryController {
 	}
 
 	@RequestMapping(path = { "modifyStory.do" }, method = RequestMethod.GET)
-	public ModelAndView modifyStoryGET(int storyId) {
+	public ModelAndView modifyStoryForm(int storyId) {
 		Story myStory = dao.findStoryById(storyId);
 		
 		StoryDTO dto = new StoryDTO();
@@ -44,7 +46,7 @@ public class StoryController {
 	}
 
 	@RequestMapping(path = {"modifyStory.do"}, method = RequestMethod.POST)
-	public ModelAndView modifyStoryPOST(StoryDTO inputDTO) {
+	public ModelAndView modifyStory(StoryDTO inputDTO) {
 		ModelAndView mv = new ModelAndView();
 		
 		Story managedStory = dao.findStoryById(inputDTO.getStoryId());
@@ -85,7 +87,7 @@ public class StoryController {
 	}
 
 	@RequestMapping(path = { "addStory.do" }, method = RequestMethod.GET)
-	public ModelAndView addStoryGET() {
+	public ModelAndView addStoryForm() {
 				
 		StoryDTO dto = new StoryDTO();
 		
@@ -96,7 +98,7 @@ public class StoryController {
 	}
 	
 	@RequestMapping(path = { "addStory.do" }, method = RequestMethod.POST)
-	public ModelAndView addStoryPOST(StoryDTO inputDTO, HttpSession session) {
+	public ModelAndView addStory(StoryDTO inputDTO, HttpSession session) {
 		
 		Story newStory = new Story();
 		Address newAddress = new Address();
@@ -122,6 +124,33 @@ public class StoryController {
 		
 		ModelAndView mv = new ModelAndView("storyDisplay");
 		mv.addObject("story", managedStory);
+		return mv;
+	}
+	
+	@RequestMapping(path = { "addRole.do" }, method = RequestMethod.GET)
+	public ModelAndView addRoleForm(int storyId) {
+		
+		Story myStory = dao.findStoryById(storyId);
+		ModelAndView mv = new ModelAndView("roleForm");
+		mv.addObject("story", myStory);
+		mv.addObject("inputDTO", new EventUserInfoDTO());
+		mv.addObject("action", "/story/addRole.do");
+		return mv;
+	}
+	
+	@RequestMapping(path = { "addRole.do" }, method = RequestMethod.POST)
+	public ModelAndView addRole(EventUserInfoDTO inputDTO) {
+		
+		EventUserInfo role = new EventUserInfo();
+		
+		role.setName(inputDTO.getName());
+		role.setDescription(inputDTO.getDescription());
+		role.setStory(dao.findStoryById(inputDTO.getStoryId()));
+		
+		role = dao.addEventUserInfo(role);
+		
+		ModelAndView mv = new ModelAndView("storyDisplay");
+		mv.addObject("story", role.getStory());
 		return mv;
 	}
 	

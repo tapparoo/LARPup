@@ -27,6 +27,8 @@
     </c:forEach>    
   </ul>
   
+  <a href="/story/addRole.do?storyId=${story.id}" >ADD NEW CHARACTER</a>
+  
   <p>
     Events in Story:
   </p>
