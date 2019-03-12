@@ -86,7 +86,7 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	@Override
 	public List<Story> getRecentStories(int count) {
 		List<Story> list = null;
-		String query = "SELECT story FROM Story story ORDER BY story.create_date DESC";
+		String query = "SELECT story FROM Story story ORDER BY story.createDate DESC";
 		list = em.createQuery(query, Story.class).getResultList();
 		
 		return list.size() <= count ? list : list.subList(0, count);
