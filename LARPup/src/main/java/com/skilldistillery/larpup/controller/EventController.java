@@ -41,11 +41,13 @@ public class EventController {
 		return mv;
 	}
 
-	@RequestMapping(path = "assignUserToCharacter.do", method = RequestMethod.GET)
+	@RequestMapping(path = "assignUserToCharacter.do", method = RequestMethod.POST)
 	public ModelAndView assignUserToCharacter(int eventUserId, HttpSession session) {
 		ModelAndView mv = new ModelAndView("eventDisplay");
 		EventUser evtUsr = dao.findEventUserById(eventUserId);
 		evtUsr.setUser((User)session.getAttribute("myUser"));
+		dao.updateEventUser(evtUsr);
+		dao.updateEvent(evtUsr.getEvent());
 		mv.addObject("event", evtUsr.getEvent());
 		return mv;
 	}
