@@ -110,24 +110,19 @@
 				</div>
 			</div>
 
-			<%-- <<div class="form-group col-md-8">
-
-					<form:label for="inputBiography">Biography</form:label>
-					<textarea class="form-control" id="inputBiography" rows="3"></textarea>
-					<br> --%>
+			
 			<button type="submit" class="btn btn-primary">Submit</button>
 			<br>
 			<br>
 
-			</form>
 			<form class="form-inline my-2 my-lg-0" action="/home.do/"
 				method="GET">
 				<button class="btn btn-light" type="submit">Go Home</button>
+			</form>
 		</form:form>
 
 	</div>
 
-	</div>
 </body>
 <jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>
 </html>

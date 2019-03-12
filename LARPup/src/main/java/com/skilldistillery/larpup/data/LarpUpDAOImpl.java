@@ -193,6 +193,15 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	}
 	
 	@Override
+	public Picture findPictureByUrl(String url) {
+		List<Picture> pic = null;
+		String query = "SELECT pic FROM Picture pic WHERE pic.url = :url";
+		pic = em.createQuery(query, Picture.class).setParameter("url", url).getResultList();
+		
+		return pic.size() > 0 ? pic.get(0) : null;
+	}
+	
+	@Override
 	public Picture addPicture(Picture picture) {
 		em.persist(picture);
 		em.flush();

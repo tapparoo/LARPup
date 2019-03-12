@@ -36,6 +36,7 @@ public interface LarpUpDAO {
 	EventComment addEventComment(EventComment eventComment);
 
 	Picture findPictureById(int id);
+	Picture findPictureByUrl(String url);
 	Picture addPicture(Picture picture);
 	boolean updatePicture(Picture picture);
 	
