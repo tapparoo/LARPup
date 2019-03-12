@@ -24,8 +24,11 @@
       <ul>
         <li>${role.description }</li>
       </ul>
+      <c:if test="${sessionScope.myUser.id == story.user.id }"> <a href="/story/modifyRole.do?roleId=${role.id }" >MODIFY</a></c:if>
     </c:forEach>    
   </ul>
+  
+  <a href="/story/addRole.do?storyId=${story.id}" >ADD NEW CHARACTER</a>
   
   <p>
     Events in Story:
@@ -34,7 +37,7 @@
   <ol>
     <c:forEach var="event" items="${story.events }">
       <li>
-        <a href="" >${event.name }</a>
+        <a href="/event/displayEvent.do?eventId=${event.id }" >${event.name }</a>
           <ul>
             <li>${event.date }</li>
             <li>${event.description }</li>
@@ -47,7 +50,7 @@
      Story Created On: ${story.createDate }<br>
   </p>
   <br>
-    <a href="/story/modifyStory.do?storyId=${story.id }">EDIT STORY</a>
+    <c:if test="${sessionScope.myUser.id == story.user.id }"><a href="/story/modifyStory.do?storyId=${story.id }">EDIT STORY</a></c:if>
   <br>
   <a href="/home/home.do">BACK TO HOME</a>
 </body>
