@@ -11,8 +11,9 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
-I MADE IT!!! WELCOME TO THE INDEX JSP!!!<br>
-<!-- <a href="test/test.do">TEST CONTROLLER LINKS</a><br> -->
+
+
+
 <a href="/user/displayUser.do">GO TO USER PAGE (USER CONTROLLER STUFF)</a><br>
 <a href="/auth/authorize.do">AUTH CONTROLLER (AUTHORIZATION CONTROLLER STUFF)</a><br>
 <a href="/story/displayStory.do">GO TO STORY (STORY CONTROLLER STUFF)</a><br>
