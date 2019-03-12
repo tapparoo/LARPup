@@ -10,7 +10,6 @@ import com.skilldistillery.larpup.data.EventDTO;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Event;
-import com.skilldistillery.larpup.entities.Story;
 
 @RestController
 @RequestMapping("event")
@@ -41,17 +40,17 @@ public class EventController {
 		ModelAndView mv = new ModelAndView("eventDisplay");
 		Event event = dao.findEventById(eventDTO.getId());
 		
-		Address address = new Address();
+		Address address = event.getAddress();
 		address.setState(eventDTO.getState());
 		address.setCity(eventDTO.getCity());
 		address.setZipcode(eventDTO.getZipcode());
 		address.setStreet(eventDTO.getStreet());
-		event.setAddress(dao.addAddress(address));
+		dao.updateAddress(address);
+		event.setAddress(address);
 		event.setDescription(eventDTO.getDescription());
 		event.setName(eventDTO.getName());
 		event.setStory(dao.findStoryById(eventDTO.getStoryId()));
-//		DATE IS BROKEN		
-//		event.setDate(eventDTO.getDate());
+		event.setDate(eventDTO.getDate());
 		
 		if (dao.updateEvent(event)) {
 			mv.addObject("event", dao.findEventById(event.getId()));
@@ -89,7 +88,6 @@ public class EventController {
 		event.setName(eventDTO.getName());
 		event.setStory(dao.findStoryById(eventDTO.getStoryId()));
 		event.setDate(eventDTO.getDate());
-		System.out.println(event);
 		
 		mv.addObject("event", dao.addEvent(event));
 		return mv;

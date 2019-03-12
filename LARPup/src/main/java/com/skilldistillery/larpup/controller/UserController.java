@@ -1,10 +1,5 @@
 package com.skilldistillery.larpup.controller;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,14 +48,7 @@ public class UserController {
 		tempUser.setPassword(inputDTO.getPassword());
 		
 		tempUser.setRole("user");
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date inputDate = null;
-        try {
-            inputDate = format.parse(inputDTO.getBirthDate());
-        } catch (ParseException e1) {
-            e1.printStackTrace();
-        }
-		tempUser.setBirthDate(inputDate);
+		tempUser.setBirthDate(inputDTO.getBirthDate());
 		
 		Address tempAddr = new Address();
 		tempAddr.setStreet(inputDTO.getStreet());

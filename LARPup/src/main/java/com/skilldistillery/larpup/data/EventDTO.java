@@ -1,9 +1,7 @@
 package com.skilldistillery.larpup.data;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,7 +52,7 @@ public class EventDTO {
 		return date;
 	}
 	public void setDate(String date) throws ParseException {
-		this.date = LocalDateTime.parse(date.toString());
+		this.date = LocalDateTime.parse(date);
 	}
 	public String getStreet() {
 		return street;
