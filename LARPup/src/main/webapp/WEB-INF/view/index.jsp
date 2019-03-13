@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Main Page</title>
+<link rel="stylesheet" href="/css/card.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
@@ -15,30 +16,26 @@
 <div class="container">
   <div class="row"><div class="col"></div></div>
   <div class="row">
-    <div class="cols">
+    <div class="col">
       <img src="/resources/images/eventpics/frontPage2.jpg" />
       <h3>LARP UP!</h3>
       <p>Inspirational reasons to go beat people with foam swords</p>
     </div>
   </div>
+</div>
+<div class="container">
   <div class="row">
-    <c:forEach var="story" items="${recentStoryList }">
-    
-    <div class="col">
-      <div class="card" style="width: 18rem">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${story.name }</h5>
-          <p class="card-text">${story.description }</p>
-          <p class="card-text">${story.address.city }, ${story.address.state }</p>
-          <a href="/story/displayStory.do?storyId=${story.id}" >GO TO STORY</a>
-        </div>
-      </div>
-    </div>
-    
-    </c:forEach>
-  </div>
-  <div class="row">
+        <c:forEach var="story" items="${recentStoryList }">
+          <div class="card col-4 cardStory">
+            <img class="card-img-top" src="/resources/event_images/default.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">${story.name }</h5>
+              <p>${story.description}</p>
+              <p>${story.address.city }, ${story.address.state }</p>
+              <p><a href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
+            </div>
+          </div>
+        </c:forEach>
   </div>
 </div>
 

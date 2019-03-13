@@ -1,5 +1,8 @@
 package com.skilldistillery.larpup.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import com.skilldistillery.larpup.data.EventUserInfoDTO;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 import com.skilldistillery.larpup.data.StoryDTO;
 import com.skilldistillery.larpup.entities.Address;
+import com.skilldistillery.larpup.entities.Event;
 import com.skilldistillery.larpup.entities.EventUserInfo;
 import com.skilldistillery.larpup.entities.Genre;
 import com.skilldistillery.larpup.entities.Story;
@@ -27,6 +31,7 @@ public class StoryController {
 	@RequestMapping(path = { "displayStory.do" }, method = RequestMethod.GET)
 	public ModelAndView displayStory(int storyId, HttpSession session) {
 		Story myStory = dao.findStoryById(storyId);
+		
 		ModelAndView mv = new ModelAndView("storyDisplay");
 		mv.addObject("story", myStory);
 		return mv;
