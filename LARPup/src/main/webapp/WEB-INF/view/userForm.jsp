@@ -66,18 +66,21 @@
 				</div>
 
 			</div>
-
-			<div class="form-group col-md-4">
-				<form:label path="birthDate">Birthday</form:label>
-				<form:input type="date" path="birthDate" class="form-control"
-					value="${user.birthDate}" />
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<form:label path="birthDate">Birthday</form:label>
+					<form:input type="date" path="birthDate" class="form-control"
+						value="${user.birthDate}" />
+				</div>
 			</div>
 
-			<div class="form-group-a col-md-6">
-				<form:label path="street">Street</form:label>
-				<form:input type="text" path="street" class="form-control"
-					value="${user.address.street}" placeholder="New address"
-					required="required" />
+			<div class="form-row">
+				<div class="form-group-a col-md-6">
+					<form:label path="street">Street</form:label>
+					<form:input type="text" path="street" class="form-control"
+						value="${user.address.street}" placeholder="New address"
+						required="required" />
+				</div>
 			</div>
 
 			<div class="form-row">
@@ -101,7 +104,6 @@
 						<option value="NC">NC</option>
 					</form:select>
 				</div>
-
 				<div class="form-group-a col-md-2">
 					<form:label path="zipcode">Zip</form:label>
 					<form:input type="text" path="zipcode" class="form-control"
@@ -109,17 +111,18 @@
 						required="required" />
 				</div>
 			</div>
-
-			
-			<button type="submit" class="btn btn-primary">Submit</button>
 			<br>
 			<br>
 
-			<form class="form-inline my-2 my-lg-0" action="/home.do/"
-				method="GET">
-				<button class="btn btn-light" type="submit">Go Home</button>
-			</form>
+
+			<button type="submit" class="btn btn-primary">Sign Up</button>
+			<br>
+			<br>
+
 		</form:form>
+		<form class="form-inline my-2 my-lg-0" action="/home.do/" method="GET">
+			<button class="btn btn-light" type="submit">Go Home</button>
+		</form>
 
 	</div>
 
