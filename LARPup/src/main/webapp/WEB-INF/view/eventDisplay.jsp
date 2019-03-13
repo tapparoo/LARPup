@@ -64,7 +64,7 @@
 					<c:otherwise>
 						<c:if test="${not empty sessionScope.myUser }">
 							<form>
-								<button
+								<button class="btn btn-success btn-sm"
 									formaction="/event/assignUserToCharacter.do?eventUserId=${eventUser.id}"
 									formmethod="POST">"Reserve this role!"</button>
 							</form>
@@ -72,10 +72,23 @@
 					</c:otherwise>
 				  
 				</c:choose>
-         <p> <c:if test="${sessionScope.myUser.id == event.story.user.id }"> 
-         <a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/story/modifyRole.do?roleId=${role.id }" >MODIFY</a>
-         <a class="btn btn-danger btn-sm" role="button" aria-pressed="true" href="/event/removeRole.do?eventUserId=${eventUser.id }&eventId=${event.id }" >REMOVE</a>
-         </c:if></p>
+         <c:if test="${sessionScope.myUser.id == event.story.user.id }">
+           <div class="row">
+             <div class="col">
+             <form action="/story/modifyRole.do" method="GET">
+               <input type="hidden" name="roleId" value="${eventUser.eventUserInfo.id }" />
+               <input type="submit" class="btn btn-primary btn-sm" value="MODIFY" />
+             </form>
+             </div>
+             <div class="col">
+             <form action="/event/removeRole.do" method="POST">
+               <input type="hidden" name="eventUserId" value="${eventUser.id }" />
+               <input type="hidden" name="eventId" value="${event.id }" />
+               <input type="submit" class="btn btn-danger btn-sm" value="REMOVE" />
+             </form>
+             </div>
+           </div> 
+         </c:if>
         </div>
       </div>
     </c:forEach>

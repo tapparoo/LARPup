@@ -32,7 +32,7 @@
               <h5 class="card-title">${story.name }</h5>
               <p>${story.description}</p>
               <p>${story.address.city }, ${story.address.state }</p>
-              <p><a href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
+              <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
             </div>
           </div>
         </c:forEach>

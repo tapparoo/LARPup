@@ -14,17 +14,17 @@
 <div class="container">
   <div class="row">
     <div class="col">
+    <img src="/resources/images/eventpics/frontPage2.jpg" />
     <h3>${story.name}</h3>
     <p>${story.genre.name} <br>
     ${story.description}<br></p>
-    <img src="/resources/images/eventpics/frontPage2.jpg" />
     <p>The location of this story is ${story.address.city }, ${story.address.state } </p>
-    <c:if test="${sessionScope.myUser.id == story.user.id }"><a href="/story/modifyStory.do?storyId=${story.id }">EDIT STORY</a></c:if>
+    <c:if test="${sessionScope.myUser.id == story.user.id }"><a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/story/modifyStory.do?storyId=${story.id }">EDIT STORY</a></c:if>
     </div>
   </div>
   <div class="row"><div class="col">
     <h2>Roles for this Story</h2><br>
-    <c:if test="${sessionScope.myUser.id == story.user.id }"><a href="/story/addRole.do?storyId=${story.id }">Add Role</a></c:if>
+    <c:if test="${sessionScope.myUser.id == story.user.id }"><a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/story/addRole.do?storyId=${story.id }">Add Role</a></c:if>
     </div></div>  
     
 <div class="container">
@@ -35,7 +35,9 @@
         <div class="card-body">
          <h5 class="card-title">${role.name }</h5>
          <p> ${role.description } </p>
-         <p> <c:if test="${sessionScope.myUser.id == story.user.id }"> <a href="/story/modifyRole.do?roleId=${role.id }" >MODIFY</a></c:if></p>
+         <c:if test="${sessionScope.myUser.id == story.user.id }">
+           <a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/story/modifyRole.do?roleId=${role.id }" >MODIFY</a>
+         </c:if>
         </div>
       </div>
     </c:forEach>
@@ -45,7 +47,7 @@
     
   <div class="row"><div class="col">
     <h2>Events for this Story</h2><br>
-    <c:if test="${sessionScope.myUser.id == story.user.id }"><a href="/event/newEventForm.do?storyId=${story.id }">Add Event</a></c:if>
+    <c:if test="${sessionScope.myUser.id == story.user.id }"><a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/event/newEventForm.do?storyId=${story.id }">Add Event</a></c:if>
   </div></div>
 
 <div class="container">
@@ -57,7 +59,11 @@
          <h5 class="card-title">${event.name }</h5>
          <p> ${event.description } </p>
          <p> ${event.date } </p>
-         <p> <a href="/event/displayEvent.do?eventId=${event.id }" >GO TO EVENT</a>
+         <div class="row">
+           <div class="col">
+           <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/event/displayEvent.do?eventId=${event.id }" >GO TO EVENT</a>
+           </div>
+         </div>
         </div>
       </div>
     </c:forEach>
