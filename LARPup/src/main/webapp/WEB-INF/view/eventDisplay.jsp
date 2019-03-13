@@ -64,7 +64,7 @@
 					<c:otherwise>
 						<c:if test="${not empty sessionScope.myUser }">
 							<form>
-								<button
+								<button class="btn btn-success btn-sm"
 									formaction="/event/assignUserToCharacter.do?eventUserId=${eventUser.id}"
 									formmethod="POST">"Reserve this role!"</button>
 							</form>
