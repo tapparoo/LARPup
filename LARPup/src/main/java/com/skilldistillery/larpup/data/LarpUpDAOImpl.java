@@ -47,9 +47,9 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	}
 	
 	@Override
-	public List<User> findFilteredUsers(String filterColumn, String filterBy){
-		String query = "SELECT u FROM User u WHERE :filterColumn = :filterBy";
-		return em.createQuery(query, User.class).setParameter("filterColumn", filterColumn).setParameter("filterBy", filterBy).getResultList();
+	public List<User> findDeactivatedUsers(){
+		String query = "SELECT u FROM User u WHERE active = 'false'";
+		return em.createQuery(query, User.class).getResultList();
 	}
 	
 	@Override
