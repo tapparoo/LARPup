@@ -108,18 +108,15 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping(path = { "deactivateUser.do" }, method = RequestMethod.POST)
+	@RequestMapping(path = { "deactivateUser.do" }, method = RequestMethod.GET)
 	public ModelAndView deactivateUser(int userId) {
-
+		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
 		User user = dao.findUserById(userId);
-		ModelAndView mv = new ModelAndView();
+
 		user.setActive(false);
 		dao.updateUser(user);
-		mv.addObject("user", user);
-		mv.setViewName("userPage");
+		mv.addObject("userId", user.getId());
 		
-
 		return mv;
-
 	}
 }
