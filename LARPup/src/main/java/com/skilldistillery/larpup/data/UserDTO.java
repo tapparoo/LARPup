@@ -10,7 +10,7 @@ public class UserDTO {
 	private String nickname;
 	private String email;
 	private String password;
-	private Boolean active;
+	private Boolean active = true;
 	private LocalDate birthDate;
 	
 	private String street;
@@ -19,6 +19,7 @@ public class UserDTO {
 	private String zipcode;
 	
 	private String pictureUrl;
+	
 
 	public int getId() {
 		return id;

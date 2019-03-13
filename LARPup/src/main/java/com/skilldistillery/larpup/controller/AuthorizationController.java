@@ -18,25 +18,30 @@ public class AuthorizationController {
 	@Autowired
 	private LarpUpDAO dao;
 
-	@RequestMapping(path = {"authorize.do"}, method = RequestMethod.GET)
+	@RequestMapping(path = { "authorize.do" }, method = RequestMethod.GET)
 	public ModelAndView userDisplay() {
 		ModelAndView mv = new ModelAndView("authorization");
 		return mv;
 	}
-	
-	@RequestMapping(path = {"authorize.do"}, params= {"email", "password"}, method = RequestMethod.GET)
+
+	@RequestMapping(path = { "authorize.do" }, params = { "email", "password" }, method = RequestMethod.GET)
 	public ModelAndView checkUser(String email, String password, HttpSession session) {
 		ModelAndView mv = new ModelAndView("index");
 		User myUser = dao.findUserByEmail(email);
-		
-		if (email.contentEquals(myUser.getEmail()) && password.equals(myUser.getPassword())) {
-			session.setAttribute("myUser", myUser);
-		} 
-		
+
+		try {
+			if (email.contentEquals(myUser.getEmail()) && password.equals(myUser.getPassword()) && myUser.isActive()) {
+				session.setAttribute("myUser", myUser);
+			}else {
+				mv.setViewName("loginFail");
+			}
+		} catch (NullPointerException e) {
+			mv.setViewName("loginFail");
+		}
 		return mv;
 	}
-	
-	@RequestMapping(path = {"logout.do"}, method = RequestMethod.GET)
+
+	@RequestMapping(path = { "logout.do" }, method = RequestMethod.GET)
 	public ModelAndView userDisplay(HttpSession session) {
 		ModelAndView mv = new ModelAndView("index");
 		User myUser = null;
