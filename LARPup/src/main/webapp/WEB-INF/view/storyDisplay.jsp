@@ -6,9 +6,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Display Story</title>
+<link rel="stylesheet" href="/css/card.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+    <h3>${story.name}</h3>
+    <p>${story.genre.name} <br>
+    ${story.description}<br></p>
+    <img src="/resources/images/eventpics/frontPage2.jpg" />
+    <p>The location of this story is ${story.address.city }, ${story.address.state } </p>
+    </div>
+  </div>
+  <div class="row"><div class="col"><h2>Roles for this Story</h2></div></div>  
+    
+  <div class="row"><div class="col">
+    <h2>Events for this Story</h2><br>
+    <c:if test="${sessionScope.myUser.id == story.user.id }"><a href="/event/newEventForm.do?storyId=${story.id }">Add Event</a></c:if>
+  </div></div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <c:forEach var="event" items="${eventList}" varStatus="iteration">
+      <div class="card col-4 cardEvent">
+          <img class="card-img-top" src="/resources/event_images/default.jpg" alt="Card image cap">
+        <div class="card-body">
+         <h5 class="card-title">${event.name }</h5>
+         <p> ${event.description } </p>
+         <p> ${event.date } </p>
+         <p> <a href="/event/displayEvent.do?eventId=${event.id }" >GO TO EVENT</a>
+        </div>
+      </div>
+    </c:forEach>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <p>Story Title: ${story.name }<br>
     Story Description: ${story.description }<br>
     Story Genre: ${(story.genre).name }<br> 
