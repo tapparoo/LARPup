@@ -53,6 +53,8 @@
 	</div>
 </div>
 <br><br>
-<div class="row">
-	<a class="btn btn-sm btn-secondary" href="/user/updateUserForm.do?userId=${user.id}">Edit Profile</a>
-</div>
+<c:if test="${user.id == sessionScope.myUser.id || sessionScope.myUser.role == 'admin'}">
+	<div class="row">
+		<a class="btn btn-sm btn-secondary" href="/user/updateUserForm.do?userId=${user.id}">Edit Profile</a>
+	</div>
+</c:if>

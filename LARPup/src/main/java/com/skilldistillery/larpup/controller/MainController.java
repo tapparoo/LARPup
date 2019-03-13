@@ -22,16 +22,7 @@ public class MainController {
 	@RequestMapping(path = {"/" , "home.do"}, method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("index");
-		
-		//TEMP Until DAO method implemented.
-		List<Story> recentStories = new ArrayList<>();
-		recentStories.add(dao.findStoryById(1));
-		recentStories.add(dao.findStoryById(2));
-		recentStories.add(dao.findStoryById(3));
-		//TEMP End of temporary placeholder stuff.
-		
-		mv.addObject("recentStoryList", recentStories);
-		
+		mv.addObject("recentStoryList", dao.getRecentStories(3));
 		return mv;
 	}
 	
