@@ -1,17 +1,15 @@
 .cardEvent {
-	height: 300px;
-/*  padding: 5px;
-	margin: 10px; */
+	height: 450px;
 }
 
 .cardStory {
-	height: 300px;
+	height: 450px;
 }
 
 .cardRole {
-	height: 150px;
+	height: 300px;
 }
 
 .cardRoleExp {
-	height: 300px;
+	height: 450px;
 }

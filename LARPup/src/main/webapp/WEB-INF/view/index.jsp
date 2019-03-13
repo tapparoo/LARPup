@@ -27,7 +27,7 @@
   <div class="row">
         <c:forEach var="story" items="${recentStoryList }">
           <div class="card col-4 cardStory">
-            <img class="card-img-top" src="/resources/event_images/default.jpg" alt="Card image cap">
+            <img class="card-img-top" src="/resources/images/cardpics/openbook.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">${story.name }</h5>
               <p>${story.description}</p>
