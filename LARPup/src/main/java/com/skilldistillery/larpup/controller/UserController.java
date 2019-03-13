@@ -28,12 +28,12 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("userPage");
 		User sessionUser = null;
 		if (session != null) {
-			sessionUser = (User)(session.getAttribute("myUser"));
+			sessionUser = (User) session.getAttribute("myUser");
 		}
 		mv.addObject("user", dao.findUserById(userId));
 
 		// For the admin tab's 'User' list dropdowns
-		if(sessionUser != null && sessionUser.getRole().equals("admin") && userId == sessionUser.getId()) {
+		if (sessionUser != null && sessionUser.getRole().equals("admin") && userId == sessionUser.getId()) {
 			mv.addObject("allUsers", dao.findAllUsers());
 //			mv.addObject("filteredUsers", dao.findFilteredUsers(session.getAttribute("filterColumn").toString(), session.getAttribute("filterBy").toString()));
 		}
@@ -125,14 +125,35 @@ public class UserController {
 	}
 
 	@RequestMapping(path = { "deactivateUser.do" }, method = RequestMethod.GET)
-	public ModelAndView deactivateUser(int userId) {
+	public ModelAndView deactivateUser(int userId, HttpSession session) {
 		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
 		User user = dao.findUserById(userId);
+		User loggedInUser = (User) session.getAttribute("myUser");
 
-		user.setActive(false);
-		dao.updateUser(user);
-		mv.addObject("userId", user.getId());
+		// Make sure an admin is signed on first
+		if (loggedInUser.getRole().equals("admin")) {
+			user.setActive(false);
+			dao.updateUser(user);
+			mv.addObject("userId", user.getId());
+		} else {
+		}
 
+		return mv;
+	}
+
+	@RequestMapping(path = { "reactivateUser.do" }, method = RequestMethod.GET)
+	public ModelAndView reactivateUser(int userId, HttpSession session) {
+		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
+		User user = dao.findUserById(userId);
+		User loggedInUser = (User) session.getAttribute("myUser");
+
+		// Make sure an admin is signed on first
+		if (loggedInUser.getRole().equals("admin")) {
+			user.setActive(true);
+			dao.updateUser(user);
+			mv.addObject("userId", user.getId());
+		} else {
+		}
 		return mv;
 	}
 
