@@ -9,10 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title>User Form</title>
+<link rel="stylesheet" href="/css/user_page.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
+	
+	<form>
 	<div class="container">
+	
 		<h1>Create Your Account</h1>
 		<br>
 
@@ -125,6 +129,7 @@
 		</form>
 
 	</div>
+		</form>
 
 </body>
 <jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>

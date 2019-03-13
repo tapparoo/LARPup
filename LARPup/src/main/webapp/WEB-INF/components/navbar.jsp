@@ -46,9 +46,66 @@
 	      <input class="form-control mr-sm-2" name="password" type="password" placeholder="password" aria-label="password">
 	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
 	    </form>
-	      <form class="form-inline my-2 my-lg-0" action="/user/createUserForm.do" method="GET">
+	    
+	    
+	    
+	    
+	  <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
+		<div class="container">
+			<div class="userDetails">
+			  	<c:if test="${not empty sessionScope.myUser}"></c:if>
+						
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="orangeForm-name" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+        </div>
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="orangeForm-email" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="orangeForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+        </div>
+
+      </div>
+ <form  action="/user/createUserForm.do" method="GET">
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-deep-orange">Submit</button>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <a href="" class="btn btn-outline-success btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Sign Up</a>
+</div>
+			</div>
+		</div>
+	  </div>
+	  <div class="tab-pane fade" id="nav-stories" role="tabpanel" aria-labelledby="nav-stories-tab">...</div>
+	  <div class="tab-pane fade" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">...</div>
+</div>
+	    
+	      <%-- <form class="form-inline my-2 my-lg-0" action="/user/createUserForm.do" method="GET">
 	      <button class="btn btn-outline-success my-2 my-sm-0"type="submit">Sign Up</button>
-	      </form>
+	      </form> --%>
 	  </c:otherwise>
     </c:choose>
   </div>
