@@ -129,7 +129,7 @@ public class EventController {
 		return mv;
 	}
 	
-	@RequestMapping(path = "removeRole.do", method = RequestMethod.GET)
+	@RequestMapping(path = "removeRole.do", method = RequestMethod.POST)
 	public ModelAndView removeRole(int eventUserId, int eventId) {
 		ModelAndView mv = new ModelAndView("eventDisplay");
 		EventUser eventUser = dao.findEventUserById(eventUserId);
