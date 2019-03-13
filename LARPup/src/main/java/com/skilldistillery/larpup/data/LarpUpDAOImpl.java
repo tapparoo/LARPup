@@ -242,6 +242,11 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	}
 	
 	@Override
+	public void removeEventUser(EventUser eventUser) {
+		em.remove(eventUser);
+	}
+	
+	@Override
 	public boolean updateEventUser(EventUser eventUser) {
 		EventUser managed = em.find(EventUser.class, eventUser.getId());
 		
