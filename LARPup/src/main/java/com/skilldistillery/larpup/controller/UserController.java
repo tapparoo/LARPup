@@ -55,6 +55,14 @@ public class UserController {
 	
 	//TODO: update picture/password methods
 	
+	@RequestMapping(path = "resetPassword.do", method = RequestMethod.POST)
+	public ModelAndView resetPassword(int userId, String newPass, HttpSession session) {
+		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
+		User user = dao.findUserById(userId);
+		
+		return mv;
+	}
+	
 	@RequestMapping(path = "updateUser.do", method = RequestMethod.POST)
 	public ModelAndView updateUser(UserDTO userDTO, HttpSession session) {
 		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
