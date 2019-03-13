@@ -58,7 +58,7 @@
 			  	<c:choose>
 					<c:when test="${user.active}">
 						<c:choose>
-							<c:when test="${not empty action }">
+							<c:when test="${not empty action}">
 								<jsp:include page="/WEB-INF/view/userPage-edit.jsp"></jsp:include>
 							</c:when>
 							<c:otherwise>

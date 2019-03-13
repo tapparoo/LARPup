@@ -26,6 +26,7 @@ public class UserController {
 	@RequestMapping(path = { "displayUser.do" }, method = RequestMethod.GET)
 	public ModelAndView userDisplay(int userId) {
 		ModelAndView mv = new ModelAndView("userPage");
+		System.out.println(dao.findUserById(userId));
 		mv.addObject("user", dao.findUserById(userId));
 		return mv;
 	}
@@ -56,7 +57,7 @@ public class UserController {
 	
 	@RequestMapping(path = "updateUser.do", method = RequestMethod.POST)
 	public ModelAndView updateUser(UserDTO userDTO, HttpSession session) {
-		ModelAndView mv = new ModelAndView("userPage");
+		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
 		User user = dao.findUserById(userDTO.getId());
 		
 		Address address = user.getAddress();
