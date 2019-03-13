@@ -66,9 +66,12 @@
 						<button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
 					</div>
 					<div class="col-3">
-						<a href="/user/deactivateUser.do?userId=${user.id}" class="btn btn-sm btn-primary">Deactivate Account</a>
+						<a href="/user/resetPassword.do?userId=${user.id}" class="btn btn-sm btn-danger">Deactivate Account</a>
 					</div>
-					<div class="col-6"></div>
+					<div class="col-3">
+						<a href="/user/deactivateUser.do?userId=${user.id}" class="btn btn-sm btn-danger">Deactivate Account</a>
+					</div>
+					<div class="col-3"></div>
 				</div>
 			</c:if>
 			<form:input type="hidden" path="id" value="${user.id}"/>
