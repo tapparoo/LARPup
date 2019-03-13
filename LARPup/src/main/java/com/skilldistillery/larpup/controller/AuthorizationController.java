@@ -24,7 +24,7 @@ public class AuthorizationController {
 		return mv;
 	}
 
-	@RequestMapping(path = { "authorize.do" }, params = { "email", "password" }, method = RequestMethod.GET)
+	@RequestMapping(path = { "authorize.do" }, params = { "email", "password" }, method = RequestMethod.POST)
 	public ModelAndView checkUser(String email, String password, HttpSession session) {
 		ModelAndView mv = new ModelAndView("index");
 		User myUser = dao.findUserByEmail(email);
