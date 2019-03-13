@@ -57,8 +57,20 @@ public class UserController {
 	
 	@RequestMapping(path = "resetPassword.do", method = RequestMethod.POST)
 	public ModelAndView resetPassword(int userId, String newPass, HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
+		ModelAndView mv = new ModelAndView("redirect:/user/updateUserForm.do");
 		User user = dao.findUserById(userId);
+		User loggedInUser = (User)session.getAttribute("myUser");
+		
+		// Make sure the currently signed on user is the one changing the password
+		// -- or is an admin
+		if (user.getId() == loggedInUser.getId() || loggedInUser.getRole().equals("admin")) {
+			user.setPassword(newPass);
+			dao.updateUser(user);
+			session.setAttribute("status", "Password changed successfully");
+		}else {
+			session.setAttribute("status", "You are not authorized to change this password.");
+		}
+		mv.addObject("userId", user.getId());
 		
 		return mv;
 	}
