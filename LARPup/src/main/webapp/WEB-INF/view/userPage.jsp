@@ -72,7 +72,13 @@
 						</c:choose>
 					</c:when>
 					<c:otherwise>
-						This account is not active
+						<h5>This account is not active</h5>
+						<br>
+					    <c:if test="${sessionScope.myUser.role == 'admin'}">
+							<div class="row">
+								<a class="btn btn-sm btn-primary" href="/user/reactivateUser.do?userId=${user.id}">Reactivate Account</a>
+							</div>
+	  					</c:if>
 					</c:otherwise>
 				</c:choose>
 			</div>
