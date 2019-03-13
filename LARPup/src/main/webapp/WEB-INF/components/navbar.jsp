@@ -46,15 +46,21 @@
 	      <input class="form-control mr-sm-2" name="password" type="password" placeholder="password" aria-label="password">
 	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
 	    </form>
+    </c:otherwise>
+    </c:choose>
+	
+	<div class="text-center">
+	  <a href="" class="btn btn-outline-success btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Launch
+	    Modal Register Form</a>
+	</div>
+
 	    
-	    
-	    
-	    
-	  <div class="tab-pane fade show active" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-		<div class="container">
-			<div class="userDetails">
-			  	<c:if test="${not empty sessionScope.myUser}"></c:if>
-						
+	      <%-- <form class="form-inline my-2 my-lg-0" action="/user/createUserForm.do" method="GET">
+	      <button class="btn btn-outline-success my-2 my-sm-0"type="submit">Sign Up</button>
+	      </form> --%>
+  </div>
+</nav>
+
 <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -84,29 +90,9 @@
         </div>
 
       </div>
- <form  action="/user/createUserForm.do" method="GET">
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-deep-orange">Submit</button>
+        <button class="btn btn-deep-orange">Sign up</button>
       </div>
-  </form>
     </div>
   </div>
 </div>
-
-<div class="text-center">
-  <a href="" class="btn btn-outline-success btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Sign Up</a>
-</div>
-			</div>
-		</div>
-	  </div>
-	  <div class="tab-pane fade" id="nav-stories" role="tabpanel" aria-labelledby="nav-stories-tab">...</div>
-	  <div class="tab-pane fade" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">...</div>
-</div>
-	    
-	      <%-- <form class="form-inline my-2 my-lg-0" action="/user/createUserForm.do" method="GET">
-	      <button class="btn btn-outline-success my-2 my-sm-0"type="submit">Sign Up</button>
-	      </form> --%>
-	  </c:otherwise>
-    </c:choose>
-  </div>
-</nav>
