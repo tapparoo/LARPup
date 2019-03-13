@@ -95,6 +95,22 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	}
 	
 	@Override
+	public List<Story> findStoriesOwnedByUserId(int id) {
+		String query = "SELECT story FROM Story story WHERE story.user.id = :id";		
+		return em.createQuery(query, Story.class).setParameter("id", id).getResultList();
+	}
+
+	@Override
+	public List<Story> findStoriesParticipatedInByUserId(int id) {
+		String query = "SELECT story FROM Story story "
+					 + "JOIN story.events event "
+					 + "JOIN event.eventUsers evtUsr "
+					 + "WHERE evtUsr.user.id = :id";		
+		return em.createQuery(query, Story.class).setParameter("id", id).getResultList();
+	}
+	
+	
+	@Override
 	public List<Story> getRecentStories(int count) {
 		List<Story> list = null;
 		String query = "SELECT story FROM Story story ORDER BY story.createDate DESC";
@@ -243,6 +259,11 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	@Override
 	public EventUser findEventUserById(int id) {
 		return em.find(EventUser.class, id);
+	}
+	
+	@Override
+	public List<EventUser> findEventUsersByUserId(int id){
+		return em.createQuery("SELECT role FROM EventUser role WHERE role.user.id = :id", EventUser.class).setParameter("id", id).getResultList();
 	}
 	
 	@Override

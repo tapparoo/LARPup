@@ -21,6 +21,7 @@
 		<input type="text" name="storyId">
 		<button type="submit">NEW EVENT</button>
 	</form>
+	<a class="btn btn-primary" href="/search/searchPage.do">Search page</a>
 
 
 

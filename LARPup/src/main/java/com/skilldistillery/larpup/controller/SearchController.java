@@ -15,10 +15,26 @@ public class SearchController {
 	@Autowired
 	private LarpUpDAO dao;
 
-	@RequestMapping(path = {"search.do"}, method = RequestMethod.GET)
-	public ModelAndView userDisplay() {
+	@RequestMapping(path = "searchPage.do", method = RequestMethod.GET)
+	public ModelAndView searchDisplay() {
 		ModelAndView mv = new ModelAndView("search");
 		return mv;
 	}
 
+	@RequestMapping(path = "search.do", method = RequestMethod.GET)
+	public ModelAndView userDisplay(int id, String searchFor) {
+		ModelAndView mv = new ModelAndView("search");
+		switch(searchFor) {
+		case "roles":
+			mv.addObject("searchResult", dao.findEventUsersByUserId(id));
+			break;
+		case "storiesOwned":
+			mv.addObject("searchResult", dao.findStoriesOwnedByUserId(id));
+			break;
+		case "storiesParticipatedIn":
+			mv.addObject("searchResult", dao.findStoriesParticipatedInByUserId(id));
+			break;
+		}
+		return mv;
+	}
 }
