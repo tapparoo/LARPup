@@ -111,7 +111,7 @@ public class EventController {
 		return mv;
 	}
 	
-	@RequestMapping(path = "assignRole.do", method = RequestMethod.GET)
+	@RequestMapping(path = "assignRole.do", method = RequestMethod.POST)
 	public ModelAndView assignRole(int roleId, int eventId) {
 		ModelAndView mv = new ModelAndView("eventDisplay");
 		EventUserInfo role = dao.findEventUserInfoById(roleId);
