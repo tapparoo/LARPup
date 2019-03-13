@@ -4,7 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 	<div class="container">
-		<h5>${sessionScope.status }</h5>
 		<h1>Edit Profile</h1>
 		<br>
 		<form:form action="${action}" method="POST" modelAttribute="userDTO">
@@ -75,23 +74,24 @@
 			<form:input type="hidden" path="id" value="${user.id}"/>
 		</form:form>
 		<br>
-		<div class="row">
-			<div class="col-3">
-				<button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Change Password 
-				</button>
-				<div class="dropdown-menu">
-					<form action="/user/resetPassword.do?userId=${user.id}" method="POST" class="px-4 py-3">
-						<div class="form-group">
-							<label for="newPass" >New Password</label> <input type="text"
-								class="form-control" name="newPass">
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</form>
+		<c:if test="${sessionScope.myUser.id == user.id || sessionScope.myUser.role == 'admin'}">
+			<div class="row">
+				<div class="col-3">
+					<button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Change Password 
+					</button>
+					<div class="dropdown-menu">
+						<form action="/user/resetPassword.do?userId=${user.id}" method="POST" class="px-4 py-3">
+							<div class="form-group">
+								<label for="newPass" >New Password</label> <input type="text"
+									class="form-control" name="newPass">
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</form>
+					</div>
 				</div>
+				<div class="col-9"></div>
 			</div>
-			<div class="col-9"></div>
-		</div>
-
+		</c:if>
 	</div>

@@ -13,6 +13,7 @@ import com.skilldistillery.larpup.data.LarpUpDAO;
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Event;
 import com.skilldistillery.larpup.entities.EventUser;
+import com.skilldistillery.larpup.entities.EventUserInfo;
 import com.skilldistillery.larpup.entities.User;
 
 @RestController
@@ -107,6 +108,40 @@ public class EventController {
 		event.setDate(eventDTO.getDate());
 		
 		mv.addObject("event", dao.addEvent(event));
+		return mv;
+	}
+	
+	@RequestMapping(path = "assignRole.do", method = RequestMethod.POST)
+	public ModelAndView assignRole(int roleId, int eventId) {
+		ModelAndView mv = new ModelAndView("eventDisplay");
+		EventUserInfo role = dao.findEventUserInfoById(roleId);
+		Event event = dao.findEventById(eventId);
+		EventUser newEventUser = new EventUser();
+		
+		newEventUser.setEvent(event);
+		newEventUser.setEventUserInfo(role);
+		newEventUser.setPicture(dao.findPictureById(1));
+		
+		dao.addEventUser(newEventUser);
+		
+		mv.addObject("event", event);
+		
+		return mv;
+	}
+	
+	@RequestMapping(path = "removeRole.do", method = RequestMethod.GET)
+	public ModelAndView removeRole(int eventUserId, int eventId) {
+		ModelAndView mv = new ModelAndView("eventDisplay");
+		EventUser eventUser = dao.findEventUserById(eventUserId);
+		Event event = dao.findEventById(eventId);
+		
+		event.removeEventUser(eventUser);
+		
+		dao.removeEventUser(eventUser);
+		dao.updateEvent(event);
+		
+		mv.addObject("event", event);
+		
 		return mv;
 	}
 	

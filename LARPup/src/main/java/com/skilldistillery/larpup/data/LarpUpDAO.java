@@ -17,6 +17,8 @@ public interface LarpUpDAO {
 	
 	User findUserById (int id);
 	User findUserByEmail (String email);
+	List<User> findAllUsers();
+	List<User> findFilteredUsers(String filterColumn, String filterBy);
 	User addUser(User user);
 	boolean updateUser(User user);
 	
@@ -42,6 +44,7 @@ public interface LarpUpDAO {
 	
 	EventUser findEventUserById(int id);
 	EventUser addEventUser(EventUser eventUser);
+	void removeEventUser(EventUser eventUser);
 	boolean updateEventUser(EventUser eventUser);
 	
 	EventUserInfo findEventUserInfoById(int id);

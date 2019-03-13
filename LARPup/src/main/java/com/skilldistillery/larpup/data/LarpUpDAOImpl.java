@@ -42,6 +42,17 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	}
 	
 	@Override
+	public List<User> findAllUsers() {
+		return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+	}
+	
+	@Override
+	public List<User> findFilteredUsers(String filterColumn, String filterBy){
+		String query = "SELECT u FROM User u WHERE :filterColumn = :filterBy";
+		return em.createQuery(query, User.class).setParameter("filterColumn", filterColumn).setParameter("filterBy", filterBy).getResultList();
+	}
+	
+	@Override
 	public User addUser(User user) {
 		em.persist(user);
 		em.flush();
@@ -239,6 +250,11 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 		em.persist(eventUser);
 		em.flush();
 		return eventUser;
+	}
+	
+	@Override
+	public void removeEventUser(EventUser eventUser) {
+		em.remove(eventUser);
 	}
 	
 	@Override
