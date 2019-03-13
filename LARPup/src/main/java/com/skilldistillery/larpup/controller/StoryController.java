@@ -33,7 +33,6 @@ public class StoryController {
 		Story myStory = dao.findStoryById(storyId);
 		
 		ModelAndView mv = new ModelAndView("storyDisplay");
-		mv.addObject("eventList", myStory.getEvents());
 		mv.addObject("story", myStory);
 		return mv;
 	}
