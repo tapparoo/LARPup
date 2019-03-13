@@ -24,6 +24,8 @@ public interface LarpUpDAO {
 	
 	Story findStoryById(int id);
 	List<Story> getRecentStories(int count);
+	List<Story> findStoriesOwnedByUserId(int id);
+	List<Story> findStoriesParticipatedInByUserId(int id);
 	Story addStory(Story story);
 	boolean updateStory(Story story);
 	
@@ -48,6 +50,7 @@ public interface LarpUpDAO {
 	boolean updateEventUser(EventUser eventUser);
 	
 	EventUserInfo findEventUserInfoById(int id);
+	List<EventUser> findEventUsersByUserId(int id);
 	EventUserInfo addEventUserInfo(EventUserInfo eventUserInfo);
 	boolean updateEventUserInfo(EventUserInfo eventUserInfo);
 	
