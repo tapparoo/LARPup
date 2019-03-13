@@ -26,19 +26,36 @@ public class UserController {
 	@RequestMapping(path = { "displayUser.do" }, method = RequestMethod.GET)
 	public ModelAndView userDisplay(int userId, HttpSession session) {
 		ModelAndView mv = new ModelAndView("userPage");
+		User user = dao.findUserById(userId);
+		mv.addObject("user", user); 
+
+		if (session != null) {
+			User sessionUser = (User) session.getAttribute("myUser");
+			if(sessionUser.getRole().equals("admin")) {
+				mv.setViewName("redirect:/user/adminDisplay.do");
+				mv.addObject("userId", user.getId());
+			}
+		}
+		return mv;
+	}
+	
+	@RequestMapping(path = { "adminDisplay.do" }, method = RequestMethod.GET)
+	public ModelAndView adminDisplay(int userId, HttpSession session) {
+		ModelAndView mv = new ModelAndView("userPage");
 		User sessionUser = null;
 		if (session != null) {
 			sessionUser = (User) session.getAttribute("myUser");
 		}
 		mv.addObject("user", dao.findUserById(userId));
-
+		
 		// For the admin tab's 'User' list dropdowns
 		if (sessionUser != null && sessionUser.getRole().equals("admin") && userId == sessionUser.getId()) {
 			mv.addObject("allUsers", dao.findAllUsers());
-//			mv.addObject("filteredUsers", dao.findFilteredUsers(session.getAttribute("filterColumn").toString(), session.getAttribute("filterBy").toString()));
+			mv.addObject("filteredUsers", dao.findDeactivatedUsers());
 		}
 		return mv;
 	}
+	
 
 	@RequestMapping(path = "updateUserForm.do", method = RequestMethod.GET)
 	public ModelAndView updateUserForm(int userId, HttpSession session) {
