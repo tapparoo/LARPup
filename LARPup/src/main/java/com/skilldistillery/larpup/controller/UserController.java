@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.skilldistillery.larpup.data.EventDTO;
 import com.skilldistillery.larpup.data.LarpUpDAO;
-import com.skilldistillery.larpup.data.LarpUpDAOImpl;
 import com.skilldistillery.larpup.data.UserDTO;
 import com.skilldistillery.larpup.entities.Address;
-import com.skilldistillery.larpup.entities.Event;
 import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.User;
 
@@ -28,7 +25,7 @@ public class UserController {
 
 	@RequestMapping(path = { "displayUser.do" }, method = RequestMethod.GET)
 	public ModelAndView userDisplay(int userId) {
-		ModelAndView mv = new ModelAndView("userDisplay");
+		ModelAndView mv = new ModelAndView("userPage");
 		mv.addObject("user", dao.findUserById(userId));
 		return mv;
 	}
@@ -46,37 +43,37 @@ public class UserController {
 	
 	@RequestMapping(path = "updateUserForm.do", method = RequestMethod.GET)
 	public ModelAndView updateUserForm(int userId, HttpSession session) {
-		ModelAndView mv = new ModelAndView("userForm");
+		ModelAndView mv = new ModelAndView("userPage");
 		UserDTO dto = new UserDTO();
 
 		mv.addObject("user", dao.findUserById(userId));
 		mv.addObject("userDTO", dto);
-		mv.addObject("action", "/event/updateUser.do");
+		mv.addObject("action", "/user/updateUser.do");
 		return mv;
 	}
 	
+	//TODO: update picture/password methods
+	
 	@RequestMapping(path = "updateUser.do", method = RequestMethod.POST)
-	public ModelAndView updateUser(UserDTO inputDTO, HttpSession session) {
-		ModelAndView mv = new ModelAndView("userDisplay");
-		User user = dao.findUserById(inputDTO.getId());
+	public ModelAndView updateUser(UserDTO userDTO, HttpSession session) {
+		ModelAndView mv = new ModelAndView("userPage");
+		User user = dao.findUserById(userDTO.getId());
 		
 		Address address = user.getAddress();
-		address.setState(inputDTO.getState());
-		address.setCity(inputDTO.getCity());
-		address.setZipcode(inputDTO.getZipcode());
-		address.setStreet(inputDTO.getStreet());
+		address.setState(userDTO.getState());
+		address.setCity(userDTO.getCity());
+		address.setZipcode(userDTO.getZipcode());
+		address.setStreet(userDTO.getStreet());
 		dao.updateAddress(address);
-		user.setFirstName(inputDTO.getFirstName());
-		user.setLastName(inputDTO.getLastName());
-		user.setNickname(inputDTO.getNickname());
-		user.setEmail(inputDTO.getEmail());
-		user.setPassword(inputDTO.getPassword());
+		user.setFirstName(userDTO.getFirstName());
+		user.setLastName(userDTO.getLastName());
+		user.setNickname(userDTO.getNickname());
+		user.setEmail(userDTO.getEmail());
 		user.setRole("user");
-		user.setBirthDate(inputDTO.getBirthDate());
-		user.setPicture(dao.findPictureByUrl(inputDTO.getPictureUrl()));
+		user.setBirthDate(userDTO.getBirthDate());
 		
 		if (dao.updateUser(user)) {
-			mv.addObject("event", user);
+			mv.addObject("userId", user.getId());
 		}
 		return mv;
 	}
@@ -106,7 +103,7 @@ public class UserController {
 
 		tempUser.setAddress(dao.addAddress(tempAddr));
 		mv.addObject("user", dao.addUser(tempUser));
-		mv.setViewName("userDisplay");
+		mv.setViewName("userPage");
 		return mv;
 	}
 
@@ -118,7 +115,7 @@ public class UserController {
 		user.setActive(false);
 		dao.updateUser(user);
 		mv.addObject("user", user);
-		mv.setViewName("userDisplay");
+		mv.setViewName("userPage");
 		
 
 		return mv;
