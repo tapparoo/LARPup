@@ -17,21 +17,23 @@
 		<div class="userPic">
 			<div class="row">
 				<div class="col-4">
-					<img width="75px" src="${user.picture.url}">
-					<div class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Change Image
-						</a>
-						<div class="dropdown-menu">
-							<form action="updateUser.do" method="POST" class="px-1 py-1">
-								<div class="form-group">
-									<label for="pictureUrl">URL:</label> 
-									<input type="text" class="form-control" name="pictureUrl" value="${user.picture.url }">
-								</div>
-								<button type="submit" class="btn btn-primary">Submit</button>
-							</form>
+					<img height="150px" src="${user.picture.url}">
+					<c:if test="${sessionScope.myUser.id == user.id || sessionScope.myUser.role == 'admin'}">
+						<div class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Change Image
+							</a>
+							<div class="dropdown-menu">
+								<form action="/user/changeImage.do?userId=${user.id }" method="POST" class="px-1 py-1">
+									<div class="form-group">
+										<label for="newUrl">URL:</label> 
+										<input type="text" class="form-control" name="newUrl" value="${user.picture.url }">
+									</div>
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</form>
+							</div>
 						</div>
-					</div>
+					</c:if>
 				</div>
 				<div class="col-8 insetshadow">
 					<h1>${user.nickname }</h1>
