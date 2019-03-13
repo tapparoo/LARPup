@@ -6,7 +6,6 @@
 	<div class="container">
 		<h1>Edit Profile</h1>
 		<br>
-
 		<form:form action="${action}" method="POST" modelAttribute="userDTO">
 			<div class="row">
 				<div class="col">
@@ -65,13 +64,34 @@
 					<div class="col-3">
 						<button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
 					</div>
+	
 					<div class="col-3">
-						<a href="/user/deactivateUser.do?userId=${user.id}" class="btn btn-sm btn-primary">Deactivate Account</a>
+						<a href="/user/deactivateUser.do?userId=${user.id}" class="btn btn-sm btn-danger">Deactivate Account</a>
 					</div>
 					<div class="col-6"></div>
 				</div>
 			</c:if>
 			<form:input type="hidden" path="id" value="${user.id}"/>
 		</form:form>
-
+		<br>
+		<c:if test="${sessionScope.myUser.id == user.id || sessionScope.myUser.role == 'admin'}">
+			<div class="row">
+				<div class="col-3">
+					<button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Change Password 
+					</button>
+					<div class="dropdown-menu">
+						<form action="/user/resetPassword.do?userId=${user.id}" method="POST" class="px-4 py-3">
+							<div class="form-group">
+								<label for="newPass" >New Password</label> <input type="text"
+									class="form-control" name="newPass">
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-9"></div>
+			</div>
+		</c:if>
 	</div>

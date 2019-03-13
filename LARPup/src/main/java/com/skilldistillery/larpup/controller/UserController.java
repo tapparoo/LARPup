@@ -30,6 +30,51 @@ public class UserController {
 		mv.addObject("user", dao.findUserById(userId));
 		return mv;
 	}
+	
+	@RequestMapping(path = "updateUserForm.do", method = RequestMethod.GET)
+	public ModelAndView updateUserForm(int userId, HttpSession session) {
+		ModelAndView mv = new ModelAndView("userPage");
+		UserDTO dto = new UserDTO();
+		
+		mv.addObject("user", dao.findUserById(userId));
+		mv.addObject("userDTO", dto);
+		mv.addObject("action", "/user/updateUser.do");
+		return mv;
+	}
+	
+	@RequestMapping(path = "updateUser.do", method = RequestMethod.POST)
+	public ModelAndView updateUser(UserDTO userDTO, HttpSession session) {
+		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
+		User user = dao.findUserById(userDTO.getId());
+		User loggedInUser = (User)session.getAttribute("myUser");
+		
+		// Make sure the currently signed on user is the one changing the password
+		// -- or is an admin
+		if (user.getId() == loggedInUser.getId() || loggedInUser.getRole().equals("admin")) {
+			Address address = user.getAddress();
+			address.setState(userDTO.getState());
+			address.setCity(userDTO.getCity());
+			address.setZipcode(userDTO.getZipcode());
+			address.setStreet(userDTO.getStreet());
+			dao.updateAddress(address);
+			user.setFirstName(userDTO.getFirstName());
+			user.setLastName(userDTO.getLastName());
+			user.setNickname(userDTO.getNickname());
+			user.setEmail(userDTO.getEmail());
+			user.setRole("user");
+			user.setBirthDate(userDTO.getBirthDate());
+			dao.updateUser(user);
+			session.removeAttribute("status");
+		}else {
+			session.setAttribute("status", "You are not authorized to change this profile.");
+			mv.addObject("userId", user.getId());
+			mv.setViewName("redirect:/user/updateUserForm.do");
+			return mv;
+		}
+		
+		mv.addObject("userId", user.getId());
+		return mv;
+	}
 
 	@RequestMapping(path = { "createUserForm.do" }, method = RequestMethod.GET)
 	public ModelAndView creatForm() {
@@ -41,43 +86,6 @@ public class UserController {
 		return mv;
 	}
 	
-	
-	@RequestMapping(path = "updateUserForm.do", method = RequestMethod.GET)
-	public ModelAndView updateUserForm(int userId, HttpSession session) {
-		ModelAndView mv = new ModelAndView("userPage");
-		UserDTO dto = new UserDTO();
-
-		mv.addObject("user", dao.findUserById(userId));
-		mv.addObject("userDTO", dto);
-		mv.addObject("action", "/user/updateUser.do");
-		return mv;
-	}
-	
-	//TODO: update picture/password methods
-	
-	@RequestMapping(path = "updateUser.do", method = RequestMethod.POST)
-	public ModelAndView updateUser(UserDTO userDTO, HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
-		User user = dao.findUserById(userDTO.getId());
-		
-		Address address = user.getAddress();
-		address.setState(userDTO.getState());
-		address.setCity(userDTO.getCity());
-		address.setZipcode(userDTO.getZipcode());
-		address.setStreet(userDTO.getStreet());
-		dao.updateAddress(address);
-		user.setFirstName(userDTO.getFirstName());
-		user.setLastName(userDTO.getLastName());
-		user.setNickname(userDTO.getNickname());
-		user.setEmail(userDTO.getEmail());
-		user.setRole("user");
-		user.setBirthDate(userDTO.getBirthDate());
-		
-		if (dao.updateUser(user)) {
-			mv.addObject("userId", user.getId());
-		}
-		return mv;
-	}
 
 	@RequestMapping(path = { "createUser.do" }, method = RequestMethod.POST)
 	public ModelAndView addUser(UserDTO inputDTO) {
@@ -115,6 +123,50 @@ public class UserController {
 
 		user.setActive(false);
 		dao.updateUser(user);
+		mv.addObject("userId", user.getId());
+		
+		return mv;
+	}
+	
+	@RequestMapping(path = "changeImage.do", method = RequestMethod.POST)
+	public ModelAndView changeImage(int userId, String newUrl, HttpSession session) {
+		ModelAndView mv = new ModelAndView("redirect:/user/updateUserForm.do");
+		User user = dao.findUserById(userId);
+		User loggedInUser = (User)session.getAttribute("myUser");
+		
+		// Make sure the currently signed on user is the one changing the password
+		// -- or is an admin
+		if (user.getId() == loggedInUser.getId() || loggedInUser.getRole().equals("admin")) {
+			Picture pic = new Picture();
+			pic.setAlt(user.getNickname() + " profile picture");
+			pic.setUrl(newUrl);
+			dao.addPicture(pic);
+			user.setPicture(pic);
+			dao.updateUser(user);
+			session.setAttribute("status", "Picture updated");
+		}else {
+			session.setAttribute("status", "You are not authorized to change this picture.");
+		}
+		mv.addObject("userId", user.getId());
+		
+		return mv;
+	}
+	
+	@RequestMapping(path = "resetPassword.do", method = RequestMethod.POST)
+	public ModelAndView resetPassword(int userId, String newPass, HttpSession session) {
+		ModelAndView mv = new ModelAndView("redirect:/user/updateUserForm.do");
+		User user = dao.findUserById(userId);
+		User loggedInUser = (User)session.getAttribute("myUser");
+		
+		// Make sure the currently signed on user is the one changing the password
+		// -- or is an admin
+		if (user.getId() == loggedInUser.getId() || loggedInUser.getRole().equals("admin")) {
+			user.setPassword(newPass);
+			dao.updateUser(user);
+			session.setAttribute("status", "Password changed successfully");
+		}else {
+			session.setAttribute("status", "You are not authorized to change this password.");
+		}
 		mv.addObject("userId", user.getId());
 		
 		return mv;
