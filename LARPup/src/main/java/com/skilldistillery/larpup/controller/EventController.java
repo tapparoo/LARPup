@@ -128,6 +128,7 @@ public class EventController {
 		
 		return mv;
 	}
+	
 	@RequestMapping(path = "removeRole.do", method = RequestMethod.GET)
 	public ModelAndView removeRole(int eventUserId, int eventId) {
 		ModelAndView mv = new ModelAndView("eventDisplay");
@@ -136,6 +137,7 @@ public class EventController {
 		
 		event.removeEventUser(eventUser);
 		
+		dao.removeEventUser(eventUser);
 		dao.updateEvent(event);
 		
 		mv.addObject("event", event);

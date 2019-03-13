@@ -23,10 +23,27 @@
   <div class="row"><div class="col">
     <h2>Roles for this Event</h2><br>
     <c:if test="${sessionScope.myUser.id == event.story.user.id }">
+        <form action="/event/assignRole.do" method="GET">
+          <div class="form-group">
+          <input type="hidden" name="eventId" value="${event.id }" />
+          </div>
+          <div class="form-group">
+          <label>${role.name}</label>
+          <select name="roleId" class="form-control">
+          <c:forEach var="role" items="${event.story.eventRoles }">
+            <option value="${role.id }"> ${role.name } </option>
+          </c:forEach>
+          </select>
+          <input type="submit" value="Add Role"/>
+          
+          </div>
+        </form>
+        
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Add Role
         </button>
+        
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <c:forEach var="role" items="${event.story.eventRoles }">
           <%-- <form action="/event/assignRole.do" method="POST">
