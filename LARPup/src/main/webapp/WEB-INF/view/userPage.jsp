@@ -57,34 +57,14 @@
 			<div class="userDetails">
 			  	<c:choose>
 					<c:when test="${user.active}">
-						<div class="row">
-							<label>Nickname: </label> ${user.nickname }
-						</div>
-						<div class="row">
-							<label>First Name: </label> ${user.firstName }
-						</div>
-						<div class="row">
-							<label>Last Name: </label> ${user.lastName }
-						</div>
-						<div class="row">
-							<label>Email: </label> ${user.email }
-						</div>
-						<div class="row">
-							<label>Password: </label> ${user.password }
-						</div>
-						<div class="row">
-							<label>Birthday: </label> ${user.birthDate }
-						</div>
-						<div class="row">
-							<label>Created: </label> ${user.createDate }
-						</div>
-						<c:if test="${sessionScope.myUser.id == user.id }">
-							<div class="row">
-								<form action="/user/deactivateUser.do?userId=${user.id}" method="POST">
-									<button type="Submit" class="btn btn-danger">Deactivate</button>
-								</form>
-							</div>
-						</c:if>
+						<c:choose>
+							<c:when test="${not empty action }">
+								<jsp:include page="/WEB-INF/view/userPage-edit.jsp"></jsp:include>
+							</c:when>
+							<c:otherwise>
+								<jsp:include page="/WEB-INF/view/userPage-display.jsp"></jsp:include>
+							</c:otherwise>
+						</c:choose>
 					</c:when>
 					<c:otherwise>
 						This account is not active
