@@ -52,7 +52,7 @@
   <div class="row">
     <c:forEach var="eventUser" items="${event.eventUsers}" varStatus="iteration">
       <div class="card col-4 cardRoleExp">
-          <img class="card-img-top" src="/resources/event_images/default.jpg" alt="Card image cap">
+          <img class="card-img-top" src="/resources/images/cardpics/larpconHead.jpg" alt="Card image cap">
         <div class="card-body">
          <h5 class="card-title">${eventUser.eventUserInfo.name }</h5>
          <p> ${eventUser.eventUserInfo.description } </p>
