@@ -4,8 +4,8 @@
 
 <!DOCTYPE html>
 <html>
-<jsp:include page="/WEB-INF/components/bootstrapHead.jsp"></jsp:include>
 <head>
+<jsp:include page="/WEB-INF/components/bootstrapHead.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Display User</title>
 <link rel="stylesheet" href="/css/user_page.css">
@@ -43,9 +43,12 @@
 	</div>
 	<nav id="userTabs">
 	  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-	    <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Home</a>
+	    <a class="nav-item nav-link active" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="true">Profile</a>
 	    <a class="nav-item nav-link" id="nav-stories-tab" data-toggle="tab" href="#nav-stories" role="tab" aria-controls="nav-stories" aria-selected="false">Stories</a>
 	    <a class="nav-item nav-link" id="nav-roles-tab" data-toggle="tab" href="#nav-roles" role="tab" aria-controls="nav-roles" aria-selected="false">Roles</a>
+	    <c:if test="${sessionScope.myUser.role == 'admin' && sessionScope.myUser.id == user.id }">
+	    	<a class="nav-item nav-link" id="nav-admin-tab" data-toggle="tab" href="#nav-admin" role="tab" aria-controls="nav-admin" aria-selected="false">Admin</a>
+	  	</c:if>
 	  </div>
 	</nav>
 </div>
@@ -116,14 +119,14 @@
 		</div>
 	  </div>
 	  <div class="tab-pane fade" id="nav-stories" role="tabpanel" aria-labelledby="nav-stories-tab">...</div>
-	  <div class="tab-pane fade" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">...</div>
+	  <div class="tab-pane fade" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">...</div>	
+	  <c:if test="${sessionScope.myUser.id == user.id || sessionScope.myUser.role == 'admin'}">
+		<div class="tab-pane fade" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab">
+		  <jsp:include page="/WEB-INF/view/admin.jsp"></jsp:include>
+		</div>
+	  </c:if>
 	</div>
 </div>
-
-
-<c:if test="${user.role == 'admin' }">
-	<jsp:include page="/WEB-INF/view/admin.jsp"></jsp:include>
-</c:if>
-</body>
 <jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>
+</body>
 </html>
