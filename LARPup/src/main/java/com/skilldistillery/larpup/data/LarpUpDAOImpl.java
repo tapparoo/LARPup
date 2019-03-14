@@ -115,6 +115,12 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 		return em.createQuery(query, Story.class).setParameter("id", id).getResultList();
 	}
 	
+	@Override
+	public List<Story> findStoriesBySearchString(String str){
+		String query = "SELECT s FROM Story s WHERE s.name LIKE :str OR s.description LIKE :str";
+		return em.createQuery(query, Story.class).setParameter("str", "%" + str + "%").getResultList();
+	}
+	
 	
 	@Override
 	public List<Story> getRecentStories(int count) {
@@ -162,6 +168,12 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	@Override
 	public Event findEventById(int id) {
 		return em.find(Event.class, id);
+	}
+	
+	@Override
+	public List<Event> findEventsBySearchString(String str){
+		String query = "SELECT e FROM Event e WHERE e.name LIKE :str OR e.description LIKE :str";
+		return em.createQuery(query, Event.class).setParameter("str", "%" + str + "%").getResultList();
 	}
 	
 	@Override
