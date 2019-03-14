@@ -27,6 +27,8 @@ public class UserController {
 	public ModelAndView userDisplay(int userId, HttpSession session) {
 		ModelAndView mv = new ModelAndView("userPage");
 		User user = dao.findUserById(userId);
+		mv.addObject("ownerStoryList", dao.findStoriesOwnedByUserId(userId));
+		mv.addObject("involvedStoryList", dao.findStoriesParticipatedInByUserId(userId));
 		mv.addObject("user", user); 
 
 		if (session != null) {
