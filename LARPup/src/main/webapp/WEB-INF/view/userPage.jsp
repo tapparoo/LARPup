@@ -89,7 +89,11 @@
 	      <jsp:include page="/WEB-INF/view/userPage-story.jsp"></jsp:include>
 	    </div>
 	  </div>
-	  <div class="tab-pane fade" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">...</div>	
+	  <div class="tab-pane fade" id="nav-roles" role="tabpanel" aria-labelledby="nav-roles-tab">
+	    <div class="container">
+	      <jsp:include page="/WEB-INF/view/userPage-role.jsp"></jsp:include>
+	    </div>
+	  </div>	
 	  <c:if test="${sessionScope.myUser.id == user.id || sessionScope.myUser.role == 'admin'}">
 		<div class="tab-pane fade" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab">
 		  <jsp:include page="/WEB-INF/view/admin.jsp"></jsp:include>
