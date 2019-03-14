@@ -1,9 +1,12 @@
 package com.skilldistillery.larpup.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,6 +43,34 @@ public class Event {
 	
 	@OneToMany(mappedBy="event")
 	private List<EventUser> eventUsers;
+	
+	public String getFormattedDate() {
+		String monthValue = "" + date.getMonthValue();
+		String dayValue = "" + date.getDayOfMonth();
+		if(monthValue.length() == 1) {
+			monthValue = "0" + monthValue;
+		}
+		if(dayValue.length() == 1) {
+			dayValue = "0" + dayValue;
+		}
+		String d = date.getYear() + "-" + monthValue + "-" + date.getDayOfMonth();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
+		LocalDate ld = LocalDate.parse(d, dtf);
+		String formattedDate = dtf2.format(ld);
+		
+		String time, hour, minute;
+		hour = "" + date.getHour();
+		minute = "" + date.getMinute();
+		time = hour + ":" + minute;
+		if(Integer.parseInt(hour) > 0 && Integer.parseInt(hour) < 12) {
+			time += " AM";
+		}else {
+			time += " PM";
+		}
+		
+		return (formattedDate + " / " + time);
+	}
 	
 	public void addEventUser(EventUser usr) {
 		if(eventUsers == null)
