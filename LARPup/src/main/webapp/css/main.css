@@ -1,2 +1,11 @@
 @charset "UTF-8";
 
+.navbar{
+	background-color: #e1e3e4
+}
+
+.navbar-brand{
+	color: rgb(255, 129, 55);
+    font-style: oblique;
+    font-weight: bold;
+}
