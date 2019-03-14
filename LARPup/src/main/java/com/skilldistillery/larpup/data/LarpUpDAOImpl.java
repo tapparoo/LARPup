@@ -108,7 +108,7 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 
 	@Override
 	public List<Story> findStoriesParticipatedInByUserId(int id) {
-		String query = "SELECT story FROM Story story "
+		String query = "SELECT DISTINCT story FROM Story story "
 					 + "JOIN story.events event "
 					 + "JOIN event.eventUsers evtUsr "
 					 + "WHERE evtUsr.user.id = :id";		
