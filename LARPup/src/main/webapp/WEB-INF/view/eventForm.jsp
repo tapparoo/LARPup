@@ -13,44 +13,64 @@
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
 
 <div class="container">
+<div class="row justify-content-center">
+<div class="col-8">
+
+
 
 <form:form action="${action}" method="POST" modelAttribute="eventDTO">
-  <form:input type="hidden" path="id" value="${event.id}"/>
-  <form:input type="hidden" path="storyId" value="${event.story.id}"/>
-  <form:label path="name" >NAME: </form:label>
-  <form:input type="text" path="name" value="${event.name }"/>
-  <form:errors type="text" path="name" />
-  <br>
-  <form:label path="description">DESCRIPTION: </form:label>
-  <form:input type="text" path="description" value="${event.description}"/>
-  <form:errors type="text" path="description" />
-  <form:label path="date">DATE: </form:label>
-  <form:input type="datetime-local" path="date" value="${event.date }"/>
-  <form:errors type="text" path="date" />
-  <br>
-  <form:label path="street">STREET: </form:label>
-  <form:input type="text" path="street" value="${event.address.street }" />
-  <form:errors type="text" path="street" />
-  <br>
-  <form:label path="city">CITY: </form:label>
-  <form:input type="text" path="city" value="${event.address.city }"/>
-  <form:errors type="text" path="city" />
-  <br>
-  <form:label path="state">STATE: </form:label>
-  <form:input type="text" path="state" value="${event.address.state }"/>
-  <form:errors type="text" path="state" />
-  <br>
-  <form:label path="zipcode">ZIP: </form:label>
-  <form:input type="text" path="zipcode" value="${event.address.zipcode }"/>
-  <form:errors type="text" path="zipcode" />
-  <br>
-
-  <input type="submit" value="COMMIT" />
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <form:input type="hidden" path="id" value="${event.id}"/>
+      <form:input type="hidden" path="storyId" value="${event.story.id}"/>
+      <form:label path="name" >NAME: </form:label>
+      <form:input class="form-control" type="text" path="name" value="${event.name }" placeholder="Name"/>
+      <form:errors type="text" path="name" />
+    </div>
+    <div class="form-group col-md-4">
+      <form:label path="date">DATE: </form:label>
+      <form:input class="form-control" type="datetime-local" path="date" value="${event.date }"/>
+      <form:errors type="text" path="date" />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-12">
+      <form:label path="description">DESCRIPTION: </form:label>
+      <form:textarea class="form-control" type="text" rows="5" path="description" value="${event.description}" placeholder="Description"/>
+      <form:errors type="text" path="description" />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-12">
+      <form:label path="street">STREET: </form:label>
+      <form:input class="form-control" type="text" path="street" value="${event.address.street }" placeholder="Street" />
+      <form:errors type="text" path="street" />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-5">
+      <form:label path="city">CITY: </form:label>
+      <form:input class="form-control" type="text" path="city" value="${event.address.city }" placeholder="City"/>
+      <form:errors type="text" path="city" />
+    </div>
+    <div class="form-group col-5">
+      <form:label path="state">STATE: </form:label>
+      <form:input class="form-control" type="text" path="state" value="${event.address.state }" placeholder="State"/>
+      <form:errors type="text" path="state" />
+    </div>
+    <div class="form-group col-2">
+      <form:label path="zipcode">ZIP: </form:label>
+      <form:input class="form-control" type="text" path="zipcode" value="${event.address.zipcode }" placeholder="Zipcode"/>
+      <form:errors type="text" path="zipcode" />
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">COMMIT</button>
 
 </form:form>
 
 
-
+</div>
+</div>
 </div>
 
 <a href="/home/home.do">BACK TO HOME</a>
