@@ -1,6 +1,5 @@
 package com.skilldistillery.larpup.controller;
 
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import com.skilldistillery.larpup.entities.User;
 @RestController
 @RequestMapping("user")
 public class UserController {
-	private EntityManager em;
 
 	@Autowired
 	private LarpUpDAO dao;

@@ -15,6 +15,7 @@ import com.skilldistillery.larpup.data.StoryDTO;
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.EventUserInfo;
 import com.skilldistillery.larpup.entities.Genre;
+import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.User;
 
@@ -44,6 +45,7 @@ public class StoryController {
 		ModelAndView mv = new ModelAndView("storyForm");
 		mv.addObject("story", myStory);
 		mv.addObject("inputDTO", dto);
+		mv.addObject("genres", dao.findGenresByName(""));
 		mv.addObject("action", "/story/modifyStory.do");
 		
 		States states = new States();
@@ -59,16 +61,10 @@ public class StoryController {
 		
 		int storyIdToUpdate = managedStory.getId();
 		
-//		Address updateAddress = managedStory.getAddress();
-		Genre updateGenre = managedStory.getGenre();
 		
 		managedStory.setName(inputDTO.getStoryName());
 		managedStory.setDescription(inputDTO.getStoryDescription());
 		managedStory.setId(inputDTO.getStoryId());
-		
-//		updateAddress.setCity(inputDTO.getAddressCity());
-//		updateAddress.setState(inputDTO.getAddressState());
-//		updateAddress.setZipcode(inputDTO.getAddressZipcode());
 		
 		Address address = new Address();
 		address.setCity(inputDTO.getAddressCity());
@@ -77,7 +73,18 @@ public class StoryController {
 		address = dao.addAddress(address);
 		managedStory.setAddress(address);
 		
-		updateGenre.setName(inputDTO.getGenreName());
+		Genre updateGenre = null;
+		if(inputDTO.getCustomGenreName() != null && inputDTO.getCustomGenreName().length() > 0) {
+			updateGenre = new Genre();
+			updateGenre.setName(inputDTO.getCustomGenreName());
+			updateGenre.setPicture(dao.findPictureById(1));
+			dao.addGenre(updateGenre);
+		}
+		else {
+			updateGenre = dao.findGenresByName(inputDTO.getGenreName()).get(0);
+			System.out.println(updateGenre);
+		}
+		managedStory.setGenre(updateGenre);
 		
 		if (dao.updateStory(managedStory)) {
 			Story updatedStory = dao.findStoryById(storyIdToUpdate);
@@ -111,7 +118,7 @@ public class StoryController {
 		
 		Story newStory = new Story();
 		Address newAddress = new Address();
-		Genre newGenre = dao.findGenreByName(inputDTO.getGenreName());
+		Genre newGenre = dao.findGenresByName(inputDTO.getGenreName()).get(0);
 		if (newGenre == null) {
 			newGenre = new Genre();
 			newGenre.setName(inputDTO.getGenreName());
@@ -196,5 +203,30 @@ public class StoryController {
 		}
 		return mv;
 	}
-	
+
+	@RequestMapping(path = "changeImage.do", method = RequestMethod.POST)
+	public ModelAndView changeImage(int storyId, String newUrl, HttpSession session) {
+		ModelAndView mv = new ModelAndView("redirect:/story/modifyStory.do");
+		Story story = dao.findStoryById(storyId);
+		User user = dao.findUserById(story.getUser().getId());
+		User loggedInUser = (User) session.getAttribute("myUser");
+		
+
+		// Make sure the currently signed on user is the one changing the password
+		// -- or is an admin
+		if (user.getId() == loggedInUser.getId() || loggedInUser.getRole().equals("admin")) {
+			Picture pic = new Picture();
+			pic.setAlt("Story picture for: " + story.getName());
+			pic.setUrl(newUrl);
+			dao.addPicture(pic);
+			story.getGenre().setPicture(pic);
+			dao.updateStory(story);
+			session.setAttribute("status", "Picture updated");
+		} else {
+			session.setAttribute("status", "You are not authorized to change this picture.");
+		}
+		mv.addObject("userId", user.getId());
+
+		return mv;
+	}
 }

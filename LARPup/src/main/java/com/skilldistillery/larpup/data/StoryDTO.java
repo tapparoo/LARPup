@@ -9,6 +9,7 @@ public class StoryDTO {
 	private String addressState;
 	private String addressZipcode;
 	private String genreName;
+	private String customGenreName;
 	
 	public int getUserId() {
 		return userId;
@@ -57,6 +58,13 @@ public class StoryDTO {
 	}
 	public void setGenreName(String genreName) {
 		this.genreName = genreName;
+	}
+	
+	public String getCustomGenreName() {
+		return customGenreName;
+	}
+	public void setCustomGenreName(String customGenreName) {
+		this.customGenreName = customGenreName;
 	}
 	@Override
 	public String toString() {

@@ -396,14 +396,9 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	}
 	
 	@Override
-	public Genre findGenreByName(String name) {
-		String query = "SELECT g FROM Genre g WHERE g.name = :name";
-		Genre genre = null;
-		try {
-			genre = em.createQuery(query, Genre.class).setParameter("name", name).getSingleResult();
-		}catch(Exception e) {
-		}
-		return genre;
+	public List<Genre> findGenresByName(String name) {
+		String query = "SELECT g FROM Genre g WHERE g.name LIKE :name";
+		return em.createQuery(query, Genre.class).setParameter("name", "%" + name + "%").getResultList();
 	}
 	
 	@Override

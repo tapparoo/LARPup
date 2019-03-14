@@ -62,7 +62,7 @@ public interface LarpUpDAO {
 	boolean updateAddress(Address address);
 	
 	Genre findGenreById(int id);
-	Genre findGenreByName(String name);
+	List<Genre> findGenresByName(String name);
 	Genre addGenre(Genre genre);
 	boolean updateGenre(Genre genre);
 }

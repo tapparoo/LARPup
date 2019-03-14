@@ -6,6 +6,7 @@
 <jsp:include page="/WEB-INF/components/bootstrapHead.jsp"></jsp:include>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/main.css">
 <title>Story Form</title>
 </head>
 <body>
@@ -14,9 +15,34 @@
 <div class="container">
 <div class="row justify-content-center">
 <div class="col-8">
+<div class="container">
+	<div class="row">
+		<div class="col imgheader">
+			<img class="img-fluid" src="${story.genre.picture.url}">
+		</div>
+	</div>
+	<div class="row">
+		<c:if test="${sessionScope.myUser.id == story.user.id || sessionScope.myUser.role == 'admin'}">
+			<div class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Change Story Image
+				</a>
+				<div class="dropdown-menu">
+					<form action="/story/changeImage.do?storyId=${story.id }" method="POST" class="px-1 py-1">
+						<div class="form-group">
+							<label for="newUrl">URL:</label> 
+							<input type="text" class="form-control" name="newUrl" value="${story.genre.picture.url }">
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div>
+		</c:if>
+	</div>
+</div>
+<br>
 <h1>Tell Your Story</h1>
 <br>
-
 <form:form action="${action }" method="POST" modelAttribute="inputDTO">
   <div class="form-row">
     <div class="form-group col-md-8">
@@ -26,17 +52,34 @@
       <form:input class="form-control" type="text" path="storyName" value="${story.name }" placeholder="Name"/>
       <form:errors type="text" path="storyName" />
     </div>
-    <div class="form-group col-md-4">
-      <form:label path="genreName">Genre </form:label>
-      <form:input class="form-control" type="text" path="genreName" value="${story.genre.name }" placeholder="Genre"/>
-      <form:errors type="text" path="genreName" />
-    </div>
   </div>
   <div class="form-row">
     <div class="col-12">
       <form:label path="storyDescription">Description </form:label>
       <form:textarea class="form-control" rows="5" type="text" path="storyDescription" value="${story.description }" placeholder="Description"/>
       <form:errors type="text" path="storyDescription" />
+    </div>
+  </div>
+  <div class="form-row">
+  	<div class="form-group col-6">
+	  <form:label path="genreName">Existing Genres</form:label>
+      <form:select path="genreName" class="form-control">
+       <c:forEach var="genre" items="${genres}">
+         <c:choose>
+         	<c:when test="${story.genre == genre}">
+         		<form:option selected="selected" value="${genre.name}">${genre.name}</form:option>
+         	</c:when>
+        <c:otherwise>
+         		<form:option value="${genre.name}">${genre.name}</form:option>
+      	    </c:otherwise>
+         </c:choose>
+       </c:forEach>
+      </form:select>
+    </div>
+    <div class="form-group col-6">
+     <form:label path="customGenreName">Or create a customer Genre</form:label>
+     <form:input class="form-control" type="text" path="customGenreName" placeholder="Custom Genre"/>
+     <form:errors type="text" path="customGenreName" />
     </div>
   </div>
   <div class="form-row">
@@ -50,8 +93,12 @@
       <form:select path="addressState" class="form-control">
         <c:forEach var="myState" items="${statesList.statesList}">
           <c:choose>
-          <c:when test="${myState == story.address.state}"><form:option selected="selected" value="${myState}">${myState}</form:option></c:when>
-          <c:otherwise><form:option value="${myState}">${myState}</form:option></c:otherwise>
+          	<c:when test="${myState == story.address.state}">
+          		<form:option selected="selected" value="${myState}">${myState}</form:option>
+          	</c:when>
+	        <c:otherwise>
+          		<form:option value="${myState}">${myState}</form:option>
+       	    </c:otherwise>
           </c:choose>
         </c:forEach>
         </form:select>
