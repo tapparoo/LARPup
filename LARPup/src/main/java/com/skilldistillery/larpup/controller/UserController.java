@@ -29,7 +29,8 @@ public class UserController {
 		User user = dao.findUserById(userId);
 		mv.addObject("ownerStoryList", dao.findStoriesOwnedByUserId(userId));
 		mv.addObject("involvedStoryList", dao.findStoriesParticipatedInByUserId(userId));
-		mv.addObject("user", user); 
+		mv.addObject("roleList", dao.findEventUsersByUserId(userId));
+		mv.addObject("user", user);
 
 		if (session != null) {
 			User sessionUser = (User) session.getAttribute("myUser");
