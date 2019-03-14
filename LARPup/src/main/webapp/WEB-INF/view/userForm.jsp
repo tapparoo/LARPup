@@ -64,7 +64,12 @@
     </div>
     <div class="form-group col-md-5">
       <form:label path="state">State</form:label>
-      <form:input type="text" name="state" path="state" class="form-control" value="${user.address.state }" required="required"/>
+        <form:select path="state" class="form-control">
+        <c:if test="${ not empty user.address.state}"><form:option value="${user.address.state}">${user.address.state}</form:option> </c:if>
+        <c:forEach var="myState" items="${statesList.statesList}">
+          <form:option value="${myState}">${myState}</form:option>
+        </c:forEach>
+        </form:select>
     </div>
     <div class="form-group col-md-2">
       <form:label path="zipcode">Zip</form:label>
