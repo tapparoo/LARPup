@@ -65,10 +65,16 @@
     <div class="form-group col-md-5">
       <form:label path="state">State</form:label>
         <form:select path="state" class="form-control">
-        <c:if test="${ not empty user.address.state}"><form:option value="${user.address.state}">${user.address.state}</form:option> </c:if>
-        <c:forEach var="myState" items="${statesList.statesList}">
-          <form:option value="${myState}">${myState}</form:option>
-        </c:forEach>
+	        <c:forEach var="myState" items="${statesList.statesList}">
+	          <c:choose>
+	        	  <c:when test="${myState == user.address.state}">
+	        	  	<form:option selected="selected" value="${myState}">${myState}</form:option>
+	        	  </c:when>
+		          <c:otherwise>
+		          	<form:option value="${myState}">${myState}</form:option>
+	          	</c:otherwise>
+	          </c:choose>
+	        </c:forEach>
         </form:select>
     </div>
     <div class="form-group col-md-2">
