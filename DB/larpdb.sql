@@ -86,7 +86,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `genre` ;
 
 CREATE TABLE IF NOT EXISTS `genre` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT UNSIGNED NOT NULL DEFAULT 4,
   `name` VARCHAR(45) NOT NULL,
   `picture_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
@@ -360,8 +360,13 @@ INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALU
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (3, '3753 Firehose Circle', 'Raleigh', 'North Carolina', '27616', '9197686467');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (4, '18300 W Alameda Pkwy', 'Lakewood', 'Colorado', '80465', '7208652492');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (5, '1701 Bryant St', 'Denver', 'Colorado', '80204', '7202583000');
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (6, NULL, 'Colorado Springs', 'Colorado', '80903', NULL);
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (7, NULL, 'Denver', 'Colorado', '80237', NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (6, 'NULL', 'Colorado Springs', 'Colorado', '80903', 'NULL');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (7, 'NULL', 'Denver', 'Colorado', '80237', 'NULL');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (8, '18300 W Alameda Pkwy', 'Lakewood', 'Colorado', '80465', '7208652492');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (9, '18300 W Alameda Pkwy', 'Lakewood', 'Colorado', '80465', '7208652492');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (10, '1701 Bryant St', 'Denver', 'Colorado', '80204', '7202583000');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (11, NULL, 'Colorado Springs', 'Colorado', '80903', NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zipcode`, `phone`) VALUES (12, '18300 W Alameda Pkwy', 'Lakewood', 'Colorado', '80465', '7208652492');
 
 COMMIT;
 
@@ -394,9 +399,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `larpdb`;
-INSERT INTO `story` (`id`, `name`, `description`, `address_id`, `user_id`, `genre_id`, `create_date`) VALUES (1, 'Game of Thrones', 'An epic story about battles, and possibly dragons.', 6, 3, 2, '2018-03-15 23:57:41');
+INSERT INTO `story` (`id`, `name`, `description`, `address_id`, `user_id`, `genre_id`, `create_date`) VALUES (1, 'Game of Thrones', 'It\'s the depiction of two powerful families -- kings and queens, knights and renegades, liars and honest men -- playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne. Martin is credited as a co-executive producer and one of the writers for the series, whose shooting locations include Northern Ireland, Malta, Croatia and Spain.', 6, 3, 2, '2018-03-15 23:57:41');
 INSERT INTO `story` (`id`, `name`, `description`, `address_id`, `user_id`, `genre_id`, `create_date`) VALUES (2, 'World of Warcraft', 'An epic story about Thrall falling in love with a human.', 7, 2, 2, '2018-04-15 23:57:41');
-INSERT INTO `story` (`id`, `name`, `description`, `address_id`, `user_id`, `genre_id`, `create_date`) VALUES (3, 'Firefly', 'An space drama with a crew of unrelated people surviving on nothing.', 6, 3, 1, '2018-04-26 23:57:41');
+INSERT INTO `story` (`id`, `name`, `description`, `address_id`, `user_id`, `genre_id`, `create_date`) VALUES (3, 'Firefly', 'Set 500 years in the future after a universal civil war, the crew of a small transport spaceship takes any job so long as it puts food on the table. The disparate men and women just want to survive and maybe have better lives, but they face constant challenges on the new frontier, such as the Reavers -- flesh-eating mongrels who live on the fringes of the universe.', 11, 1, 1, '2018-04-26 23:57:41');
 
 COMMIT;
 
@@ -406,11 +411,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `larpdb`;
-INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (1, 'Train Heist', 'The team are on a mission to take some much needed medical suplies from a train.', '2018-06-15 23:57:41', 3, 4, '2018-06-17 23:57:41');
-INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (2, 'First Banquette', 'Two kingdoms call peace and a risky banquette is had.', '2018-04-15 23:57:41', 2, 4, '2018-07-15 23:57:41');
-INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (3, 'Battle for Hodor', 'An epic battle between the three nations!', '2018-08-15 23:57:41', 1, 5, '2018-08-12 23:57:41');
-INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (4, 'Hands of Blue', 'The team are captured and get to meet those with hands of blue.', '2018-11-15 23:57:41', 3, 4, '2018-11-23 23:57:41');
-INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (5, 'Marriage of Two Races', 'Thrall and Aggra finally get together to have a marriage to bring two kingdoms together.', '2018-07-15 23:57:41', 2, 5, '2018-09-03 23:57:41');
+INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (1, 'Train Heist', 'Captain Mal Reynolds and his motley crew of space traders get a job that seems to be right up their alley. Gangster Adelai Niska wants them to rob a train and deliver the goods to them. Mal and Zoey have little trouble getting the job done and even convincing the local authorities that are just a married couple who have come looking for work. When the overhear that the stolen cargo was urgently needed medical supplies, Mal reconsiders whether he wants to do Nishka\'s dirty work. Back on the ship, Dr. Simon Tam continues to worry about his sister River who is still having nightmares about her institutionalization.', '2018-06-15 08:57:41', 3, 4, '2018-06-17 23:57:41');
+INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (2, 'First Banquette', 'Two kingdoms call peace and a risky banquette is had.', '2018-04-15 10:57:41', 2, 8, '2018-07-15 23:57:41');
+INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (3, 'Battle for Hodor', 'An epic battle between the three nations!', '2018-08-15 10:57:41', 1, 5, '2018-08-12 23:57:41');
+INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (4, 'Hands of Blue', 'The team are captured and get to meet those with hands of blue.', '2018-11-15 15:57:41', 3, 9, '2018-11-23 23:57:41');
+INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (5, 'Marriage of Two Races', 'Thrall and Aggra finally get together to have a marriage to bring two kingdoms together.', '2018-07-15 16:57:41', 2, 10, '2018-09-03 23:57:41');
+INSERT INTO `event` (`id`, `name`, `description`, `date`, `story_id`, `address_id`, `create_date`) VALUES (6, 'Jaynestown', 'Mal and the crew of Serenity land to pick up some contraband In Canton, a township on Higgins\' Moon, where labor is provided under servitude run by the local magistrate. Jayne had once robbed the boss with a partner but barely escaped by jettisoning from their getaway vehicle his partner (now waiting for revenge) and the money boxes (who have made him a legendary hero). Jayne is recognized by all and \"welcomed\" accordingly. Sub-plots show Simon and Kaylee face their growing romantic feelings, River first tries to \"fix\" the Bible and is later traumatized by seeing Book\'s hair. Meanwhile, Inara is \"making a man of\" the magistrate\'s resentful son who helps the crew escape out of spite to his father. But there has been a confrontation with Jayne\'s abandoned partner whose vengeful shotgun kills one of Jayne\'s young hero-worshipers, bringing Jayne to verge of philosophy with Mal.', '2018-11-15 15:57:41', 3, 12, '2018-11-15 15:57:41');
 
 COMMIT;
 
@@ -422,10 +428,10 @@ START TRANSACTION;
 USE `larpdb`;
 INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (1, 'Thrall', 'An orc, that wants a human wife, for whatever reason.', 2);
 INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (2, 'Jaina', 'Someone in world of warcraft about to marry and orc', 2);
-INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (3, 'Malcom', 'Captain of the Firefly', 3);
-INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (4, 'Wash', 'I am a leaf on the wind.', 3);
-INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (5, 'Daenerys Targaryen', 'I like dragons!', 1);
-INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (6, 'Joffrey', 'I ... am in game of thrones.', 1);
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (3, 'Malcom', 'Here\'s how it is: The Earth got used up, so we moved out and terraformed a whole new galaxy of Earths. Some rich and flush with the new technologies, some not so much. The Central Planets, thems formed the Alliance, waged war to bring everyone under their rule; a few idiots tried to fight it, among them myself. I\'m Malcolm Reynolds, captain of Serenity. She\'s a transport ship; Firefly class. Got a good crew: fighters, pilot, mechanic. We even picked up a preacher for some reason, and a bona fide companion. There\'s a doctor, too, took his genius sister outta some Alliance camp, so they\'re keepin\' a low profile. You understand. You got a job, we can do it, don\'t much care what it is.', 3);
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (4, 'Wash', 'Hoban \'Wash\' Washburne is the pilot of Serenity, a smuggling ship captained by Malcolm Reynolds. He is married to the ship\'s first mate, Zoë Alleyne Washburne.', 3);
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (5, 'Daenerys Targaryen', 'Princess Daenerys Targaryen, also known as Daenerys Stormborn,[1] is one of the last confirmed members of House Targaryen, along with her older brother Viserys, who refers to her as Dany.[1][14] She is the youngest child of King Aerys II Targaryen and his sister-wife, Queen Rhaella. ', 1);
+INSERT INTO `event_user_info` (`id`, `name`, `description`, `story_id`) VALUES (6, 'Joffrey', 'Joffrey is an amoral sadist who disguises his cruelty with a thin veneer of charm. This is best epitomized by his response when his (then) betrothed offends him: Joffrey pronounces that his mother had taught him never to strike a woman, and so commissions a knight of the Kingsguard to hit her instead. He enjoys forcing people to fight to the death, and enforces cruel punishments for lesser crimes. He has no sense of personal responsibility, blaming failures on others. He lacks self-control and often insults his allies and family members. Joffrey is one of the story\'s few characters to display no redeeming qualities whatsoever.', 1);
 
 COMMIT;
 
@@ -435,15 +441,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `larpdb`;
-INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (1, '2018-11-28 23:57:41', NULL, 4, 6, 3);
-INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (2, '2018-11-25 23:57:41', NULL, 4, 6, 4);
-INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (3, '2018-06-19 23:57:41', NULL, 1, 6, 3);
-INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (4, '2018-07-18 23:57:41', NULL, 2, 6, 1);
-INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (5, '2018-09-07 23:57:41', NULL, 5, 6, 2);
-INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (6, '2018-07-16 23:57:41', NULL, 2, 6, 2);
-INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (7, '2018-09-10 23:57:41', NULL, 5, 6, 1);
-INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (8, '2018-08-17 23:57:41', NULL, 3, 6, 5);
-INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (9, '2018-08-15 23:57:41', NULL, 3, 6, 6);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (1, '2018-11-28 21:57:41', NULL, 4, 6, 3);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (2, '2018-11-25 21:57:41', NULL, 4, 6, 4);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (3, '2018-06-19 18:57:41', NULL, 1, 6, 3);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (4, '2018-07-18 04:57:41', NULL, 2, 6, 1);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (5, '2018-09-07 08:57:41', NULL, 5, 6, 2);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (6, '2018-07-16 16:57:41', NULL, 2, 6, 2);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (7, '2018-09-10 03:57:41', NULL, 5, 6, 1);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (8, '2018-08-17 09:57:41', NULL, 3, 6, 5);
+INSERT INTO `event_user` (`id`, `signup_date`, `user_id`, `event_id`, `picture_id`, `event_user_info_id`) VALUES (9, '2018-08-15 15:57:41', NULL, 3, 6, 6);
 
 COMMIT;
 
