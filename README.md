@@ -5,18 +5,18 @@
 ### Overview
 
 
-Technologies Used
-*Java 
-*Spring Boot
-*MySQL
-*Apache Tomcat
-*HTML/CSS
-*MAMP
-*GitHub
+Technologies Used:
+* Java 
+* Spring Boot
+* MySQL
+* Apache Tomcat
+* HTML/CSS
+* MAMP
+* GitHub
 
 Objective:
-*Build a functioning website
-*Front End and back End
+* Build a functioning website
+* Front End and back End
 
 
 About:
