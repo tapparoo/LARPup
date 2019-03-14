@@ -22,31 +22,31 @@
     <div class="form-group col-md-8">
       <form:input type="hidden" path="storyId" value="${story.id}"/>
       <form:input type="hidden" path="userId" value="${story.user.id}"/>
-      <form:label path="storyName" >NAME </form:label>
+      <form:label path="storyName" >Name </form:label>
       <form:input class="form-control" type="text" path="storyName" value="${story.name }" placeholder="Name"/>
       <form:errors type="text" path="storyName" />
     </div>
     <div class="form-group col-md-4">
-      <form:label path="genreName">GENRE </form:label>
+      <form:label path="genreName">Genre </form:label>
       <form:input class="form-control" type="text" path="genreName" value="${story.genre.name }" placeholder="Genre"/>
       <form:errors type="text" path="genreName" />
     </div>
   </div>
   <div class="form-row">
     <div class="col-12">
-      <form:label path="storyDescription">DESCRIPTION </form:label>
+      <form:label path="storyDescription">Description </form:label>
       <form:textarea class="form-control" rows="5" type="text" path="storyDescription" value="${story.description }" placeholder="Description"/>
       <form:errors type="text" path="storyDescription" />
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-5">
-      <form:label path="addressCity">CITY </form:label>
+      <form:label path="addressCity">City </form:label>
       <form:input class="form-control" type="text" path="addressCity" value="${story.address.city }" placeholder="City"/>
       <form:errors type="text" path="addressCity" />
     </div>
     <div class="form-group col-md-5">
-      <form:label path="addressState">STATE </form:label>
+      <form:label path="addressState">State </form:label>
       <form:select path="addressState" class="form-control">
         <c:forEach var="myState" items="${statesList.statesList}">
           <c:choose>
@@ -59,7 +59,7 @@
       <form:errors type="text" path="addressState" />
     </div>
     <div class="form-group col-md-2">
-      <form:label path="addressZipcode">ZIP </form:label>
+      <form:label path="addressZipcode">Zip </form:label>
       <form:input class="form-control" type="text" path="addressZipcode" value="${story.address.zipcode }" placeholder="Zipcode"/>
       <form:errors type="text" path="addressZipcode" />
     </div>

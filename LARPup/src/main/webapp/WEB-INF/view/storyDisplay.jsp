@@ -15,9 +15,9 @@
   <div class="row">
     <div class="col">
     <img src="/resources/images/eventpics/frontPage2.jpg" />
-    <h2>${story.name}
+    <h1>${story.name}
     <c:if test="${sessionScope.myUser.id == story.user.id }"><a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/story/modifyStory.do?storyId=${story.id }">EDIT STORY</a></c:if>
-    </h2>
+    </h1>
     <p>${story.genre.name} <br>
     ${story.description}<br></p>
     <p>The location of this story is ${story.address.city }, ${story.address.state } </p>

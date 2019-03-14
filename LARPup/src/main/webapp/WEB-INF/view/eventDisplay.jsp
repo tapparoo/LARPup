@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col">
     <img src="/resources/images/eventpics/frontPage2.jpg" />
-    <h3>${event.name} - ${event.date }</h3>
+    <h1>${event.name} - ${event.date }</h1>
     <p>${event.description}<br>
     The location of this event is ${event.address.street}, ${event.address.city}, ${event.address.state}, ${event.address.zipcode}</p>
     <c:if test="${sessionScope.myUser.id == event.story.user.id }"><a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/event/eventForm.do?eventId=${event.id }">EDIT EVENT</a></c:if>
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="row"><div class="col">
-    <h2>Roles for this Event</h2>
+    <h3>Roles for this Event</h3>
     </div></div>  
     <c:if test="${sessionScope.myUser.id == event.story.user.id }">
       <div class="row"><div class="col">
