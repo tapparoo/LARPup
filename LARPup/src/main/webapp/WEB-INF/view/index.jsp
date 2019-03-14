@@ -28,21 +28,24 @@
         <c:forEach var="story" items="${recentStoryList }">
           <div class="card col-4 cardStory">
             <img class="card-img-top" src="/resources/images/cardpics/openbook.jpg" alt="Card image cap">
-            <div class="card-body">
+            <div class="card-head">
               <h5 class="card-title">${story.name }</h5>
-              <p>${story.description}</p>
-              <p>${story.address.city }, ${story.address.state }</p>
-              <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
             </div>
-          </div>
+            <div class="card-body cardDescription">
+              <p>${story.description}</p>
+            </div>
+            <div class="card-footer justify-content-center">
+              <div class="row justify-content-center">
+              ${story.address.city }, ${story.address.state }
+              </div>
+              <div class="row justify-content-center">
+              <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
+              </div>
+              </div>
+            </div>
         </c:forEach>
   </div>
 </div>
-
-<p>TEST PAGES</p>
-<a href="/home/greg.do">GO TO GREG'S TEST PAGE</a><br>
-<a href="/home/adam.do">GO TO ADAM'S TEST PAGE</a><br>
-<a href="/home/young.do">GO TO YOUNG'S TEST PAGE</a><br>
 
 </body>
 <jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>
