@@ -44,8 +44,7 @@ public class AuthorizationController {
 	@RequestMapping(path = { "logout.do" }, method = RequestMethod.GET)
 	public ModelAndView userDisplay(HttpSession session) {
 		ModelAndView mv = new ModelAndView("index");
-		User myUser = null;
-		session.setAttribute("myUser", myUser);
+		session.invalidate();
 		return mv;
 	}
 
