@@ -243,9 +243,12 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate
-				+ ", picture=" + picture + ", address=" + address + ", createDate=" + createDate + ", nickname="
-				+ nickname + ", password=" + password + ", email=" + email + ", role=" + role + ", active=" + active
-				+ "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("ID: %d%s", id, "<br>"));
+		sb.append(String.format("First Name: %s%s", firstName, "<br>"));
+		sb.append(String.format("Last Name: %s%s", lastName, "<br>"));
+		sb.append(String.format("Nickname: %s%s", nickname, "<br>"));
+		sb.append(String.format("Email: %s%s", email, "<br>"));
+		return sb.toString();
 	}
 }
