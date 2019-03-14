@@ -14,7 +14,6 @@ import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.User;
 
 @RestController
-@RequestMapping("search")
 public class SearchController {
 
 	@Autowired

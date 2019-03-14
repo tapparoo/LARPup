@@ -8,7 +8,7 @@
 <jsp:include page="/WEB-INF/components/bootstrapHead.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Display User</title>
-<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="css/search.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
@@ -22,7 +22,7 @@
 				<div class="col-1"></div>
 				<div class="col"><br><br>
 					<div class="row">
-						<form action="/search/searchByString.do" method="GET">
+						<form action="searchByString.do" method="GET">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<button class="btn btn-sm btn-primary" name="searchFor" value="users" type="submit">Go</button>
@@ -32,7 +32,7 @@
 						</form>
 					</div>
 					<div class="row">
-						<form action="/search/searchByString.do" method="GET">
+						<form action="searchByString.do" method="GET">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<button class="btn btn-sm btn-primary" name="searchFor" value="stories" type="submit">Go</button>
@@ -42,7 +42,7 @@
 						</form>
 					</div>
 					<div class="row">
-						<form action="/search/searchByString.do" method="GET">
+						<form action="searchByString.do" method="GET">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<button class="btn btn-sm btn-primary" name="searchFor" value="events" type="submit">Go</button>
@@ -61,13 +61,13 @@
 				<c:forEach var="result" items="${searchResult}">
 						<c:choose>
 							<c:when test="${resultClass == 'user'}">
-								<a href="/user/displayUser.do?userId=${result.id}">${result }</a><br><br>
+								<a href="displayUser.do?userId=${result.id}">${result }</a><br><br>
 							</c:when>
 							<c:when test="${resultClass == 'story' }">
-								<a href="/story/displayStory.do?storyId=${result.id}">${result }</a><br><br>
+								<a href="displayStory.do?storyId=${result.id}">${result }</a><br><br>
 							</c:when>
 							<c:when test="${resultClass == 'event' }">
-								<a href="/event/displayEvent.do?eventId=${result.id}">${result }</a><br><br>
+								<a href="displayEvent.do?eventId=${result.id}">${result }</a><br><br>
 							</c:when>
 						</c:choose>
 				</c:forEach>

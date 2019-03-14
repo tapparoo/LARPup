@@ -19,11 +19,11 @@
 		<div class="form-row">
 			<div class="col-md-2 col-3">
 
-				<form class="form-group" action="/user/createUserForm.do" method="GET">
+				<form class="form-group" action="createUserForm.do" method="GET">
 					<button class="btn btn-success" type="submit">Join the fight!!!</button>
 				</form>
 				<br>
-				<form class="form-group" action="/home/home.do">
+				<form class="form-group" action="home.do">
 					<button class="btn btn-danger">Return Home</button>
 				</form>
 			</div>

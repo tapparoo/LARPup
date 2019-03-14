@@ -7,20 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Display Event</title>
-<link rel="stylesheet" href="/css/event_page.css">
-<link rel="stylesheet" href="/css/card.css">
+<link rel="stylesheet" href="css/event_page.css">
+<link rel="stylesheet" href="css/card.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
 <div class="container">
   <div class="row">
     <div class="col">
-    <img src="/resources/images/eventpics/frontPage2.jpg" />
+    <img src="resources/images/eventpics/frontPage2.jpg" />
     <h1>${event.name} - ${event.formattedDate }</h1>
     <p>${event.description}<br>
     The location of this event is ${event.address.street}, ${event.address.city}, ${event.address.state}, ${event.address.zipcode}</p>
-    <c:if test="${sessionScope.myUser.id == event.story.user.id }"><a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/event/eventForm.do?eventId=${event.id }">EDIT EVENT</a></c:if>
-    <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${event.story.id }">RETURN TO STORY</a>
+    <c:if test="${sessionScope.myUser.id == event.story.user.id }"><a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="eventForm.do?eventId=${event.id }">EDIT EVENT</a></c:if>
+    <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="displayStory.do?storyId=${event.story.id }">RETURN TO STORY</a>
     </div>
   </div>
   <div class="row"><div class="col">
@@ -28,7 +28,7 @@
     </div></div>  
     <c:if test="${sessionScope.myUser.id == event.story.user.id }">
       <div class="row"><div class="col">
-        <form action="/event/assignRole.do" method="POST">
+        <form action="assignRole.do" method="POST">
             <div class="form-group">
               <input type="hidden" name="eventId" value="${event.id }" />
             </div>
@@ -52,7 +52,7 @@
   <div class="row">
     <c:forEach var="eventUser" items="${event.eventUsers}" varStatus="iteration">
       <div class="card col-4 cardRoleExp">
-        <img class="card-img-top" src="/resources/images/cardpics/larpconHead.jpg" alt="Card image cap">
+        <img class="card-img-top" src="resources/images/cardpics/larpconHead.jpg" alt="Card image cap">
         <div class="card-header">
           <h5 class="card-title">${eventUser.eventUserInfo.name }</h5>
         </div>
@@ -68,7 +68,7 @@
             <c:otherwise>
 		      <c:if test="${not empty sessionScope.myUser }">
 	    		   <form>
-			      <button class="btn btn-success btn-sm" formaction="/event/assignUserToCharacter.do?eventUserId=${eventUser.id}" formmethod="POST">"Reserve this role!"</button>
+			      <button class="btn btn-success btn-sm" formaction="assignUserToCharacter.do?eventUserId=${eventUser.id}" formmethod="POST">"Reserve this role!"</button>
 			    </form>
 			  </c:if>
 		    </c:otherwise>
@@ -77,11 +77,11 @@
 		</div>
          <c:if test="${sessionScope.myUser.id == event.story.user.id }">
            <div class="row justify-content-center">
-             <form action="/story/modifyRole.do" method="GET">
+             <form action="modifyRole.do" method="GET">
                <input type="hidden" name="roleId" value="${eventUser.eventUserInfo.id }" />
                <input type="submit" class="btn btn-primary btn-sm space" value="MODIFY" />
              </form>
-             <form action="/event/removeRole.do" method="POST">
+             <form action="removeRole.do" method="POST">
                <input type="hidden" name="eventUserId" value="${eventUser.id }" />
                <input type="hidden" name="eventId" value="${event.id }" />
                <input type="submit" class="btn btn-danger btn-sm space" value="REMOVE" />

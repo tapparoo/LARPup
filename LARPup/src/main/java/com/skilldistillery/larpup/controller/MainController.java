@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.larpup.data.LarpUpDAO;
 
 @RestController
-@RequestMapping({"/", "home"})
 public class MainController {
 
 	@Autowired
@@ -31,21 +30,21 @@ public class MainController {
 	 * PREPARED TOO.
 	 */
 	
-	@RequestMapping(path = {"greg.do"}, method = RequestMethod.GET)
-	public ModelAndView gregsTest() {
-		ModelAndView mv = new ModelAndView("test/gregsTest");
-		return mv;
-	}
-	
-	@RequestMapping(path = {"adam.do"}, method = RequestMethod.GET)
-	public ModelAndView adamsTest() {
-		ModelAndView mv = new ModelAndView("test/adamsTest");
-		return mv;
-	}
-
-	@RequestMapping(path = {"young.do"}, method = RequestMethod.GET)
-	public ModelAndView youngsTest() {
-		ModelAndView mv = new ModelAndView("test/youngsTest");
-		return mv;
-	}
+//	@RequestMapping(path = {"greg.do"}, method = RequestMethod.GET)
+//	public ModelAndView gregsTest() {
+//		ModelAndView mv = new ModelAndView("test/gregsTest");
+//		return mv;
+//	}
+//	
+//	@RequestMapping(path = {"adam.do"}, method = RequestMethod.GET)
+//	public ModelAndView adamsTest() {
+//		ModelAndView mv = new ModelAndView("test/adamsTest");
+//		return mv;
+//	}
+//
+//	@RequestMapping(path = {"young.do"}, method = RequestMethod.GET)
+//	public ModelAndView youngsTest() {
+//		ModelAndView mv = new ModelAndView("test/youngsTest");
+//		return mv;
+//	}
 }

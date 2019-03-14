@@ -18,7 +18,6 @@ import com.skilldistillery.larpup.entities.EventUserInfo;
 import com.skilldistillery.larpup.entities.User;
 
 @RestController
-@RequestMapping("event")
 public class EventController {
 
 	@Autowired
@@ -42,7 +41,7 @@ public class EventController {
 		
 		mv.addObject("event", dao.findEventById(eventId));
 		mv.addObject("eventDTO", dto);
-		mv.addObject("action", "/event/updateEvent.do");
+		mv.addObject("action", "updateEvent.do");
 		return mv;
 	}
 
@@ -91,7 +90,7 @@ public class EventController {
 		
 		mv.addObject("event", new Event());
 		mv.addObject("eventDTO", dto);
-		mv.addObject("action", "/event/addEvent.do");
+		mv.addObject("action", "addEvent.do");
 		return mv;
 	}
 

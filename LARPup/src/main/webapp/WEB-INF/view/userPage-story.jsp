@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link rel="stylesheet" href="/css/card.css">
+<link rel="stylesheet" href="css/card.css">
 
 <c:choose>
   <c:when test="${not empty ownerStoryList }">
   
     <div class="row">
-      <h3>Your Stories <a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/story/addStory.do">ADD A STORY</a></h3>
+      <h3>Your Stories <a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="addStory.do">ADD A STORY</a></h3>
     </div>
 
     <div class="row">
@@ -26,7 +26,7 @@
           <div>${story.address.city }, ${story.address.state }</div>
           </div>
           <div class="row justify-content-center">
-          <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
+          <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="displayStory.do?storyId=${story.id }">GO TO STORY</a>
           </div>
         </div>
         </div>
@@ -34,7 +34,7 @@
     </div>
   </c:when>
   <c:otherwise>
-    <h3> You do not have any stories you own. <a class="btn btn-primary btn-sm space" role="button" aria-pressed="true" href="/story/addStory.do">ADD A STORY</a></h3>
+    <h3> You do not have any stories you own. <a class="btn btn-primary btn-sm space" role="button" aria-pressed="true" href="addStory.do">ADD A STORY</a></h3>
   </c:otherwise>
 </c:choose>
 
@@ -61,7 +61,7 @@
          <div>${story.address.city }, ${story.address.state }</div>
         </div>
         <div class="row justify-content-center">
-         <a class="btn btn-success btn-sm space" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
+         <a class="btn btn-success btn-sm space" role="button" aria-pressed="true" href="displayStory.do?storyId=${story.id }">GO TO STORY</a>
         </div>
         </div>
         </div>

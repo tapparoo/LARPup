@@ -9,7 +9,7 @@
 			<div class="row"><h1>ADMIN FORM</h1></div><br>
 			<div class="row"><h5>All Users</h5></div>
 			<div class="row">
-				<form action="/user/displayUser.do" method="GET">
+				<form action="displayUser.do" method="GET">
 				  <div class="input-group">
 				      <div class="input-group-prepend">
 					    <button class="btn btn-outline-secondary" type="submit">Go</button>
@@ -26,7 +26,7 @@
 			<br><br>
 			<div class="row"><h5>Deactivated Users</h5></div>
 			<div class="row">
-				<form action="/user/displayUser.do" method="GET">
+				<form action="displayUser.do" method="GET">
 				  <div class="input-group">
 				      <div class="input-group-prepend">
 					    <button class="btn btn-outline-secondary" type="submit">Go</button>

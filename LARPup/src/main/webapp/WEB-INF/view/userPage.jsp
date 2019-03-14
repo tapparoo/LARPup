@@ -8,7 +8,7 @@
 <jsp:include page="/WEB-INF/components/bootstrapHead.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Display User</title>
-<link rel="stylesheet" href="/css/user_page.css">
+<link rel="stylesheet" href="css/user_page.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
@@ -24,7 +24,7 @@
 								Change Image
 							</a>
 							<div class="dropdown-menu">
-								<form action="/user/changeImage.do?userId=${user.id }" method="POST" class="px-1 py-1">
+								<form action="changeUserImage.do?userId=${user.id }" method="POST" class="px-1 py-1">
 									<div class="form-group">
 										<label for="newUrl">URL:</label> 
 										<input type="text" class="form-control" name="newUrl" value="${user.picture.url }">
@@ -76,7 +76,7 @@
 						<br>
 					    <c:if test="${sessionScope.myUser.role == 'admin'}">
 							<div class="row">
-								<a class="btn btn-sm btn-primary" href="/user/reactivateUser.do?userId=${user.id}">Reactivate Account</a>
+								<a class="btn btn-sm btn-primary" href="reactivateUser.do?userId=${user.id}">Reactivate Account</a>
 							</div>
 	  					</c:if>
 					</c:otherwise>

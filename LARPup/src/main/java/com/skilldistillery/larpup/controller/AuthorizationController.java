@@ -12,7 +12,6 @@ import com.skilldistillery.larpup.data.LarpUpDAO;
 import com.skilldistillery.larpup.entities.User;
 
 @RestController
-@RequestMapping("auth")
 public class AuthorizationController {
 
 	@Autowired
@@ -20,7 +19,7 @@ public class AuthorizationController {
 
 	@RequestMapping(path = { "authorize.do" }, params = { "email", "password" }, method = RequestMethod.POST)
 	public ModelAndView checkUser(String email, String password, HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/home/home.do");
+		ModelAndView mv = new ModelAndView("redirect:home.do");
 		User myUser = dao.findUserByEmail(email);
 
 		try {
@@ -37,7 +36,7 @@ public class AuthorizationController {
 
 	@RequestMapping(path = { "logout.do" }, method = RequestMethod.GET)
 	public ModelAndView userDisplay(HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/home/home.do");
+		ModelAndView mv = new ModelAndView("redirect:home.do");
 		session.invalidate();
 		return mv;
 	}

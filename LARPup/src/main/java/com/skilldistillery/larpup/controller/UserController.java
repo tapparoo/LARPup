@@ -19,14 +19,13 @@ import com.skilldistillery.larpup.entities.Picture;
 import com.skilldistillery.larpup.entities.User;
 
 @RestController
-@RequestMapping("user")
 public class UserController {
 
 	@Autowired
 	private LarpUpDAO dao;
 
 	@RequestMapping(path = { "displayUser.do" }, method = RequestMethod.GET)
-	public ModelAndView userDisplay(int userId, HttpSession session) {
+	public ModelAndView userDisplay(Integer userId, HttpSession session) {
 		ModelAndView mv = new ModelAndView("userPage");
 		User user = dao.findUserById(userId);
 		mv.addObject("ownerStoryList", dao.findStoriesOwnedByUserId(userId));
@@ -37,7 +36,7 @@ public class UserController {
 		User sessionUser = (User) session.getAttribute("myUser");
 		if (sessionUser != null) {
 			if (sessionUser.getRole().equals("admin")) {
-				mv.setViewName("redirect:/user/adminDisplay.do");
+				mv.setViewName("redirect:adminDisplay.do");
 				mv.addObject("userId", user.getId());
 			}
 		}
@@ -71,13 +70,13 @@ public class UserController {
 		mv.addObject("user", dao.findUserById(userId));
 		mv.addObject("userDTO", dto);
 		mv.addObject("statesList", states);
-		mv.addObject("action", "/user/updateUser.do");
+		mv.addObject("action", "updateUser.do");
 		return mv;
 	}
 
 	@RequestMapping(path = "updateUser.do", method = RequestMethod.POST)
 	public ModelAndView updateUser(UserDTO userDTO, HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
+		ModelAndView mv = new ModelAndView("redirect:displayUser.do");
 		User user = dao.findUserById(userDTO.getId());
 		User loggedInUser = (User) session.getAttribute("myUser");
 
@@ -101,7 +100,7 @@ public class UserController {
 		} else {
 			session.setAttribute("status", "You are not authorized to change this profile.");
 			mv.addObject("userId", user.getId());
-			mv.setViewName("redirect:/user/updateUserForm.do");
+			mv.setViewName("redirect:updateUserForm.do");
 			return mv;
 		}
 
@@ -117,7 +116,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("userForm");
 		mv.addObject("inputDTO", dto);
 		mv.addObject("statesList", states);
-		mv.addObject("action", "/user/createUser.do");
+		mv.addObject("action", "createUser.do");
 		return mv;
 	}
 
@@ -153,17 +152,18 @@ public class UserController {
 	}
 
 	@RequestMapping(path = { "deactivateUser.do" }, method = RequestMethod.GET)
-	public ModelAndView deactivateUser(int userId, HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
+	public ModelAndView deactivateUser(Integer userId, HttpSession session) {
+		ModelAndView mv = new ModelAndView("redirect:displayUser.do");
 		User user = dao.findUserById(userId);
 		User loggedInUser = (User) session.getAttribute("myUser");
 
 		// Make sure an admin is signed on first
-		if (loggedInUser.getRole().equals("admin")) {
+		if (user.getId() == loggedInUser.getId() || loggedInUser.getRole().equals("admin")) {
 			user.setActive(false);
 			dao.updateUser(user);
 			mv.addObject("userId", user.getId());
 		} else {
+			mv.addObject("userId", user.getId());
 		}
 
 		return mv;
@@ -171,7 +171,7 @@ public class UserController {
 
 	@RequestMapping(path = { "reactivateUser.do" }, method = RequestMethod.GET)
 	public ModelAndView reactivateUser(int userId, HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/user/displayUser.do");
+		ModelAndView mv = new ModelAndView("redirect:displayUser.do");
 		User user = dao.findUserById(userId);
 		User loggedInUser = (User) session.getAttribute("myUser");
 
@@ -181,13 +181,14 @@ public class UserController {
 			dao.updateUser(user);
 			mv.addObject("userId", user.getId());
 		} else {
+			mv.addObject("userId", user.getId());
 		}
 		return mv;
 	}
 
-	@RequestMapping(path = "changeImage.do", method = RequestMethod.POST)
+	@RequestMapping(path = "changeUserImage.do", method = RequestMethod.POST)
 	public ModelAndView changeImage(int userId, String newUrl, HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/user/updateUserForm.do");
+		ModelAndView mv = new ModelAndView("redirect:updateUserForm.do");
 		User user = dao.findUserById(userId);
 		User loggedInUser = (User) session.getAttribute("myUser");
 
@@ -211,7 +212,7 @@ public class UserController {
 
 	@RequestMapping(path = "resetPassword.do", method = RequestMethod.POST)
 	public ModelAndView resetPassword(int userId, String newPass, HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/user/updateUserForm.do");
+		ModelAndView mv = new ModelAndView("redirect:updateUserForm.do");
 		User user = dao.findUserById(userId);
 		User loggedInUser = (User) session.getAttribute("myUser");
 
@@ -233,7 +234,7 @@ public class UserController {
 		List<String> list = new ArrayList<>();
 		for(int i = 1; i < 27; i++) {
 			
-			list.add("/resources/images/profilepics/pp" + i + ".png");
+			list.add("resources/images/profilepics/pp" + i + ".png");
 		}
 
 		int index = (int) (Math.random() * list.size()) + 1;

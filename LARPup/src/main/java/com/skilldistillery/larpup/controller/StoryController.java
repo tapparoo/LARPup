@@ -20,7 +20,6 @@ import com.skilldistillery.larpup.entities.Story;
 import com.skilldistillery.larpup.entities.User;
 
 @RestController
-@RequestMapping("story")
 public class StoryController {
 
 	@Autowired
@@ -46,7 +45,7 @@ public class StoryController {
 		mv.addObject("story", myStory);
 		mv.addObject("inputDTO", dto);
 		mv.addObject("genres", dao.findGenresByName(""));
-		mv.addObject("action", "/story/modifyStory.do");
+		mv.addObject("action", "modifyStory.do");
 		
 		States states = new States();
 		mv.addObject("statesList", states);
@@ -92,7 +91,7 @@ public class StoryController {
 			mv.addObject("story", updatedStory);
 		} else {
 			mv.setViewName("storyForm");
-			mv.addObject("action", "/story/modifyStory.do");
+			mv.addObject("action", "modifyStory.do");
 			mv.addObject("story", dao.findStoryById(storyIdToUpdate));
 		}
 		return mv;
@@ -105,7 +104,7 @@ public class StoryController {
 		
 		ModelAndView mv = new ModelAndView("storyForm");
 		mv.addObject("inputDTO", dto);
-		mv.addObject("action", "/story/addStory.do");
+		mv.addObject("action", "addStory.do");
 		mv.addObject("genres", dao.findGenresByName(""));
 		
 		States states = new States();
@@ -155,7 +154,7 @@ public class StoryController {
 		ModelAndView mv = new ModelAndView("roleForm");
 		mv.addObject("story", myStory);
 		mv.addObject("inputDTO", new EventUserInfoDTO());
-		mv.addObject("action", "/story/addRole.do");
+		mv.addObject("action", "addRole.do");
 		return mv;
 	}
 	
@@ -184,7 +183,7 @@ public class StoryController {
 		mv.addObject("inputDTO", new EventUserInfoDTO());
 		mv.addObject("role", myRole);
 		mv.addObject("story", myRole.getStory());
-		mv.addObject("action", "/story/modifyRole.do");
+		mv.addObject("action", "modifyRole.do");
 		return mv;
 	}
 	
@@ -204,14 +203,14 @@ public class StoryController {
 			mv.setViewName("roleForm");
 			mv.addObject("role", managedRole);
 			mv.addObject("story", managedRole.getStory());
-			mv.addObject("action", "/story/modifyRole.do");
+			mv.addObject("action", "modifyRole.do");
 		}
 		return mv;
 	}
 
 	@RequestMapping(path = "changeImage.do", method = RequestMethod.POST)
 	public ModelAndView changeImage(int storyId, String newUrl, HttpSession session) {
-		ModelAndView mv = new ModelAndView("redirect:/story/modifyStory.do");
+		ModelAndView mv = new ModelAndView("redirect:modifyStory.do");
 		Story story = dao.findStoryById(storyId);
 		User user = dao.findUserById(story.getUser().getId());
 		User loggedInUser = (User) session.getAttribute("myUser");

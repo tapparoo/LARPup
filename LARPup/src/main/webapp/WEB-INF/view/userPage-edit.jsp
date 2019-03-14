@@ -78,7 +78,7 @@
 					</div>
 	
 					<div class="col-3">
-						<a href="/user/deactivateUser.do?userId=${user.id}" class="btn btn-sm btn-danger">Deactivate Account</a>
+						<a href="deactivateUser.do?userId=${user.id}" class="btn btn-sm btn-danger">Deactivate Account</a>
 					</div>
 					<div class="col-6"></div>
 				</div>
@@ -94,7 +94,7 @@
 						Change Password 
 					</button>
 					<div class="dropdown-menu">
-						<form action="/user/resetPassword.do?userId=${user.id}" method="POST" class="px-4 py-3">
+						<form action="resetPassword.do?userId=${user.id}" method="POST" class="px-4 py-3">
 							<div class="form-group">
 								<label for="newPass" >New Password</label> <input type="text"
 									class="form-control" name="newPass">
