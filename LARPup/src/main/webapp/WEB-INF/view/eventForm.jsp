@@ -56,14 +56,15 @@
     </div>
     <div class="form-group col-5">
       <form:label path="state">STATE: </form:label>
-              <form:select path="state" class="form-control">
-        <c:if test="${ not empty user.address.state}"><form:option value="${user.address.state}">${user.address.state}</form:option> </c:if>
+      <form:select path="state" class="form-control">
         <c:forEach var="myState" items="${statesList.statesList}">
-          <form:option value="${myState}">${myState}</form:option>
+          <c:choose>
+          <c:when test="${myState == event.address.state}"><form:option selected="selected" value="${myState}">${myState}</form:option></c:when>
+          <c:otherwise><form:option value="${myState}">${myState}</form:option></c:otherwise>
+          </c:choose>
         </c:forEach>
         </form:select>
-      <%-- <form:input class="form-control" type="text" path="state" value="${event.address.state }" placeholder="State"/>
-       --%><form:errors type="text" path="state" />
+      <form:errors type="text" path="state" />
     </div>
     <div class="form-group col-2">
       <form:label path="zipcode">ZIP: </form:label>
@@ -80,7 +81,6 @@
 </div>
 </div>
 
-<a href="/home/home.do">BACK TO HOME</a>
 </body>
 <jsp:include page="/WEB-INF/components/bootstrapFoot.jsp"></jsp:include>
 </html>

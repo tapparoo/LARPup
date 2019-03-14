@@ -1,5 +1,7 @@
 package com.skilldistillery.larpup.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -7,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.larpup.data.LarpUpDAO;
+import com.skilldistillery.larpup.entities.Event;
+import com.skilldistillery.larpup.entities.Story;
+import com.skilldistillery.larpup.entities.User;
 
 @RestController
 @RequestMapping("search")
@@ -39,13 +44,40 @@ public class SearchController {
 	}
 
 	@RequestMapping(path = "searchByString.do", method = RequestMethod.GET)
-	public ModelAndView userDisplay(String searchFor, String searchString) {
+	public ModelAndView searchByString(String searchFor, String searchString) {
 		ModelAndView mv = new ModelAndView("search");
 		switch(searchFor) {
-		case "users":
-			mv.addObject("searchResult", dao.findUsersByString(searchString));
-			break;
-		}
+			case "users":
+				List<User> users = dao.findUsersByString(searchString);
+				if(users != null && users.size() > 0) {
+					mv.addObject("searchResult", users);
+					mv.addObject("resultClass", "user");
+				}
+				else {
+					mv.addObject("nothingFound", "No results found for search string: " + searchString);
+				}
+				break;
+			case "stories":
+				List<Story> stories = dao.findStoriesBySearchString(searchString);
+				if(stories != null && stories.size() > 0) {
+					mv.addObject("searchResult", stories);
+					mv.addObject("resultClass", "story");
+				}
+				else {
+					mv.addObject("nothingFound", "No results found for search string: " + searchString);
+				}
+				break;
+			case "events":
+				List<Event> events = dao.findEventsBySearchString(searchString);
+				if(events != null && events.size() > 0) {
+					mv.addObject("searchResult", events);
+					mv.addObject("resultClass", "event");
+				}
+				else {
+					mv.addObject("nothingFound", "No results found for search string: " + searchString);
+				}
+				break;
+			}
 		return mv;
 	}
 }

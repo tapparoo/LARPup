@@ -47,7 +47,15 @@
     </div>
     <div class="form-group col-md-5">
       <form:label path="addressState">STATE </form:label>
-      <form:input class="form-control" type="text" path="addressState" value="${story.address.state }" placeholder="State"/>
+      <form:select path="addressState" class="form-control">
+        <c:forEach var="myState" items="${statesList.statesList}">
+          <c:choose>
+          <c:when test="${myState == story.address.state}"><form:option selected="selected" value="${myState}">${myState}</form:option></c:when>
+          <c:otherwise><form:option value="${myState}">${myState}</form:option></c:otherwise>
+          </c:choose>
+        </c:forEach>
+        </form:select>
+      <%-- <form:input class="form-control" type="text" path="addressState" value="${story.address.state }" placeholder="State"/> --%>
       <form:errors type="text" path="addressState" />
     </div>
     <div class="form-group col-md-2">

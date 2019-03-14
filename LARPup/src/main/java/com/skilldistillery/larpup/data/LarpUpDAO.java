@@ -27,10 +27,12 @@ public interface LarpUpDAO {
 	List<Story> getRecentStories(int count);
 	List<Story> findStoriesOwnedByUserId(int id);
 	List<Story> findStoriesParticipatedInByUserId(int id);
+	List<Story> findStoriesBySearchString(String str);
 	Story addStory(Story story);
 	boolean updateStory(Story story);
 	
 	Event findEventById(int id);
+	List<Event> findEventsBySearchString(String str);
 	Event addEvent(Event event);
 	boolean updateEvent(Event event);
 	
