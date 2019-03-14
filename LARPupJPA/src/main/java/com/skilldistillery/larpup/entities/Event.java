@@ -62,6 +62,9 @@ public class Event {
 		String time, hour, minute;
 		hour = "" + date.getHour();
 		minute = "" + date.getMinute();
+		if(hour.length() == 1) {
+			hour = "0" + hour;
+		}
 		if(minute.length() == 1) {
 			minute = "0" + minute;
 		}

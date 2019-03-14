@@ -18,12 +18,6 @@ public class AuthorizationController {
 	@Autowired
 	private LarpUpDAO dao;
 
-	@RequestMapping(path = { "authorize.do" }, method = RequestMethod.GET)
-	public ModelAndView userDisplay() {
-		ModelAndView mv = new ModelAndView("authorization");
-		return mv;
-	}
-
 	@RequestMapping(path = { "authorize.do" }, params = { "email", "password" }, method = RequestMethod.POST)
 	public ModelAndView checkUser(String email, String password, HttpSession session) {
 		ModelAndView mv = new ModelAndView("redirect:/home/home.do");
@@ -43,7 +37,7 @@ public class AuthorizationController {
 
 	@RequestMapping(path = { "logout.do" }, method = RequestMethod.GET)
 	public ModelAndView userDisplay(HttpSession session) {
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("redirect:/home/home.do");
 		session.invalidate();
 		return mv;
 	}
