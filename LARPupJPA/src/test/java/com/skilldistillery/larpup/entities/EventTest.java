@@ -50,7 +50,6 @@ class EventTest {
 		assertEquals("2018-07-15T23:57:41", event.getDate().toString());
 		assertEquals(2,event.getStory().getId());
 		assertEquals(5, event.getAddress().getId());
-		
 	}
 	
 //	'5', '1701 Bryant St', 'Denver', 'Colorado', '80204', '7202583000'
