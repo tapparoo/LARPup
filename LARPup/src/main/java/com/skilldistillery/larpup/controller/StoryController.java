@@ -77,7 +77,7 @@ public class StoryController {
 		if(inputDTO.getCustomGenreName() != null && inputDTO.getCustomGenreName().length() > 0) {
 			updateGenre = new Genre();
 			updateGenre.setName(inputDTO.getCustomGenreName());
-			updateGenre.setPicture(dao.findPictureById(1));
+			updateGenre.setPicture(dao.findPictureById(4));
 			dao.addGenre(updateGenre);
 		}
 		else {
@@ -123,7 +123,7 @@ public class StoryController {
 		if(inputDTO.getCustomGenreName() != null && inputDTO.getCustomGenreName().length() > 0) {
 			genre = new Genre();
 			genre.setName(inputDTO.getCustomGenreName());
-			genre.setPicture(dao.findPictureById(1));
+			genre.setPicture(dao.findPictureById(4));
 			dao.addGenre(genre);
 		}
 		else {

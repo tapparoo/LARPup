@@ -1,5 +1,8 @@
 package com.skilldistillery.larpup.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +36,14 @@ public class UserController {
 
 		User sessionUser = (User) session.getAttribute("myUser");
 		if (sessionUser != null) {
-			if(sessionUser.getRole().equals("admin")) {
+			if (sessionUser.getRole().equals("admin")) {
 				mv.setViewName("redirect:/user/adminDisplay.do");
 				mv.addObject("userId", user.getId());
 			}
 		}
 		return mv;
 	}
-	
+
 	@RequestMapping(path = { "adminDisplay.do" }, method = RequestMethod.GET)
 	public ModelAndView adminDisplay(int userId, HttpSession session) {
 		ModelAndView mv = new ModelAndView("userPage");
@@ -49,7 +52,7 @@ public class UserController {
 			sessionUser = (User) session.getAttribute("myUser");
 		}
 		mv.addObject("user", dao.findUserById(userId));
-		
+
 		// For the admin tab's 'User' list dropdowns
 		if (sessionUser != null && sessionUser.getRole().equals("admin") && userId == sessionUser.getId()) {
 			mv.addObject("allUsers", dao.findAllUsers());
@@ -57,7 +60,6 @@ public class UserController {
 		}
 		return mv;
 	}
-	
 
 	@RequestMapping(path = "updateUserForm.do", method = RequestMethod.GET)
 	public ModelAndView updateUserForm(int userId, HttpSession session) {
@@ -139,7 +141,9 @@ public class UserController {
 		tempAddr.setZipcode(inputDTO.getZipcode());
 
 		Picture pic = new Picture();
-		pic = dao.findPictureById(1);
+		pic.setUrl(getRandomProfilePic());
+		pic.setAlt("random profile pic");
+		dao.addPicture(pic);
 		tempUser.setPicture(pic);
 
 		tempUser.setAddress(dao.addAddress(tempAddr));
@@ -223,5 +227,17 @@ public class UserController {
 		mv.addObject("userId", user.getId());
 
 		return mv;
+	}
+
+	public String getRandomProfilePic() {
+		List<String> list = new ArrayList<>();
+		for(int i = 1; i < 27; i++) {
+			
+			list.add("/resources/images/profilepics/pp" + i + ".png");
+		}
+
+		int index = (int) (Math.random() * list.size()) + 1;
+		System.out.println(index);
+		return list.get(index);
 	}
 }
