@@ -10,9 +10,10 @@
 	    font-style: oblique;
 	    font-weight: bold;
 	}
-	.btn-outline-warning{
+	#navbarSupportedContent,.btn-outline-warning{
 		border-color: rgb(255, 129, 55)!important;
 		color: rgb(255, 129, 55)!important;
+		margin:5px;
 	}
 </style>
 
@@ -32,10 +33,10 @@
       <c:when test="${ not empty sessionScope.myUser }"> 
         <form class="form-inline my-2 my-lg-0" action="/user/displayUser.do" method="GET">
           <input type="hidden" name="userId" value="${sessionScope.myUser.id}"/>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Profile</button>
+          <button class="btn btn-sm btn-outline-warning my-2 my-sm-0" type="submit">Profile</button>
         </form>
         <form class="form-inline my-2 my-lg-0" action="/auth/logout.do" method="GET">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+          <button class="btn btn-sm btn-outline-warning my-2 my-sm-0" type="submit">Logout</button>
         </form>
       </c:when>
 	  <c:otherwise>
