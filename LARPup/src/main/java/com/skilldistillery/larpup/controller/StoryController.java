@@ -230,7 +230,7 @@ public class StoryController {
 		} else {
 			session.setAttribute("status", "You are not authorized to change this picture.");
 		}
-		mv.addObject("userId", user.getId());
+		mv.addObject("storyId", story.getId());
 
 		return mv;
 	}
