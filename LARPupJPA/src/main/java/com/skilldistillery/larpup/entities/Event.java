@@ -53,7 +53,7 @@ public class Event {
 		if(dayValue.length() == 1) {
 			dayValue = "0" + dayValue;
 		}
-		String d = date.getYear() + "-" + monthValue + "-" + date.getDayOfMonth();
+		String d = date.getYear() + "-" + monthValue + "-" + dayValue;
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
 		LocalDate ld = LocalDate.parse(d, dtf);
