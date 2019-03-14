@@ -52,45 +52,43 @@
   <div class="row">
     <c:forEach var="eventUser" items="${event.eventUsers}" varStatus="iteration">
       <div class="card col-4 cardRoleExp">
-          <img class="card-img-top" src="/resources/images/cardpics/larpconHead.jpg" alt="Card image cap">
-        <div class="card-body">
-         <h5 class="card-title">${eventUser.eventUserInfo.name }</h5>
-         <p> ${eventUser.eventUserInfo.description } </p>
+        <img class="card-img-top" src="/resources/images/cardpics/larpconHead.jpg" alt="Card image cap">
+        <div class="card-header">
+          <h5 class="card-title">${eventUser.eventUserInfo.name }</h5>
+        </div>
+        <div class="card-body cardDescription">
+          <p> ${eventUser.eventUserInfo.description } </p>
+        </div>
+        <div class="card-footer">
+        <div class="row justify-content-center">
          <c:choose>
-					<c:when test="${not empty eventUser.user }">
-						Role reserved by ${eventUser.user.nickname }
-					</c:when>
-				
-					<c:otherwise>
-						<c:if test="${not empty sessionScope.myUser }">
-							<form>
-								<button class="btn btn-success btn-sm"
-									formaction="/event/assignUserToCharacter.do?eventUserId=${eventUser.id}"
-									formmethod="POST">"Reserve this role!"</button>
-							</form>
-						</c:if>
-					</c:otherwise>
-				  
-				</c:choose>
+		    <c:when test="${not empty eventUser.user }">
+		      Role reserved by ${eventUser.user.nickname }
+		    </c:when>
+            <c:otherwise>
+		      <c:if test="${not empty sessionScope.myUser }">
+	    		   <form>
+			      <button class="btn btn-success btn-sm" formaction="/event/assignUserToCharacter.do?eventUserId=${eventUser.id}" formmethod="POST">"Reserve this role!"</button>
+			    </form>
+			  </c:if>
+		    </c:otherwise>
+		  </c:choose>
+		  </div>
+		</div>
          <c:if test="${sessionScope.myUser.id == event.story.user.id }">
-           <div class="row">
-             <div class="col">
+           <div class="row justify-content-center">
              <form action="/story/modifyRole.do" method="GET">
                <input type="hidden" name="roleId" value="${eventUser.eventUserInfo.id }" />
-               <input type="submit" class="btn btn-primary btn-sm" value="MODIFY" />
+               <input type="submit" class="btn btn-primary btn-sm space" value="MODIFY" />
              </form>
-             </div>
-             <div class="col">
              <form action="/event/removeRole.do" method="POST">
                <input type="hidden" name="eventUserId" value="${eventUser.id }" />
                <input type="hidden" name="eventId" value="${event.id }" />
-               <input type="submit" class="btn btn-danger btn-sm" value="REMOVE" />
+               <input type="submit" class="btn btn-danger btn-sm space" value="REMOVE" />
              </form>
-             </div>
            </div> 
          </c:if>
         </div>
-      </div>
     </c:forEach>
   </div>
 </div>
