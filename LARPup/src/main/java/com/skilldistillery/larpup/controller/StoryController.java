@@ -82,7 +82,6 @@ public class StoryController {
 		}
 		else {
 			updateGenre = dao.findGenresByName(inputDTO.getGenreName()).get(0);
-			System.out.println(updateGenre);
 		}
 		managedStory.setGenre(updateGenre);
 		
@@ -107,6 +106,7 @@ public class StoryController {
 		ModelAndView mv = new ModelAndView("storyForm");
 		mv.addObject("inputDTO", dto);
 		mv.addObject("action", "/story/addStory.do");
+		mv.addObject("genres", dao.findGenresByName(""));
 		
 		States states = new States();
 		mv.addObject("statesList", states);
@@ -118,19 +118,24 @@ public class StoryController {
 		
 		Story newStory = new Story();
 		Address newAddress = new Address();
-		Genre newGenre = dao.findGenresByName(inputDTO.getGenreName()).get(0);
-		if (newGenre == null) {
-			newGenre = new Genre();
-			newGenre.setName(inputDTO.getGenreName());
-			newGenre.setPicture(dao.findPictureById(4));
-			newGenre = dao.addGenre(newGenre);
+		
+		Genre genre = null;
+		if(inputDTO.getCustomGenreName() != null && inputDTO.getCustomGenreName().length() > 0) {
+			genre = new Genre();
+			genre.setName(inputDTO.getCustomGenreName());
+			genre.setPicture(dao.findPictureById(1));
+			dao.addGenre(genre);
 		}
+		else {
+			genre = dao.findGenresByName(inputDTO.getGenreName()).get(0);
+		}
+		
 		newAddress.setCity(inputDTO.getAddressCity());
 		newAddress.setState(inputDTO.getAddressState());
 		newAddress.setZipcode(inputDTO.getAddressZipcode());
 		newAddress = dao.addAddress(newAddress);
 		
-		newStory.setGenre(newGenre);
+		newStory.setGenre(genre);
 		newStory.setAddress(newAddress);
 		newStory.setName(inputDTO.getStoryName());
 		newStory.setDescription(inputDTO.getStoryDescription());

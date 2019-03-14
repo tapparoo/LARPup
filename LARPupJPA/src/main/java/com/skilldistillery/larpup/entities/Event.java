@@ -62,6 +62,9 @@ public class Event {
 		String time, hour, minute;
 		hour = "" + date.getHour();
 		minute = "" + date.getMinute();
+		if(minute.length() == 1) {
+			minute = "0" + minute;
+		}
 		time = hour + ":" + minute;
 		if(Integer.parseInt(hour) > 0 && Integer.parseInt(hour) < 12) {
 			time += " AM";
