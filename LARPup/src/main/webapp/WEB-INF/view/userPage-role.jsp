@@ -20,8 +20,8 @@
         </div>
         <div class="card-footer">
         <div class="row justify-content-center">
-           <p class="centerContent">Story: ${role.event.story.name}<br>
-           Event: ${role.event.name}</p>
+           <div class="centerContent">Story: ${role.event.story.name}<br>
+           Event: ${role.event.name}</div>
         </div>
         <div class="row justify-content-center">
           <a class="btn btn-success btn-sm space" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id}">GO TO STORY</a>

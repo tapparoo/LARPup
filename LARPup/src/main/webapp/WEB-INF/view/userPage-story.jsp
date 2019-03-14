@@ -23,7 +23,7 @@
         </div>
         <div class="card-footer justify-content-center">
           <div class="row justify-content-center">
-          <p>${story.address.city }, ${story.address.state }</p>
+          <div>${story.address.city }, ${story.address.state }</div>
           </div>
           <div class="row justify-content-center">
           <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
@@ -34,7 +34,7 @@
     </div>
   </c:when>
   <c:otherwise>
-    <h3> You do not have any stories you own. <a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="/story/addStory.do">ADD A STORY</a></h3>
+    <h3> You do not have any stories you own. <a class="btn btn-primary btn-sm space" role="button" aria-pressed="true" href="/story/addStory.do">ADD A STORY</a></h3>
   </c:otherwise>
 </c:choose>
 
@@ -58,10 +58,10 @@
         </div>
         <div class="card-footer">
         <div class="row justify-content-center">
-         <p>${story.address.city }, ${story.address.state }</p>
+         <div>${story.address.city }, ${story.address.state }</div>
         </div>
         <div class="row justify-content-center">
-         <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
+         <a class="btn btn-success btn-sm space" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
         </div>
         </div>
         </div>
