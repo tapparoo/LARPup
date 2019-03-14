@@ -19,31 +19,40 @@
 		<div class="col-1"></div>
 		<div class="col box">
 			<div class="row">
-				<div class="form-group">
-					<form action="/search/searchByString.do" method="GET">
-						<label for="searchString">Search For Users</label>
-						<input class="form-control" type="text" name="searchString"/>
-						<button class="btn btn-sm btn-primary" name="searchFor" value="users" type="submit">Go</button>
-					</form>
+				<div class="col-1"></div>
+				<div class="col"><br><br>
+					<div class="row">
+						<form action="/search/searchByString.do" method="GET">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<button class="btn btn-sm btn-primary" name="searchFor" value="users" type="submit">Go</button>
+								</div>
+								<input name="searchString" type="text" class="form-control" placeholder="Search for users" aria-label="" aria-describedby="basic-addon1">
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<form action="/search/searchByString.do" method="GET">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<button class="btn btn-sm btn-primary" name="searchFor" value="stories" type="submit">Go</button>
+								</div>
+								<input name="searchString" type="text" class="form-control" placeholder="Search for stories" aria-label="" aria-describedby="basic-addon1">
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<form action="/search/searchByString.do" method="GET">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<button class="btn btn-sm btn-primary" name="searchFor" value="events" type="submit">Go</button>
+								</div>
+								<input name="searchString" type="text" class="form-control" placeholder="Search for events" aria-label="" aria-describedby="basic-addon1">
+							</div>
+						</form>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="form-group">
-					<form action="/search/searchByString.do" method="GET">
-						<label for="searchString">Search For Stories</label>
-						<input class="form-control" type="text" name="searchString"/>
-						<button class="btn btn-sm btn-primary" name="searchFor" value="stories" type="submit">Go</button>
-					</form>
-				</div>
-			</div>
-			<div class="row">
-				<div class="form-group">
-					<form action="/search/searchByString.do" method="GET">
-						<label for="searchString">Search For Events</label>
-						<input class="form-control" type="text" name="searchString"/>
-						<button class="btn btn-sm btn-primary" name="searchFor" value="events" type="submit">Go</button>
-					</form>
-				</div>
+				<div class="col-1"></div>
 			</div>
 		</div>
 		<div class="col box box-right">
