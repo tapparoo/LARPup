@@ -13,13 +13,21 @@
 
     <div class="row">
       <c:forEach var="story" items="${ownerStoryList}">
-        <div class="card col-4 cardRole">
+        <div class="card col-4 cardStory">
           <img class="card-img-top" src="/resources/images/cardpics/openbook.jpg" alt="Card image cap">
-        <div class="card-body">
+        <div class="card-head">
           <h5 class="card-title">${story.name }</h5>
+        </div>
+        <div class="card-body cardDescription">
           <p>${story.description}<br>
-          ${story.address.city }, ${story.address.state }</p>
+        </div>
+        <div class="card-footer justify-content-center">
+          <div class="row justify-content-center">
+          <p>${story.address.city }, ${story.address.state }</p>
+          </div>
+          <div class="row justify-content-center">
           <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
+          </div>
         </div>
         </div>
       </c:forEach>
@@ -40,13 +48,21 @@
   
     <div class="row">
       <c:forEach var="story" items="${involvedStoryList}">
-        <div class="card col-4 cardRole">
+        <div class="card col-4 cardStory">
           <img class="card-img-top" src="/resources/images/cardpics/openbook.jpg" alt="Card image cap">
-        <div class="card-body">
+        <div class="card-head">
          <h5 class="card-title">${story.name }</h5>
+        </div>
+        <div class="card-body cardDescription">
          <p>${story.description}<br>
-         ${story.address.city }, ${story.address.state }</p>
+        </div>
+        <div class="card-footer">
+        <div class="row justify-content-center">
+         <p>${story.address.city }, ${story.address.state }</p>
+        </div>
+        <div class="row justify-content-center">
          <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/story/displayStory.do?storyId=${story.id }">GO TO STORY</a>
+        </div>
         </div>
         </div>
       </c:forEach>
