@@ -1,8 +1,5 @@
 package com.skilldistillery.larpup.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.larpup.data.EventUserInfoDTO;
 import com.skilldistillery.larpup.data.LarpUpDAO;
+import com.skilldistillery.larpup.data.States;
 import com.skilldistillery.larpup.data.StoryDTO;
 import com.skilldistillery.larpup.entities.Address;
-import com.skilldistillery.larpup.entities.Event;
 import com.skilldistillery.larpup.entities.EventUserInfo;
 import com.skilldistillery.larpup.entities.Genre;
 import com.skilldistillery.larpup.entities.Story;
@@ -42,11 +39,15 @@ public class StoryController {
 		Story myStory = dao.findStoryById(storyId);
 		
 		StoryDTO dto = new StoryDTO();
+		
 				
 		ModelAndView mv = new ModelAndView("storyForm");
 		mv.addObject("story", myStory);
 		mv.addObject("inputDTO", dto);
 		mv.addObject("action", "/story/modifyStory.do");
+		
+		States states = new States();
+		mv.addObject("statesList", states);
 		return mv;
 	}
 
@@ -99,6 +100,9 @@ public class StoryController {
 		ModelAndView mv = new ModelAndView("storyForm");
 		mv.addObject("inputDTO", dto);
 		mv.addObject("action", "/story/addStory.do");
+		
+		States states = new States();
+		mv.addObject("statesList", states);
 		return mv;
 	}
 	

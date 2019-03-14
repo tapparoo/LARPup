@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.larpup.data.LarpUpDAO;
+import com.skilldistillery.larpup.data.States;
 import com.skilldistillery.larpup.data.UserDTO;
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Picture;
@@ -64,9 +65,12 @@ public class UserController {
 	public ModelAndView updateUserForm(int userId, HttpSession session) {
 		ModelAndView mv = new ModelAndView("userPage");
 		UserDTO dto = new UserDTO();
+		States states = new States();
+		System.out.println(states);
 
 		mv.addObject("user", dao.findUserById(userId));
 		mv.addObject("userDTO", dto);
+		mv.addObject("statesList", states);
 		mv.addObject("action", "/user/updateUser.do");
 		return mv;
 	}
@@ -108,9 +112,11 @@ public class UserController {
 	@RequestMapping(path = { "createUserForm.do" }, method = RequestMethod.GET)
 	public ModelAndView creatForm() {
 		UserDTO dto = new UserDTO();
+		States states = new States();
 
 		ModelAndView mv = new ModelAndView("userForm");
 		mv.addObject("inputDTO", dto);
+		mv.addObject("statesList", states);
 		mv.addObject("action", "/user/createUser.do");
 		return mv;
 	}

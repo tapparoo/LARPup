@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.larpup.data.EventDTO;
 import com.skilldistillery.larpup.data.LarpUpDAO;
+import com.skilldistillery.larpup.data.States;
 import com.skilldistillery.larpup.entities.Address;
 import com.skilldistillery.larpup.entities.Event;
 import com.skilldistillery.larpup.entities.EventUser;
@@ -36,6 +37,9 @@ public class EventController {
 		ModelAndView mv = new ModelAndView("eventForm");
 		EventDTO dto = new EventDTO();
 
+		States states = new States();
+		mv.addObject("statesList", states);
+		
 		mv.addObject("event", dao.findEventById(eventId));
 		mv.addObject("eventDTO", dto);
 		mv.addObject("action", "/event/updateEvent.do");
@@ -81,6 +85,10 @@ public class EventController {
 		ModelAndView mv = new ModelAndView("eventForm");
 		EventDTO dto = new EventDTO();
 		dto.setStoryId(storyId);
+		
+		States states = new States();
+		mv.addObject("statesList", states);
+		
 		mv.addObject("event", new Event());
 		mv.addObject("eventDTO", dto);
 		mv.addObject("action", "/event/addEvent.do");
