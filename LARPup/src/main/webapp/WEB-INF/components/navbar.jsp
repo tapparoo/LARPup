@@ -3,16 +3,21 @@
 
 <style>
 	.navbar{
-		background-color: #e1e3e4
+		background-color: #739eb7!important;
 	}
-	.navbar-brand{
+	.navbar-brand, #navSearchButton{
+		color: white!important;
+	    font-weight: bold;
+	}
+/* 	.navbar-brand{
 		color: rgb(255, 129, 55)!important;
 	    font-style: oblique;
 	    font-weight: bold;
-	}
+	} */
 	#navbarSupportedContent,.btn-outline-warning{
-		border-color: rgb(255, 129, 55)!important;
-		color: rgb(255, 129, 55)!important;
+	    background-color: #779db8;
+		border-color: #caced3!important;
+		color: white!important;
 		margin:5px;
 	}
 </style>
@@ -26,7 +31,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/search/searchPage.do">Search<span class="sr-only">(current)</span></a>
+        <a id="navSearchButton" class="nav-link" href="/search/searchPage.do">Search<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <c:choose> 
