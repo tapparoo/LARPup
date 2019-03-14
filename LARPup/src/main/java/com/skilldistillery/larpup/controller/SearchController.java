@@ -21,7 +21,7 @@ public class SearchController {
 		return mv;
 	}
 
-	@RequestMapping(path = "search.do", method = RequestMethod.GET)
+	@RequestMapping(path = "searchById.do", method = RequestMethod.GET)
 	public ModelAndView userDisplay(int id, String searchFor) {
 		ModelAndView mv = new ModelAndView("search");
 		switch(searchFor) {
@@ -33,6 +33,17 @@ public class SearchController {
 			break;
 		case "storiesParticipatedIn":
 			mv.addObject("searchResult", dao.findStoriesParticipatedInByUserId(id));
+			break;
+		}
+		return mv;
+	}
+
+	@RequestMapping(path = "searchByString.do", method = RequestMethod.GET)
+	public ModelAndView userDisplay(String searchFor, String searchString) {
+		ModelAndView mv = new ModelAndView("search");
+		switch(searchFor) {
+		case "users":
+			mv.addObject("searchResult", dao.findUsersByString(searchString));
 			break;
 		}
 		return mv;

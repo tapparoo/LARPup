@@ -42,6 +42,12 @@ public class LarpUpDAOImpl implements LarpUpDAO {
 	}
 	
 	@Override
+	public List<User> findUsersByString(String str){
+		String query = "SELECT u FROM User u WHERE u.firstName LIKE :str OR u.lastName LIKE :str OR u.nickname LIKE :str OR u.email LIKE :str";
+		return em.createQuery(query, User.class).setParameter("str", "%" + str + "%").getResultList();
+	}
+	
+	@Override
 	public List<User> findAllUsers() {
 		return em.createQuery("SELECT u FROM User u", User.class).getResultList();
 	}

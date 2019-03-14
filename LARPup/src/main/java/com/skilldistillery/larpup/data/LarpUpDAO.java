@@ -17,6 +17,7 @@ public interface LarpUpDAO {
 	
 	User findUserById (int id);
 	User findUserByEmail (String email);
+	List<User> findUsersByString(String str);
 	List<User> findAllUsers();
 	List<User> findDeactivatedUsers();
 	User addUser(User user);

@@ -32,8 +32,8 @@ public class UserController {
 		mv.addObject("roleList", dao.findEventUsersByUserId(userId));
 		mv.addObject("user", user);
 
-		if (session != null) {
-			User sessionUser = (User) session.getAttribute("myUser");
+		User sessionUser = (User) session.getAttribute("myUser");
+		if (sessionUser != null) {
 			if(sessionUser.getRole().equals("admin")) {
 				mv.setViewName("redirect:/user/adminDisplay.do");
 				mv.addObject("userId", user.getId());
