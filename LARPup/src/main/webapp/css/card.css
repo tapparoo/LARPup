@@ -36,8 +36,13 @@
 	text-indent: 25px;
 }
 
+.cardDetail {
+	font-size: small;
+}
+
 .centerContent {
 	align-content: center;
+	text-align: center;
 }
 
 .space {

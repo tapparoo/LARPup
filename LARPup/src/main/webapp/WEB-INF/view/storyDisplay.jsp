@@ -70,7 +70,11 @@
         <div class="card-body cardDescription">
          <p> ${event.description } </p>
         </div>
-         <p> ${event.date } </p>
+          <div class="row justify-content-center">
+          <p class="centerContent cardDetail">${event.address.street }<br>
+          ${event.address.city}, ${event.address.state}<br>
+          ${event.date }</p>
+          </div>
         <div class="card-footer">
           <div class="row justify-content-center">
            <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="/event/displayEvent.do?eventId=${event.id }" >GO TO EVENT</a>
