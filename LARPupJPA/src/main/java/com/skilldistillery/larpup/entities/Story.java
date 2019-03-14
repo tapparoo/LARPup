@@ -210,7 +210,13 @@ public class Story {
 
 	@Override
 	public String toString() {
-		return "Story [id=" + id + ", name=" + name + ", description=" + description + ", address=" + address
-				+ ", user=" + user + ", genre=" + genre + ", createDate=" + createDate + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("ID: %d%s", id, "<br>"));
+		sb.append(String.format("Name: %s%s", name, "<br>"));
+		sb.append(String.format("Description: %s%s", description, "<br>"));
+		sb.append(String.format("Genre: %s%s", genre.getName(), "<br>"));
+		sb.append(String.format("Created by: %s%s", user.getNickname(), "<br>"));
+		sb.append(String.format("Created on: %s%s", createDate, "<br>"));
+		return sb.toString();
 	}
 }

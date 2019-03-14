@@ -19,22 +19,50 @@
 		<div class="col-1"></div>
 		<div class="col box">
 			<div class="row">
-				<a class="btn btn-sm btn-primary" href="/search/searchById.do?id=5&searchFor=storiesOwned">Search Owned</a>
+				<div class="form-group">
+					<form action="/search/searchByString.do" method="GET">
+						<label for="searchString">Search For Users</label>
+						<input class="form-control" type="text" name="searchString"/>
+						<button class="btn btn-sm btn-primary" name="searchFor" value="users" type="submit">Go</button>
+					</form>
+				</div>
 			</div>
 			<div class="row">
-				<a class="btn btn-sm btn-primary" href="/search/searchById.do?id=5&searchFor=storiesParticipatedIn">Search Participated in</a>
+				<div class="form-group">
+					<form action="/search/searchByString.do" method="GET">
+						<label for="searchString">Search For Stories</label>
+						<input class="form-control" type="text" name="searchString"/>
+						<button class="btn btn-sm btn-primary" name="searchFor" value="stories" type="submit">Go</button>
+					</form>
+				</div>
 			</div>
 			<div class="row">
-				<a class="btn btn-sm btn-primary" href="/search/searchById.do?id=5&searchFor=roles">Search Roles</a>
-			</div>
-			<div class="row">
-				<a class="btn btn-sm btn-primary" href="/search/searchByString.do?searchFor=users&searchString=com">Search UserNames</a>
+				<div class="form-group">
+					<form action="/search/searchByString.do" method="GET">
+						<label for="searchString">Search For Events</label>
+						<input class="form-control" type="text" name="searchString"/>
+						<button class="btn btn-sm btn-primary" name="searchFor" value="events" type="submit">Go</button>
+					</form>
+				</div>
 			</div>
 		</div>
 		<div class="col box box-right">
-			<c:forEach var="result" items="${searchResult}">
-				<a href="/user/displayUser.do?userId=${result.id}">${result }</a><br><br>
-			</c:forEach>
+			<h5>${nothingFound }</h5>
+			<c:if test="${not empty resultClass }">
+				<c:forEach var="result" items="${searchResult}">
+						<c:choose>
+							<c:when test="${resultClass == 'user'}">
+								<a href="/user/displayUser.do?userId=${result.id}">${result }</a><br><br>
+							</c:when>
+							<c:when test="${resultClass == 'story' }">
+								<a href="/story/displayStory.do?storyId=${result.id}">${result }</a><br><br>
+							</c:when>
+							<c:when test="${resultClass == 'event' }">
+								<a href="/event/displayEvent.do?eventId=${result.id}">${result }</a><br><br>
+							</c:when>
+						</c:choose>
+				</c:forEach>
+			</c:if>	
 		</div>
 		<div class="col-1"></div>
 	</div>

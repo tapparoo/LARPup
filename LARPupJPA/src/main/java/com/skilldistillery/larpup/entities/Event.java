@@ -187,7 +187,12 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return "Event [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date
-				+ ", createDate=" + createDate + ", story=" + story + ", address=" + address + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("ID: %d%s", id, "<br>"));
+		sb.append(String.format("Name: %s%s", name, "<br>"));
+		sb.append(String.format("Description: %s%s", description, "<br>"));
+		sb.append(String.format("Event Date/Time: %s%s", date, "<br>"));
+		sb.append(String.format("Created on: %s%s", createDate, "<br>"));
+		return sb.toString();
 	}
 }
