@@ -9,13 +9,16 @@
 <title>Display Event</title>
 <link rel="stylesheet" href="css/event_page.css">
 <link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
 <div class="container">
   <div class="row">
     <div class="col">
-    <img src="resources/images/eventpics/frontPage2.jpg" />
+    	<div class="banner-container">
+		    <img src="${event.story.genre.picture.url }" />
+        </div>
     <h1>${event.name} - ${event.formattedDate }</h1>
     <p>${event.description}<br>
     The location of this event is ${event.address.street}, ${event.address.city}, ${event.address.state}, ${event.address.zipcode}</p>

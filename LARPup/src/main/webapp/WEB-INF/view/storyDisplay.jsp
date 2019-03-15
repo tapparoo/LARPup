@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Display Story</title>
 <link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
@@ -14,13 +15,17 @@
 <div class="container">
   <div class="row">
     <div class="col">
-    <img src="resources/images/eventpics/frontPage2.jpg" />
-    <h1>${story.name}
-    <c:if test="${sessionScope.myUser.id == story.user.id }"><a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="modifyStory.do?storyId=${story.id }">EDIT STORY</a></c:if>
-    </h1>
-    <p>${story.genre.name} <br>
-    ${story.description}<br></p>
-    <p>The location of this story is ${story.address.city }, ${story.address.state } </p>
+    	<div class="banner-container">
+		    <img src="${story.genre.picture.url }" />
+        </div>
+	    <h1>${story.name}
+	    <c:if test="${sessionScope.myUser.id == story.user.id }">
+	    	<a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="modifyStory.do?storyId=${story.id }">EDIT STORY</a>
+    	</c:if>
+	    </h1>
+	    <p>${story.genre.name} <br>
+	    ${story.description}<br></p>
+	    <p>The location of this story is ${story.address.city }, ${story.address.state } </p>
     </div>
   </div>
   <div class="row"><div class="col">

@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Main Page</title>
 <link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
@@ -17,7 +18,9 @@
   <div class="row"><div class="col"></div></div>
   <div class="row">
     <div class="col">
-      <img src="resources/images/eventpics/frontPage2.jpg" />
+      <div class="banner-container">
+      	<img src="resources/images/storypics/bigBattle3.jpg" />
+      </div>
       <h3>LARP UP!</h3>
       <p>Inspirational reasons to go beat people with foam swords</p>
     </div>
