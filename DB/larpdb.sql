@@ -86,9 +86,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `genre` ;
 
 CREATE TABLE IF NOT EXISTS `genre` (
-  `id` INT UNSIGNED NOT NULL DEFAULT 4,
+  `id` INT UNSIGNED NOT NULL,
   `name` VARCHAR(45) NOT NULL,
-  `picture_id` INT UNSIGNED NOT NULL,
+  `picture_id` INT UNSIGNED NOT NULL DEFAULT 4,
   PRIMARY KEY (`id`),
   INDEX `fk_genre_picture1_idx` (`picture_id` ASC),
   CONSTRAINT `fk_genre_picture1`
