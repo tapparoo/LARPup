@@ -9,11 +9,6 @@
 		color: white!important;
 	    font-weight: bold;
 	}
-/* 	.navbar-brand{
-		color: rgb(255, 129, 55)!important;
-	    font-style: oblique;
-	    font-weight: bold;
-	} */
 	#navbarSupportedContent,.btn-outline-warning{
 	    background-color: #779db8;
 		border-color: #caced3!important;
@@ -33,6 +28,11 @@
       <li class="nav-item active">
         <a id="navSearchButton" class="nav-link" href="searchPage.do">Search<span class="sr-only">(current)</span></a>
       </li>
+      <c:if test="${ not empty sessionScope.myUser }">
+	      <li class="nav-item">
+	        <a id="navSearchButton" class="nav-link" href="addStory.do">Add Story</a>
+	      </li>
+      </c:if>
     </ul>
     <c:choose> 
       <c:when test="${ not empty sessionScope.myUser }"> 
