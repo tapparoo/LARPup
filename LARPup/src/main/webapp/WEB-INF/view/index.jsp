@@ -19,10 +19,22 @@
   <div class="row">
     <div class="col">
       <div class="banner-container">
-      	<img src="resources/images/storypics/bigBattle3.jpg" />
+      	<div class="banner-img">
+      		<img src="resources/images/storypics/bigBattle3.jpg" />
+      	</div>
+	      <h3>LARP UP!</h3>
       </div>
-      <h3>LARP UP!</h3>
-      <p>Inspirational reasons to go beat people with foam swords</p>
+      <div class="row">
+	      <div class="col-1"></div>
+	      <div class="col">
+		      <div class="quote">
+			      <p>"Cool new experiences, interesting new perspectives, and so on. Larping combines the draw of alternate roles with a definite physicality, and thus affects its players in ways most other mediums can’t."
+			      	<br><strong>- J. Tuomas Harviainen</strong>
+			      </p>
+		      </div>
+	      </div>
+	      <div class="col-1"></div>
+      </div>
     </div>
   </div>
 </div>
