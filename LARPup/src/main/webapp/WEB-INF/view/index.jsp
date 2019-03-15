@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Main Page</title>
 <link rel="stylesheet" href="css/card.css">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=2">
 </head>
 <body>
 <jsp:include page="/WEB-INF/components/navbar.jsp"></jsp:include>
