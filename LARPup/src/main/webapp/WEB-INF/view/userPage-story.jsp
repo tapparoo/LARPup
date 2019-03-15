@@ -39,12 +39,12 @@
 </c:choose>
 
 
-<div class="row">
-<h3>Stories you are involved in</h3>
-</div>
 
 <c:choose>
   <c:when test="${not empty involvedStoryList }">
+    <div class="row">
+      <h3>Stories you are involved in</h3>
+    </div>
   
     <div class="row">
       <c:forEach var="story" items="${involvedStoryList}">
@@ -70,6 +70,6 @@
   
   </c:when>
   <c:otherwise>
-    <h3> You are currently not involved in any stories </h3>
+    <h3>You are currently not involved in any stories </h3>
   </c:otherwise>
 </c:choose>

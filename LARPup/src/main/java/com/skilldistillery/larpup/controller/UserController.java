@@ -57,6 +57,11 @@ public class UserController {
 			mv.addObject("allUsers", dao.findAllUsers());
 			mv.addObject("filteredUsers", dao.findDeactivatedUsers());
 		}
+		
+		mv.addObject("ownerStoryList", dao.findStoriesOwnedByUserId(userId));
+		mv.addObject("involvedStoryList", dao.findStoriesParticipatedInByUserId(userId));
+		mv.addObject("roleList", dao.findEventUsersByUserId(userId));
+		
 		return mv;
 	}
 
