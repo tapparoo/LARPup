@@ -14,7 +14,7 @@
     <div class="row">
       <c:forEach var="story" items="${ownerStoryList}">
         <div class="card col-4 cardStory">
-          <img class="card-img-top" src="/resources/images/cardpics/openbook.jpg" alt="Card image cap">
+          <img class="card-img-top" src="resources/images/cardpics/openbook.jpg" alt="Card image cap">
         <div class="card-head">
           <h5 class="card-title">${story.name }</h5>
         </div>
