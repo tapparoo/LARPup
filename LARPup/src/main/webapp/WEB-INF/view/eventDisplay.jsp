@@ -19,10 +19,18 @@
     	<div class="banner-container">
 		    <img src="${event.story.genre.picture.url }" />
         </div>
-    <h1>${event.name} - ${event.formattedDate }</h1>
-    <p>${event.description}<br>
-    The location of this event is ${event.address.street}, ${event.address.city}, ${event.address.state}, ${event.address.zipcode}</p>
+    <div>
+    <h1 class="eventTitleFormat">${event.name} - ${event.formattedDate }</h1>
     <c:if test="${sessionScope.myUser.id == event.story.user.id }"><a class="btn btn-primary btn-sm" role="button" aria-pressed="true" href="eventForm.do?eventId=${event.id }">EDIT EVENT</a></c:if>
+    </div>
+    <div class="row justify-content-center eventDescFormat">
+	<div class="col-10">
+    <p>${event.description}<br>
+    </div>
+    </div>
+    <div class="eventLocationFormat">
+    This event is at<br>${event.address.street}<br>${event.address.city}, ${event.address.state}, ${event.address.zipcode}
+    </div>
     <a class="btn btn-success btn-sm" role="button" aria-pressed="true" href="displayStory.do?storyId=${event.story.id }">RETURN TO STORY</a>
     </div>
   </div>
